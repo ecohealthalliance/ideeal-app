@@ -21,8 +21,6 @@ shinyServer(function(input, output) {
     rho           = input$rho # discount rate
     years         = input$years
     
-    
-    
     # Set parameters
     py = palmoil_price*oil_yield
     prop_forest_land = forest_land # proportion of forest land from total (%)
