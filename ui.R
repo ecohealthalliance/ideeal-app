@@ -24,7 +24,7 @@ fluidPage(
       sliderInput('p_c', 'Conversion cost ($US/ha):', 3000,
                    min = 1000, max = 6000, pre = "$"),
       
-      sliderInput('p_d', 'Health Damages ($US/ha):', 50,
+      sliderInput('p_d', 'Health damages ($US/ha):', 50,
                   min = 0, max = 2000, pre = "$"),
       
       sliderInput('p_b', 'Ecosystem services value ($US/ha):', 10,
@@ -53,7 +53,7 @@ fluidPage(
       h5("Created by:"),
       tags$a("EcoHealth Alliance", 
              href="http://www.ecohealthalliance.org"),
-      h5("For details on how model is generated"),
+      h5("For details on how model is generated go to"),
       tags$a("Blog Post", 
              href=""),
       h5(textOutput("counter"))
@@ -62,10 +62,13 @@ fluidPage(
       
       mainPanel(
         img(src = "img1.png", height = 150, width = 300),
-        plotOutput("Plot1"),
-        plotOutput("Plot2"),
-        plotOutput("Plot3")
-      
+        
+        tabsetPanel(type = "tabs", 
+                    tabPanel("Optimal allocation rate", plotOutput("Plot1")), 
+                    tabPanel("Optimal land allocation", plotOutput("Plot2")), 
+                    tabPanel("Optimal effort", plotOutput("Plot3"))
+
+        )
     )
   )
 )

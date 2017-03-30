@@ -100,7 +100,7 @@ shinyServer(function(input, output) {
      withProgress(message = 'Making plot', value = 0, {
     
     plot(time, mydata()$X, main = 'Optimal allocation of development through the years (%)', 
-         col = 'darkgreen', xlab = 'Years', ylab = 'Development (%)', xlim =c(0,80) , ylim =c(0,1) )
+         col = 'darkgreen', xlab = 'Years', ylab = 'Development (%)', xlim =c(0,max(time)) , ylim =c(0,1) )
       })
   })
   
