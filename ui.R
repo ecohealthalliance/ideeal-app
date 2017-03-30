@@ -11,7 +11,7 @@ fluidPage(
     sidebarPanel(
       # Input for total amount of land in analysis
       numericInput('total_land', 'Total Land (in ha):', 100000,
-                   min = 1, max = 100000000),
+                   min = 1, max = 10000000000),
     
       # Input for percentage of forest land
       sliderInput("forest_land", "Forest land:", 
@@ -19,7 +19,7 @@ fluidPage(
       
       # Specification of range within an interval
       sliderInput("palmoil_price", "Palm oil price range (US$):",
-                  min = 1, max = 5000, pre = "$",value =1300),
+                  min = 1, max = 5000, pre = "$",value =400),
       
       sliderInput('p_c', 'Conversion cost ($US/ha):', 3000,
                    min = 1000, max = 6000, pre = "$"),
@@ -27,12 +27,15 @@ fluidPage(
       sliderInput('p_d', 'Health Damages ($US/ha):', 50,
                   min = 0, max = 2000, pre = "$"),
       
+      sliderInput('p_b', 'Ecosystem services value ($US/ha):', 10,
+                  min = 0, max = 100, pre = "$"),
+      
       sliderInput('c_coeff', 'Exponential cost function:', 1.6,
                   min = 1, max = 2),
       
       # Yield of palm oil per hectare (metric tons)
       sliderInput("oil_yield", "Oil yield per hectare (in metric tons):",
-                  min=0, max=10, value=4),
+                  min=0, max=10, value=3.5),
       
       sliderInput("rho", "Discount rate:",
                   min=0.01, max=0.09, value=0.03),
