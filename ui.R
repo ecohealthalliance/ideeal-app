@@ -51,17 +51,9 @@ shinyUI(fluidPage(
                   step = 1, animate=
                     animationOptions(interval=100, loop=TRUE)),
       
-      submitButton("Update"),
+      submitButton("Update")
       
-      br(),
-      
-      h5("Created by:"),
-      tags$a("EcoHealth Alliance", 
-             href="http://www.ecohealthalliance.org"),
-      h5("For details on how model is generated go to"),
-      tags$a("Blog Post", 
-             href=""),
-      h5(textOutput("counter"))
+  
   
     ),     
       
@@ -78,7 +70,7 @@ shinyUI(fluidPage(
   tabPanel("Values of ecosystem services"),
   tabPanel("Health damages"),
   "-------",
-  tabPanel("Figures",
+  tabPanel("Figures" ,
            
            mainPanel(
              
@@ -87,12 +79,20 @@ shinyUI(fluidPage(
                          tabPanel("Social optimal land allocation", plotOutput("Plot2")), 
                          tabPanel("Social optimal effort", plotOutput("Plot3"))
                          
-             )
+             ),
+             
+             br(),
+             
+             h5("Created by:"),
+             tags$a("EcoHealth Alliance", 
+                    href="http://www.ecohealthalliance.org"),
+             h5("For details on how the model is generated go to:"),
+             tags$a("IDEEAL modeling at EcoHealth alliance", 
+                    href="http://www.ecohealthalliance.org/program/ideeal"),
+             h5(textOutput("counter"))
+           ) 
            )
-           )
+
   )
-  
-  
-  
 ))
  
