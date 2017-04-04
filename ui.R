@@ -1,12 +1,17 @@
 library(shiny)
 
 # Define UI 
-fluidPage(
+shinyUI(fluidPage(
   
   #  Application title
   titlePanel("Infectious Disease Emergence Economic Analysis (IDEEAL)"),
   
   # Inputs
+  navlistPanel( 
+    "Inputs",
+    tabPanel("Palm oil production",
+
+    
   sidebarLayout(
     sidebarPanel(
       # Input for total amount of land in analysis
@@ -17,9 +22,13 @@ fluidPage(
       sliderInput("forest_land", "Forest land:", 
                   min = 0, max = 1, value = 0.99),
       
-      # Specification of range within an interval
+      # Input for palm oil price (US$)
       sliderInput("palmoil_price", "Palm oil price range (US$):",
-                  min = 1, max = 5000, pre = "$",value =400),
+                  min = 1, max = 5000, pre = "$",value =600),
+      
+      # Yield of palm oil per hectare (metric tons)
+      sliderInput("palmoil_yield", "Oil yield per hectare (in metric tons):",
+                  min=1, max=5, value=3),
       
       sliderInput('p_c', 'Conversion cost ($US/ha):', 3000,
                    min = 1000, max = 6000, pre = "$"),
@@ -32,10 +41,6 @@ fluidPage(
       
       sliderInput('c_coeff', 'Exponential cost function:', 1.6,
                   min = 1, max = 2),
-      
-      # Yield of palm oil per hectare (metric tons)
-      sliderInput("oil_yield", "Oil yield per hectare (in metric tons):",
-                  min=0, max=10, value=3.5),
       
       sliderInput("rho", "Discount rate:",
                   min=0.01, max=0.09, value=0.03),
@@ -61,14 +66,33 @@ fluidPage(
     ),     
       
       mainPanel(
-        img(src = "img1.png", height = 150, width = 300),
+        img(src = "img1.png", height = 150, width = 300)
         
-        tabsetPanel(type = "tabs", 
-                    tabPanel("Optimal allocation rate", plotOutput("Plot1")), 
-                    tabPanel("Optimal land allocation", plotOutput("Plot2")), 
-                    tabPanel("Optimal effort", plotOutput("Plot3"))
-
-        )
+    
     )
   )
-)
+  ),
+  
+
+  tabPanel("Costs of land conversion"),
+  tabPanel("Values of ecosystem services"),
+  tabPanel("Health damages"),
+  "-------",
+  tabPanel("Figures",
+           
+           mainPanel(
+             
+             tabsetPanel(type = "tabs", 
+                         tabPanel("Social optimal allocation rate", plotOutput("Plot1")), 
+                         tabPanel("Social optimal land allocation", plotOutput("Plot2")), 
+                         tabPanel("Social optimal effort", plotOutput("Plot3"))
+                         
+             )
+           )
+           )
+  )
+  
+  
+  
+))
+ 
