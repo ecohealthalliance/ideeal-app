@@ -11,7 +11,7 @@ shiny::runApp()
 
 ### Project Goal:
 1. Understand the benefits of keeping intact forests to regulate diseases
-2. Estimate the economic costs tht are avoided by reducing deforestation
+2. Estimate the economic costs that are avoided by reducing deforestation
 
 [IDEEAL website](https://www.ecohealthalliance.org/program/ideeal)
 
