@@ -15,18 +15,17 @@ library(ggplot2)
 
 
 ui <- dashboardPage(skin = "green",
-  header <- dashboardHeader(title = "IDEEAL", dropdownMenuOutput("messageMenu") ) 
-  ,
+  header <- dashboardHeader(title = "IDEEAL", dropdownMenuOutput("messageMenu")),
   sidebar <- dashboardSidebar(width = 300,
     sidebarMenu(
       menuItem("Inputs", tabName = "Picture", icon = icon("map-o")),
+      menuItem("Project Detailed Background", tabName = "proj_bg", icon = icon("book")),
       menuItem("Land and palm oil", tabName = "inputs", icon = icon("industry")),
       menuItem("Land holders", tabName = "yield_inputs", icon = icon("industry")),
       menuItem("General", tabName = "general_inputs", icon = icon("info")),
       menuItem("Land Conversion", tabName = "conversion_inputs", icon = icon("road")),
       menuItem("Ecosystem services", tabName = "EcoSer_inputs", icon = icon("globe")),
       menuItem("Health", tabName = "health_inputs", icon = icon("heart-o")),
-      
       
       br(),
       #menuItem(submitButton("update"), badgeLabel = "click 'update' after input changes", badgeColor = "green"),
@@ -35,8 +34,7 @@ ui <- dashboardPage(skin = "green",
       menuItem("Private Optimal", tabName = "figure2", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
       menuItem("Private vs Social Optimal", tabName = "figure3", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
       menuItem("Option Value", tabName = "option_value", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
-      
-     br(),
+      br(),
     
     h5("Created by:"),
     tags$a("EcoHealth Alliance", 
@@ -52,26 +50,31 @@ ui <- dashboardPage(skin = "green",
              href = "https://www.ecohealthalliance.org/program/ideeal"),
     menuItem("EcoHealth Alliance", icon = icon(""), 
              href = "https://ecohealthalliance.org")
-    
-    
-      
     )
   ),
   body <- dashboardBody(
     tabItems(
-       # Zero tab content
+       # Zero tab content (landing page)
       tabItem(tabName = "Picture",
               h2("Infectious Disease Emergence and Economics of Altered Landscapes (IDEEAL)"),
               fluidRow(  
-                box( img(src = "img1.png", height = 400, width = 600), width=12  )
+                box( img(src = "img1.png", height = 200, width = 300), width=7)
                       ),
               fluidRow(  
-                box( "Instructions: Please choose the values in each tab and then click update to estimate the model. 
-                     If no values are chosen, the model will run with the default values", width=9  )
+                box( "IDEEAL is an economic model that looks at the tradeoffs between human-environmental health and economic growth due to palm oil production.", width=9  )
                       ) 
              ),
-      
-      # First tab content
+      # First tab content (background)
+      tabItem(tabName = "proj_bg", 
+              h2("Infectious Disease Emergence and Economics of Altered Landscapes (IDEEAL)"),
+              fluidRow(  
+                box(includeMarkdown('background.MD'))
+                # box("Project Background: Please choose the values in each tab and then click update to estimate the model. 
+                #      If no values are chosen, the model will run with the default values", width=9  )
+                # Add section: why palm oil? (slide 13-16)
+                )
+              ),
+      # Second tab content
       tabItem(tabName = "inputs",
               fluidRow(
                 box(
