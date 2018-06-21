@@ -18,8 +18,8 @@ ui <- dashboardPage(skin = "green",
   header <- dashboardHeader(title = "IDEEAL", dropdownMenuOutput("messageMenu")),
   sidebar <- dashboardSidebar(width = 300,
     sidebarMenu(
-      menuItem("Inputs", tabName = "Picture", icon = icon("map-o")),
-      menuItem("Project Detailed Background", tabName = "proj_bg", icon = icon("book")),
+      menuItem("Overview", tabName = "Picture", icon = icon("map-o")),
+      menuItem("Project Details", tabName = "proj_bg", icon = icon("book")),
       menuItem("Land and palm oil", tabName = "inputs", icon = icon("industry")),
       menuItem("Land holders", tabName = "yield_inputs", icon = icon("industry")),
       menuItem("General", tabName = "general_inputs", icon = icon("info")),
@@ -67,12 +67,12 @@ ui <- dashboardPage(skin = "green",
       # First tab content (background)
       tabItem(tabName = "proj_bg", 
               h2("Infectious Disease Emergence and Economics of Altered Landscapes (IDEEAL)"),
-              fluidRow(  
-                box(includeMarkdown('background.MD'))
+              # fluidRow(  
+                box(includeMarkdown('background.MD'), width=12)
                 # box("Project Background: Please choose the values in each tab and then click update to estimate the model. 
                 #      If no values are chosen, the model will run with the default values", width=9  )
                 # Add section: why palm oil? (slide 13-16)
-                )
+                # )
               ),
       # Second tab content
       tabItem(tabName = "inputs",
