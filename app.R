@@ -166,16 +166,17 @@ ui <- dashboardPage(skin = "green",
               
               box( 
                 sliderInput("rho", "Discount rate:",
-                            min=0.0, max=0.1, value=0.05), 
-                "The discount rate is used to discount the values to the present. 
+                            min=0.0, max=0.1, value=0.05)
+                ),
+              helpText("The discount rate is used to discount the values to the present. 
                 Every time a piece of land is converted into palm plantation in the future, 
                 it generates revenues that need to be discounted. 
                 Future ecosystem services and costs are also discounted by this rate.", 
                 br(),
                 "It is by default at 5%, if you increase the discount rate, 
-                future value flows will become smaller"  
+                future value flows will become smaller")
                 
-              )
+              
       ),
       # third tab content
       tabItem(tabName = "conversion_inputs",
