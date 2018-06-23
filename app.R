@@ -80,8 +80,8 @@ ui <- dashboardPage(skin = "green",
                 box(
               # Input for total amount of land in analysis
               numericInput('total_land', 'Total Land (in ha):', 
-                           min = 1, max = 10000000000, value = 7363000 ), 
-              "Total land is the sum of pristine hectares and development hectares ",
+                           min = 1, max = 10000000000, value = 7363000 ),
+              helpText("Total land is the sum of pristine hectares and development hectares "),
               br(),
               
               # Input for percentage of forest land
@@ -89,9 +89,9 @@ ui <- dashboardPage(skin = "green",
                           min = 0, max = 1, value = 0.68),
               
               # Input for palm oil price (US$)
-              sliderInput("CPO_price", "CPO price (US$):",
+              sliderInput("CPO_price", "Core Palm Oil (CPO) international price (US$):",
                           min = 0, max = 1500, pre = "$",value =517),
-              "Core palm oil international price",
+              # helpText("Core palm oil international price"),
               br(),
               # Input for palm oil price (US$)
               sliderInput("kerneloil_price", "Kernel price (US$):",
@@ -100,19 +100,17 @@ ui <- dashboardPage(skin = "green",
               # Yield of CPO  per hectare (metric tons)
               sliderInput("CPO_yield", "CPO yield per hectare (in metric tons):",
                           min=0, max=5.01, value=4.19),
-              "The core palm oil yield is the amount of palm oil in metric tons produced
-              from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 20% of FFB)",
+              helpText("The core palm oil yield is the amount of palm oil in metric tons produced
+              from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 20% of FFB)"),
               
               # Yield of Kernel per hectare (metric tons)
               sliderInput("kerneloil_yield", "Kernel yield per hectare (in metric tons):", 
                           min=0, max=5.01, value=1.04), 
-              "The kernel oil yield is the amount of kernel oil in metric tons produced 
-              from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 5% of FFB)",
+              helpText("The kernel oil yield is the amount of kernel oil in metric tons produced 
+              from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 5% of FFB)"),
               
               sliderInput("prop_CPO_total", "Proportion CPO from total production:", 
                           min=0, max=1, value=0.8)
-              
-
               )),
               
               fluidRow(  )
