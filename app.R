@@ -180,38 +180,41 @@ ui <- dashboardPage(skin = "green",
       # third tab content
       tabItem(tabName = "conversion_inputs",
               h2("Land Conversion"),
-              
               box(
                 sliderInput('cost_per_HA', 'Conversion costs ($US/ha):', 
                             min = 100, max = 3000, value=1410, pre = "$")
-                
-              )
-              
+              )  
       ),
       
       tabItem(tabName = "yield_inputs",
               h2("Yield Land holders"),
               
-              box(
+              # box(
+                splitLayout(
                 sliderInput('small_landholders', 'Proportion of small landholders (%):', 
                             min = 0, max = 1, value=0.41, pre = ""),
-                sliderInput('large_landholders', 'Proportion of Large landholders (%):', 
+                sliderInput('large_landholders', 'Proportion of large landholders (%):', 
                             min = 0, max = 1, value=0.49, pre = ""),
                 sliderInput('gov_landholders', 'Proportion of goverment plantations (%):', 
                             min = 0, max = 1, value=0.10, pre = "")
-              ),
-              box(
+                ), 
+                # width = 12
+              # ),
+              # box(
+                splitLayout(
                 sliderInput('yield_small_lanholders', 'Yield small landholders (tonnes/ha):', 
                               min = 0, max = 5.0, value=3, pre = ""),
                 sliderInput('yield_large_lanholders', 'Yield large landholders (tonnes/ha):', 
                             min = 0, max = 5.0, value=4.2, pre = ""),
                 sliderInput('yield_gov_lanholders', 'Yield goverment plantations (tonnes/ha):', 
                             min = 0, max = 5.0, value=4, pre = "")
-              ),
-              box("The sum of the proportions must be equal to 1 (100%). The default numbers come from Suharto (2009) for Indonesia"
-              ),
-              box("The yields come from Suharto (2009) for Indonesia"
-              )
+                )
+                # width = 12
+              # )
+              # box("The sum of the proportions must be equal to 1 (100%). The default numbers come from Suharto (2009) for Indonesia"
+              # ),
+              # box("The yields come from Suharto (2009) for Indonesia"
+              # )
               
       ),
       # fourth tab content
