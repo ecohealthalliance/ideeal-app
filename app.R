@@ -188,7 +188,6 @@ ui <- dashboardPage(skin = "green",
       
       tabItem(tabName = "yield_inputs",
               h2("Yield Land holders"),
-              
               # box(
                 splitLayout(
                 sliderInput('small_landholders', 'Proportion of small landholders (%):', 
@@ -198,6 +197,9 @@ ui <- dashboardPage(skin = "green",
                 sliderInput('gov_landholders', 'Proportion of goverment plantations (%):', 
                             min = 0, max = 1, value=0.10, pre = "")
                 ), 
+                helpText("The sum of the proportions must be equal to 1 (100%).",
+                         tags$br(), # add a line
+                         "The default numbers come from Suharto (2009) for Indonesia"),
                 # width = 12
               # ),
               # box(
@@ -214,10 +216,8 @@ ui <- dashboardPage(skin = "green",
                 #             min = 0, max = 5.0, value=4.2, pre = ""),
                 # sliderInput('yield_gov_lanholders', 'Yield goverment plantations (tonnes/ha):', 
                 #             min = 0, max = 5.0, value=4, pre = "")
-                )
-                # width = 12
-              # )
-              # box("The sum of the proportions must be equal to 1 (100%). The default numbers come from Suharto (2009) for Indonesia"
+                ),
+              helpText("The yields come from Suharto (2009) for Indonesia")
               # ),
               # box("The yields come from Suharto (2009) for Indonesia"
               # )

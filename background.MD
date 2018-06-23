@@ -15,5 +15,4 @@ Calculate the expected damages to society from disease outbreaks that would occu
 3. Build toolkits and establish a center of excellence to develop and promote best practices, research, and reduced-impact land use guidance; and
 4. Engage private companies and educate and empower civil society stakeholders to work together for a healthy and sustainable future.
 
-
 Further read on [EcoHealth Alliance IDEEAL Project Website](https://www.ecohealthalliance.org/program/ideeal)
