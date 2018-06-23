@@ -202,12 +202,18 @@ ui <- dashboardPage(skin = "green",
               # ),
               # box(
                 splitLayout(
-                sliderInput('yield_small_lanholders', 'Yield small landholders (tonnes/ha):', 
-                              min = 0, max = 5.0, value=3, pre = ""),
-                sliderInput('yield_large_lanholders', 'Yield large landholders (tonnes/ha):', 
-                            min = 0, max = 5.0, value=4.2, pre = ""),
-                sliderInput('yield_gov_lanholders', 'Yield goverment plantations (tonnes/ha):', 
-                            min = 0, max = 5.0, value=4, pre = "")
+                numericInput('yield_small_lanholders', 'Yield small landholders (tonnes/ha):', 
+                              min = 0, max = 5.0, value=3), 
+                numericInput('yield_large_lanholders', 'Yield large landholders (tonnes/ha):', 
+                            min = 0, max = 5.0, value=4.2, step = 0.1),
+                numericInput('yield_gov_lanholders', 'Yield goverment plantations (tonnes/ha):', 
+                            min = 0, max = 5.0, value=4)
+                # sliderInput('yield_small_lanholders', 'Yield small landholders (tonnes/ha):', 
+                #               min = 0, max = 5.0, value=3, pre = ""),
+                # sliderInput('yield_large_lanholders', 'Yield large landholders (tonnes/ha):', 
+                #             min = 0, max = 5.0, value=4.2, pre = ""),
+                # sliderInput('yield_gov_lanholders', 'Yield goverment plantations (tonnes/ha):', 
+                #             min = 0, max = 5.0, value=4, pre = "")
                 )
                 # width = 12
               # )
