@@ -12,6 +12,7 @@ library(shiny)
 library(shinydashboard)
 library(optimx)
 library(ggplot2)
+library(ggthemes)
 
 
 ui <- dashboardPage(skin = "green",
@@ -58,11 +59,10 @@ ui <- dashboardPage(skin = "green",
       tabItem(tabName = "Picture",
               h2("Infectious Disease Emergence and Economics of Altered Landscapes (IDEEAL)"),
               fluidRow(  
-                box( img(src = "img1.png", height = 200, width = 300), width=7)
+                box(img(src = "img1.png", height = 400, width = 600), width=12)
                       ),
               fluidRow(  
-                box( "IDEEAL is an economic model that looks at the tradeoffs between human-environmental health and economic growth due to palm oil production.", width=9  )
-                      ) 
+                box(includeMarkdown('landing_page.MD'), width=12)) 
              ),
       # First tab content (background)
       tabItem(tabName = "proj_bg", 
@@ -697,8 +697,10 @@ server <- function(input, output) {
       geom_line(aes(time2, X_social3, color=X_social3), size=2) +
         xlim(0, 90) +
         ylim(0, 100) +
-        labs( x = "Time" , y = "Optimal proportion of land converted to palm oil (%)" ) +
-        theme(legend.position="none")
+        labs(x = "Time" , y = "Optimal proportion of land converted to palm oil (%)", title = "Land Conversion Path - Social Optimal" ) +
+        scale_fill_tableau() +
+        theme_minimal() +
+        theme(legend.position="none", plot.title = element_text(face="bold", size = 15))
     
       })
   })
@@ -716,8 +718,10 @@ server <- function(input, output) {
         geom_line(aes(time2, X_private3, color=X_private3), size=2) +
         xlim(0, 90) +
         ylim(0, 100) +
-        labs( x = "Time" , y = "Optimal proportion of land converted to palm oil (%)") +
-        theme(legend.position="none")
+        labs( x = "Time" , y = "Optimal proportion of land converted to palm oil (%)", title = "Land Conversion Path - Private Optimal" ) +
+        scale_fill_tableau() +
+        theme_minimal() +
+        theme(legend.position="none", plot.title = element_text(face="bold", size = 15))
     })
   })
   
@@ -736,12 +740,14 @@ server <- function(input, output) {
    withProgress(message = 'Making plot', value = 0, {
      
      ggplot() + 
-       geom_line(aes(time2, X_private3, color="red"), size=2) +
-       geom_line(aes(time2, X_social3, color="blue"), size=2) +
+       geom_line(aes(time2, X_private3, color="#1F77B4"), size=2) +
+       geom_line(aes(time2, X_social3, color="#FF7F0E"), size=2) +
        xlim(0, 90) +
        ylim(0, 100) +
-       labs( x = "Time" , y = "Optimal proportion of land converted to palm oil (%)") + 
-       theme(legend.position="none")
+       labs( x = "Time" , y = "Optimal proportion of land converted to palm oil (%)", title = "Private vs Social Optimal") +
+       scale_color_tableau() +
+       theme_minimal() +
+       theme(legend.position="none", plot.title = element_text(face="bold", size = 15))
    })
  })
   
