@@ -21,12 +21,14 @@ ui <- dashboardPage(skin = "green",
     sidebarMenu(
       menuItem("Overview", tabName = "Picture", icon = icon("map-o")),
       menuItem("Project Details", tabName = "proj_bg", icon = icon("book")),
-      menuItem("Land and palm oil", tabName = "inputs", icon = icon("industry")),
-      menuItem("Land holders", tabName = "yield_inputs", icon = icon("industry")),
-      menuItem("General", tabName = "general_inputs", icon = icon("info")),
-      menuItem("Land Conversion", tabName = "conversion_inputs", icon = icon("road")),
-      menuItem("Ecosystem services", tabName = "EcoSer_inputs", icon = icon("globe")),
-      menuItem("Health", tabName = "health_inputs", icon = icon("heart-o")),
+      menuItem("How to use this app?", tabName = "app_use", icon = icon("info")),
+      # menuItem("Land and palm oil", tabName = "inputs", icon = icon("industry")),
+      # menuItem("Land holders", tabName = "yield_inputs", icon = icon("industry")),
+      # menuItem("General", tabName = "general_inputs", icon = icon("info")),
+      # menuItem("Land Conversion", tabName = "conversion_inputs", icon = icon("road")),
+      # menuItem("Ecosystem services", tabName = "EcoSer_inputs", icon = icon("globe")),
+      # menuItem("Health", tabName = "health_inputs", icon = icon("heart-o")),
+      menuItem("Variable Appendix", tabName = "var_appendix", icon = icon("globe")),
       
       br(),
       #menuItem(submitButton("update"), badgeLabel = "click 'update' after input changes", badgeColor = "green"),
@@ -74,6 +76,13 @@ ui <- dashboardPage(skin = "green",
                 # Add section: why palm oil? (slide 13-16)
                 # )
               ),
+      
+      tabItem(tabName = "app_use", 
+              box(includeMarkdown('how_to_use.MD'), width=12)
+      ),
+      tabItem(tabName = "var_appendix", 
+              box(includeMarkdown('var_appendix.MD'), width=12)
+      ),
       # Second tab content
       tabItem(tabName = "inputs",
               fluidRow(
@@ -162,7 +171,6 @@ ui <- dashboardPage(skin = "green",
       # Second tab content
       tabItem(tabName = "general_inputs",
               h2("General Inputs"),
-              
               box( 
                 sliderInput("rho", "Discount rate:",
                             min=0.0, max=0.1, value=0.05)
@@ -174,8 +182,6 @@ ui <- dashboardPage(skin = "green",
                 br(),
                 "It is by default at 5%, if you increase the discount rate, 
                 future value flows will become smaller")
-                
-              
       ),
       # third tab content
       tabItem(tabName = "conversion_inputs",
@@ -737,7 +743,6 @@ server <- function(input, output) {
    X_private3 = c(X_private,X_private2)
 
    withProgress(message = 'Making plot', value = 0, {
-     
      ggplot() + 
        geom_line(aes(time2, X_private3, color="#1F77B4"), size=2) +
        geom_line(aes(time2, X_social3, color="#FF7F0E"), size=2) +
@@ -746,10 +751,14 @@ server <- function(input, output) {
        labs(x = "Time (Years)" , y = "Optimal proportion of land converted to palm oil (%)", title = "Private vs Social Optimal") +
        scale_color_tableau(name = NULL, labels = c("Private ", "Social")) +
        theme_minimal() +
-       theme(plot.title = element_text(face="bold", size = 25), # 
+       theme(plot.title = element_text(face="bold", size = 25),
              legend.position="top",
              legend.text = element_text(size = 14)
-             ) #+ 
+             ) #+
+     # geom_hline(aes(yintercept = X_social[51], color = "grey"), linetype = "dashed") +
+    # geom_hline(aes(yintercept = X_private[51], color = "grey"), linetype = "dashed")
+     # Add horizontal dotted line at X_social[51] and X_private[51]
+      
        # theme(plot.background = element_rect(fill = "transparent", color = NA))
        # theme(
        #   panel.background = element_rect(fill = "transparent") # bg of the panel
