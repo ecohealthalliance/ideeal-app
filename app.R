@@ -31,8 +31,8 @@ ui <- dashboardPage(skin = "green",
       br(),
       #menuItem(submitButton("update"), badgeLabel = "click 'update' after input changes", badgeColor = "green"),
       br(),
-      menuItem("Social Optimal", tabName = "figure1", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
-      menuItem("Private Optimal", tabName = "figure2", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
+      # menuItem("Social Optimal", tabName = "figure1", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
+      # menuItem("Private Optimal", tabName = "figure2", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
       menuItem("Private vs Social Optimal", tabName = "figure3", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
       menuItem("Option Value", tabName = "option_value", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
       br(),
@@ -115,25 +115,24 @@ ui <- dashboardPage(skin = "green",
               
               fluidRow(  )
       ),
-      
-      # First Figure content
-      tabItem(tabName = "figure1",
-              h2("Land Conversion Path - Social Optimal"),
-              
-              #box(plotOutput("plot1", height = 250)),
-              plotOutput("plot2", height = 400, width = 600)
-              #box(plotOutput("plot3", height = 250))
-              
-      ),
-      # Second Figure content
-      tabItem(tabName = "figure2",
-              h2("Land Conversion Path - Private Optimal"),
-              
-              #box(plotOutput("plot1", height = 250)),
-              plotOutput("plot3", height = 400, width = 600)
-              #box(plotOutput("plot3", height = 250))
-              
-      ),
+      # # First Figure content
+      # tabItem(tabName = "figure1",
+      #         h2("Land Conversion Path - Social Optimal"),
+      #         
+      #         #box(plotOutput("plot1", height = 250)),
+      #         plotOutput("plot2", height = 400, width = 600)
+      #         #box(plotOutput("plot3", height = 250))
+      #         
+      # ),
+      # # Second Figure content
+      # tabItem(tabName = "figure2",
+      #         h2("Land Conversion Path - Private Optimal"),
+      #         
+      #         #box(plotOutput("plot1", height = 250)),
+      #         plotOutput("plot3", height = 400, width = 600)
+      #         #box(plotOutput("plot3", height = 250))
+      #         
+      # ),
       tabItem(tabName = "option_value",
               h2("Option Value"),
               br(),
@@ -142,15 +141,15 @@ ui <- dashboardPage(skin = "green",
               h2("In construction...")
       ),
       tabItem(tabName = "figure3",
-              h2("Private vs Social Optimal"),
+              # h2("Private vs Social Optimal"),
               plotOutput("plot4", height = 400, width = 600),
               br(),
-              h4("Social:"),
-              textOutput("text1"),
-              h4("Private:"),
-              textOutput("text2"),
-              h4("Difference:"),
-              textOutput("text3"),
+              # h4("Social:"),
+              # textOutput("text1"),
+              # h4("Private:"),
+              # textOutput("text2"),
+              # h4("Difference:"),
+              # textOutput("text3"),
               h4("Net Persent Value for Social:"),
               textOutput("text4"),
               h4("Net Persent Value for Private:"),
