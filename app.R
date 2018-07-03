@@ -743,10 +743,22 @@ server <- function(input, output) {
        geom_line(aes(time2, X_social3, color="#FF7F0E"), size=2) +
        xlim(0, 90) +
        ylim(0, 100) +
-       labs( x = "Time" , y = "Optimal proportion of land converted to palm oil (%)", title = "Private vs Social Optimal") +
-       scale_color_tableau() +
+       labs(x = "Time (Years)" , y = "Optimal proportion of land converted to palm oil (%)", title = "Private vs Social Optimal") +
+       scale_color_tableau(name = NULL, labels = c("Private ", "Social")) +
        theme_minimal() +
-       theme(legend.position="none", plot.title = element_text(face="bold", size = 15))
+       theme(plot.title = element_text(face="bold", size = 25), # 
+             legend.position="top",
+             legend.text = element_text(size = 14)
+             ) #+ 
+       # theme(plot.background = element_rect(fill = "transparent", color = NA))
+       # theme(
+       #   panel.background = element_rect(fill = "transparent") # bg of the panel
+       #   , plot.background = element_rect(fill = "transparent", color = NA) # bg of the plot
+       #   , panel.grid.major = element_blank() # get rid of major grid
+       #   , panel.grid.minor = element_blank() # get rid of minor grid
+       #   , legend.background = element_rect(fill = "transparent") # get rid of legend bg
+       #   , legend.box.background = element_rect(fill = "transparent") # get rid of legend panel bg
+       # )
    })
  })
   
