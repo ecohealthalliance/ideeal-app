@@ -184,6 +184,10 @@ ui <- dashboardPage(skin = "green",
       ),
 # Result plot tab -------------------------------------------------------------------
       tabItem(tabName = "figure3",
+
+# Key variable input box --------------------------------------------------
+              box(
+                title = "Key Variables", status = "primary", collapsible = TRUE, width =12,
               sliderInput("CPO_price", "Core Palm Oil (CPO) international price (US$):",
                           min = 0, max = 1500, pre = "$",value =517),
               # Yield of CPO  per hectare (metric tons)
@@ -196,7 +200,7 @@ ui <- dashboardPage(skin = "green",
               sliderInput('expenditures', 'Total expenditures on prevention and control in the region (US$):', 9e6,
                           min = 0, max = 1e8, pre = "$"),
               box(h2(textOutput("text8")), "Increasing the value of ecosystem services will reduce the land conversion 
-                  for the social optimal"), 
+                  for the social optimal")), 
               # Plot output
               plotOutput("plot4", height = 400, width = 600),
               br(),
