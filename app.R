@@ -124,7 +124,36 @@ ui <- dashboardPage(skin = "green",
                        Future ecosystem services and costs are also discounted by this rate.", 
                        br(),
                        "It is by default at 5%, if you increase the discount rate, 
-                       future value flows will become smaller"))
+                       future value flows will become smaller")),
+              # Yield Land holders
+              box(
+                sliderInput('small_landholders', 'Proportion of small landholders (%):', 
+                            min = 0, max = 1, value=0.41, pre = ""),
+                sliderInput('large_landholders', 'Proportion of large landholders (%):', 
+                            min = 0, max = 1, value=0.49, pre = ""),
+                sliderInput('gov_landholders', 'Proportion of goverment plantations (%):', 
+                            min = 0, max = 1, value=0.10, pre = "")
+              ), 
+              helpText("The sum of the proportions must be equal to 1 (100%).",
+                       tags$br(), # add a line
+                       "The default numbers come from Suharto (2009) for Indonesia"),
+              # width = 12
+              # ),
+              # box(
+              box(
+                numericInput('yield_small_lanholders', 'Yield small landholders (tonnes/ha):', 
+                             min = 0, max = 5.0, value=3), 
+                numericInput('yield_large_lanholders', 'Yield large landholders (tonnes/ha):', 
+                             min = 0, max = 5.0, value=4.2, step = 0.1),
+                numericInput('yield_gov_lanholders', 'Yield goverment plantations (tonnes/ha):', 
+                             min = 0, max = 5.0, value=4)
+              ),
+              helpText("The yields come from Suharto (2009) for Indonesia"),
+              # Land Conversion
+              box(
+                sliderInput('cost_per_HA', 'Conversion costs ($US/ha):', 
+                            min = 100, max = 3000, value=1410, pre = "$")
+              )  
       ),
 # Deprecated Plot tab -------------------------------------------------------------------
       # # First Figure content
@@ -181,52 +210,7 @@ ui <- dashboardPage(skin = "green",
               h4("Net Persent Value only profits for social:"),
               textOutput("text7")
       ),
-      # third tab content
-      tabItem(tabName = "conversion_inputs",
-              h2("Land Conversion"),
-              box(
-                sliderInput('cost_per_HA', 'Conversion costs ($US/ha):', 
-                            min = 100, max = 3000, value=1410, pre = "$")
-              )  
-      ),
-
-      tabItem(tabName = "yield_inputs",
-              h2("Yield Land holders"),
-              # box(
-                splitLayout(
-                sliderInput('small_landholders', 'Proportion of small landholders (%):', 
-                            min = 0, max = 1, value=0.41, pre = ""),
-                sliderInput('large_landholders', 'Proportion of large landholders (%):', 
-                            min = 0, max = 1, value=0.49, pre = ""),
-                sliderInput('gov_landholders', 'Proportion of goverment plantations (%):', 
-                            min = 0, max = 1, value=0.10, pre = "")
-                ), 
-                helpText("The sum of the proportions must be equal to 1 (100%).",
-                         tags$br(), # add a line
-                         "The default numbers come from Suharto (2009) for Indonesia"),
-                # width = 12
-              # ),
-              # box(
-                splitLayout(
-                numericInput('yield_small_lanholders', 'Yield small landholders (tonnes/ha):', 
-                              min = 0, max = 5.0, value=3), 
-                numericInput('yield_large_lanholders', 'Yield large landholders (tonnes/ha):', 
-                            min = 0, max = 5.0, value=4.2, step = 0.1),
-                numericInput('yield_gov_lanholders', 'Yield goverment plantations (tonnes/ha):', 
-                            min = 0, max = 5.0, value=4)
-                # sliderInput('yield_small_lanholders', 'Yield small landholders (tonnes/ha):', 
-                #               min = 0, max = 5.0, value=3, pre = ""),
-                # sliderInput('yield_large_lanholders', 'Yield large landholders (tonnes/ha):', 
-                #             min = 0, max = 5.0, value=4.2, pre = ""),
-                # sliderInput('yield_gov_lanholders', 'Yield goverment plantations (tonnes/ha):', 
-                #             min = 0, max = 5.0, value=4, pre = "")
-                ),
-              helpText("The yields come from Suharto (2009) for Indonesia")
-              # ),
-              # box("The yields come from Suharto (2009) for Indonesia"
-              # )
-              
-      ),
+#####
       # fourth tab content
       tabItem(tabName = "EcoSer_inputs",
               h2("Ecosystem Services Values"),
