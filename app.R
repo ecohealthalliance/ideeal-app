@@ -113,8 +113,18 @@ ui <- dashboardPage(skin = "green",
                   sliderInput("prop_CPO_total", "Proportion CPO from total production:", 
                               min=0, max=1, value=0.8)
                   )),
-              
-              fluidRow()
+              fluidRow(                      
+                box( 
+                sliderInput("rho", "Discount rate:",
+                            min=0.0, max=0.1, value=0.05)
+              ),
+              helpText("The discount rate is used to discount the values to the present. 
+                       Every time a piece of land is converted into palm plantation in the future, 
+                       it generates revenues that need to be discounted. 
+                       Future ecosystem services and costs are also discounted by this rate.", 
+                       br(),
+                       "It is by default at 5%, if you increase the discount rate, 
+                       future value flows will become smaller"))
       ),
 # Deprecated Plot tab -------------------------------------------------------------------
       # # First Figure content
@@ -170,22 +180,6 @@ ui <- dashboardPage(skin = "green",
               textOutput("text6"),
               h4("Net Persent Value only profits for social:"),
               textOutput("text7")
-      ),
-
-      # Second tab content
-      tabItem(tabName = "general_inputs",
-              h2("General Inputs"),
-              box( 
-                sliderInput("rho", "Discount rate:",
-                            min=0.0, max=0.1, value=0.05)
-                ),
-              helpText("The discount rate is used to discount the values to the present. 
-                Every time a piece of land is converted into palm plantation in the future, 
-                it generates revenues that need to be discounted. 
-                Future ecosystem services and costs are also discounted by this rate.", 
-                br(),
-                "It is by default at 5%, if you increase the discount rate, 
-                future value flows will become smaller")
       ),
       # third tab content
       tabItem(tabName = "conversion_inputs",
