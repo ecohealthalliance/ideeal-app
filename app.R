@@ -30,6 +30,7 @@ ui <- dashboardPage(skin = "green",
       # menuItem("Ecosystem services", tabName = "EcoSer_inputs", icon = icon("globe")),
       # menuItem("Health", tabName = "health_inputs", icon = icon("heart-o")),
       menuItem("Variable Appendix", tabName = "var_appendix", icon = icon("globe")),
+      menuItem("Detailed Variable Control", tabName = "var_input", icon = icon("industry")),
       
       br(),
       #menuItem(submitButton("update"), badgeLabel = "click 'update' after input changes", badgeColor = "green"),
@@ -58,7 +59,8 @@ ui <- dashboardPage(skin = "green",
   ),
   body <- dashboardBody(
     tabItems(
-       # Zero tab content (landing page)
+
+# Landing Page tab --------------------------------------------------------
       tabItem(tabName = "Picture",
               h2("Infectious Disease Emergence and Economics of Altered Landscapes (IDEEAL)"),
               fluidRow(  
@@ -67,7 +69,7 @@ ui <- dashboardPage(skin = "green",
               fluidRow(  
                 box(includeMarkdown('landing_page.MD'), width=12)) 
              ),
-      # First tab content (background)
+# Background tab -------------------------------------------------------------------
       tabItem(tabName = "proj_bg", 
               h2("Infectious Disease Emergence and Economics of Altered Landscapes (IDEEAL)"),
               # fluidRow(  
@@ -77,54 +79,44 @@ ui <- dashboardPage(skin = "green",
                 # Add section: why palm oil? (slide 13-16)
                 # )
               ),
-      
+# How to tab -------------------------------------------------------------------
       tabItem(tabName = "app_use", 
               box(includeMarkdown('how_to_use.MD'), width=12)
       ),
+# Variable Appendix tab -------------------------------------------------------------------
       tabItem(tabName = "var_appendix", 
               box(includeMarkdown('var_appendix.MD'), width=12)
       ),
-      # Second tab content
-      tabItem(tabName = "inputs",
+# Detailed Variable Control tab -------------------------------------------------------------------
+      tabItem(tabName = "var_input", 
               fluidRow(
                 box(
-              # Input for total amount of land in analysis
-              numericInput('total_land', 'Total Land (in ha):', 
-                           min = 1, max = 10000000000, value = 7363000 ),
-              helpText("Total land is the sum of pristine hectares and development hectares "),
-              br(),
+                  # Input for total amount of land in analysis
+                  numericInput('total_land', 'Total Land (in ha):', 
+                               min = 1, max = 10000000000, value = 7363000 ),
+                  helpText("Total land is the sum of pristine hectares and development hectares "),
+                  br(),
+                  
+                  # Input for percentage of forest land
+                  sliderInput("forest_land", "Forest land (%):",
+                              min = 0, max = 1, value = 0.68),
+                  br(),
+                  # Input for palm oil price (US$)
+                  sliderInput("kerneloil_price", "Kernel price (US$):",
+                              min = 0, max = 1500, pre = "$",value =1300),
+                  # Yield of Kernel per hectare (metric tons)
+                  sliderInput("kerneloil_yield", "Kernel yield per hectare (in metric tons):", 
+                              min=0, max=5.01, value=1.04), 
+                  helpText("The kernel oil yield is the amount of kernel oil in metric tons produced 
+                           from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 5% of FFB)"),
+                  
+                  sliderInput("prop_CPO_total", "Proportion CPO from total production:", 
+                              min=0, max=1, value=0.8)
+                  )),
               
-              # Input for percentage of forest land
-              sliderInput("forest_land", "Forest land (%):",
-                          min = 0, max = 1, value = 0.68),
-              
-              # Input for palm oil price (US$)
-              sliderInput("CPO_price", "Core Palm Oil (CPO) international price (US$):",
-                          min = 0, max = 1500, pre = "$",value =517),
-              # helpText("Core palm oil international price"),
-              br(),
-              # Input for palm oil price (US$)
-              sliderInput("kerneloil_price", "Kernel price (US$):",
-                          min = 0, max = 1500, pre = "$",value =1300),
-              
-              # Yield of CPO  per hectare (metric tons)
-              sliderInput("CPO_yield", "CPO yield per hectare (in metric tons):",
-                          min=0, max=5.01, value=4.19),
-              helpText("The core palm oil yield is the amount of palm oil in metric tons produced
-              from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 20% of FFB)"),
-              
-              # Yield of Kernel per hectare (metric tons)
-              sliderInput("kerneloil_yield", "Kernel yield per hectare (in metric tons):", 
-                          min=0, max=5.01, value=1.04), 
-              helpText("The kernel oil yield is the amount of kernel oil in metric tons produced 
-              from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 5% of FFB)"),
-              
-              sliderInput("prop_CPO_total", "Proportion CPO from total production:", 
-                          min=0, max=1, value=0.8)
-              )),
-              
-              fluidRow(  )
+              fluidRow()
       ),
+# Deprecated Plot tab -------------------------------------------------------------------
       # # First Figure content
       # tabItem(tabName = "figure1",
       #         h2("Land Conversion Path - Social Optimal"),
@@ -143,6 +135,7 @@ ui <- dashboardPage(skin = "green",
       #         #box(plotOutput("plot3", height = 250))
       #         
       # ),
+# Option value tab -------------------------------------------------------------------
       tabItem(tabName = "option_value",
               h2("Option Value"),
               br(),
@@ -150,6 +143,7 @@ ui <- dashboardPage(skin = "green",
                  whether it is optimal to develop land or conserve"),
               h2("In construction...")
       ),
+# Result plot tab -------------------------------------------------------------------
       tabItem(tabName = "figure3",
               sliderInput("CPO_price", "Core Palm Oil (CPO) international price (US$):",
                           min = 0, max = 1500, pre = "$",value =517),
@@ -164,16 +158,10 @@ ui <- dashboardPage(skin = "green",
                           min = 0, max = 1e8, pre = "$"),
               box(h2(textOutput("text8")), "Increasing the value of ecosystem services will reduce the land conversion 
                   for the social optimal"), 
-              
-              # h2("Private vs Social Optimal"),
+              # Plot output
               plotOutput("plot4", height = 400, width = 600),
               br(),
-              # h4("Social:"),
-              # textOutput("text1"),
-              # h4("Private:"),
-              # textOutput("text2"),
-              # h4("Difference:"),
-              # textOutput("text3"),
+              # Raw numeric output 
               h4("Net Persent Value for Social:"),
               textOutput("text4"),
               h4("Net Persent Value for Private:"),
@@ -183,6 +171,7 @@ ui <- dashboardPage(skin = "green",
               h4("Net Persent Value only profits for social:"),
               textOutput("text7")
       ),
+
       # Second tab content
       tabItem(tabName = "general_inputs",
               h2("General Inputs"),
@@ -206,7 +195,7 @@ ui <- dashboardPage(skin = "green",
                             min = 100, max = 3000, value=1410, pre = "$")
               )  
       ),
-      
+
       tabItem(tabName = "yield_inputs",
               h2("Yield Land holders"),
               # box(
