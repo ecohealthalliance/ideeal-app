@@ -13,6 +13,7 @@ library(shinydashboard)
 library(optimx)
 library(ggplot2)
 library(ggthemes)
+library(extrafont) #Will need to run font_import() if first time installing, Georgia
 
 
 ui <- dashboardPage(skin = "green",
@@ -150,6 +151,20 @@ ui <- dashboardPage(skin = "green",
               h2("In construction...")
       ),
       tabItem(tabName = "figure3",
+              sliderInput("CPO_price", "Core Palm Oil (CPO) international price (US$):",
+                          min = 0, max = 1500, pre = "$",value =517),
+              # Yield of CPO  per hectare (metric tons)
+              sliderInput("CPO_yield", "CPO yield per hectare (in metric tons):",
+                          min=0, max=5.01, value=4.19),
+              helpText("The core palm oil yield is the amount of palm oil in metric tons produced
+                       from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 20% of FFB)"),
+              sliderInput('infections', 'Total number of infections:', 2000,
+                          min = 0, max = 1e6, pre = ""),
+              sliderInput('expenditures', 'Total expenditures on prevention and control in the region (US$):', 9e6,
+                          min = 0, max = 1e8, pre = "$"),
+              box(h2(textOutput("text8")), "Increasing the value of ecosystem services will reduce the land conversion 
+                  for the social optimal"), 
+              
               # h2("Private vs Social Optimal"),
               plotOutput("plot4", height = 400, width = 600),
               br(),
@@ -807,7 +822,7 @@ server <- function(input, output) {
   })
   
   output$text8 <- renderText({ 
-    paste("Sum Total Ecosystem Services Value ($US/ha):", round( mydata0()$ES_value, digits=1)) 
+    paste("Sum Total Ecosystem Services Value ($US/ha):", round(mydata0()$ES_value, digits=1)) 
   })
   
 }
