@@ -14,11 +14,15 @@ library(optimx)
 library(ggplot2)
 library(ggthemes)
 library(extrafont) #Will need to run font_import() if first time installing, Georgia
+# install.packages("shiny.semantic")
+# devtools::install_github("Appsilon/semantic.dashboard")
+library(semantic.dashboard)
 
 
-ui <- dashboardPage(skin = "green",
-  header <- dashboardHeader(title = "IDEEAL", dropdownMenuOutput("messageMenu")),
-  sidebar <- dashboardSidebar(width = 300,
+ui <- dashboardPage(#skin = "green",
+  dashboardHeader(color = "green", title = "IDEEAL", dropdownMenuOutput("messageMenu"), inverted = TRUE),
+  dashboardSidebar(
+    size = "wide", color = "green", #width = 300,
     sidebarMenu(
       menuItem("Overview", tabName = "Picture", icon = icon("map-o")),
       menuItem("Project Details", tabName = "proj_bg", icon = icon("book")),
@@ -37,15 +41,15 @@ ui <- dashboardPage(skin = "green",
       br(),
       # menuItem("Social Optimal", tabName = "figure1", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
       # menuItem("Private Optimal", tabName = "figure2", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
-      menuItem("Private vs Social Optimal", tabName = "figure3", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
-      menuItem("Option Value", tabName = "option_value", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
+      menuItem("Private vs Social Optimal", tabName = "figure3", icon = icon("shower")),
+      menuItem("Option Value", tabName = "option_value", icon = icon("shower")),
       br(),
     
-    h5("Created by:"),
-    tags$a("EcoHealth Alliance", 
+    shiny::h5("  Created by:"),
+    tags$a("  EcoHealth Alliance", 
            href="http://www.ecohealthalliance.org"),
-    h5("For details on how the model is generated go to:"),
-    tags$a("IDEEAL modeling at EcoHealth alliance", 
+    h5("  For details on how the model is generated go to:"),
+    tags$a("  IDEEAL modeling at EcoHealth alliance", 
            href="http://www.ecohealthalliance.org/program/ideeal"),
     h5(textOutput("counter")),
     
@@ -90,29 +94,35 @@ ui <- dashboardPage(skin = "green",
 # Detailed Variable Control tab -------------------------------------------------------------------
       tabItem(tabName = "var_input", 
               fluidRow(
-                box(
-                  # Input for total amount of land in analysis
-                  numericInput('total_land', 'Total Land (in ha):', 
-                               min = 1, max = 10000000000, value = 7363000 ),
-                  helpText("Total land is the sum of pristine hectares and development hectares "),
-                  br(),
-                  
-                  # Input for percentage of forest land
-                  sliderInput("forest_land", "Forest land (%):",
-                              min = 0, max = 1, value = 0.68),
-                  br(),
-                  # Input for palm oil price (US$)
-                  sliderInput("kerneloil_price", "Kernel price (US$):",
-                              min = 0, max = 1500, pre = "$",value =1300),
-                  # Yield of Kernel per hectare (metric tons)
-                  sliderInput("kerneloil_yield", "Kernel yield per hectare (in metric tons):", 
-                              min=0, max=5.01, value=1.04), 
-                  helpText("The kernel oil yield is the amount of kernel oil in metric tons produced 
+                tabBox(
+                  width = 12,
+                  # The id lets us use input$tabset1 on the server to find the current tab
+                  # id = "tabset1", height = "250px",
+                  tabPanel("Land Use",
+                           # Input for total amount of land in analysis
+                           numericInput('total_land', 'Total Land (in ha):', 
+                                        min = 1, max = 10000000000, value = 7363000 ),
+                           helpText("Total land is the sum of pristine hectares and development hectares "),
+                           br(),
+                           
+                           # Input for percentage of forest land
+                           sliderInput("forest_land", "Forest land (%):",
+                                       min = 0, max = 1, value = 0.68),
+                           br(),
+                           # Input for palm oil price (US$)
+                           sliderInput("kerneloil_price", "Kernel price (US$):",
+                                       min = 0, max = 1500, pre = "$",value =1300),
+                           # Yield of Kernel per hectare (metric tons)
+                           sliderInput("kerneloil_yield", "Kernel yield per hectare (in metric tons):", 
+                                       min=0, max=5.01, value=1.04), 
+                           helpText("The kernel oil yield is the amount of kernel oil in metric tons produced 
                            from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 5% of FFB)"),
-                  
-                  sliderInput("prop_CPO_total", "Proportion CPO from total production:", 
-                              min=0, max=1, value=0.8)
-                  )),
+                           
+                           sliderInput("prop_CPO_total", "Proportion CPO from total production:", 
+                                       min=0, max=1, value=0.8)
+                           ),
+                  tabPanel("Land Holder %")
+                )),
               fluidRow(                      
                 box( 
                 sliderInput("rho", "Discount rate:",
@@ -184,10 +194,10 @@ ui <- dashboardPage(skin = "green",
       ),
 # Result plot tab -------------------------------------------------------------------
       tabItem(tabName = "figure3",
-
 # Key variable input box --------------------------------------------------
               box(
-                title = "Key Variables", status = "primary", collapsible = TRUE, width =12,
+                title = "Key Variables", collapsible = TRUE,
+                color = "green", ribbon = TRUE, title_side = "top right",width =12,
               sliderInput("CPO_price", "Core Palm Oil (CPO) international price (US$):",
                           min = 0, max = 1500, pre = "$",value =517),
               # Yield of CPO  per hectare (metric tons)
@@ -199,12 +209,20 @@ ui <- dashboardPage(skin = "green",
                           min = 0, max = 1e6, pre = ""),
               sliderInput('expenditures', 'Total expenditures on prevention and control in the region (US$):', 9e6,
                           min = 0, max = 1e8, pre = "$"),
-              box(h2(textOutput("text8")), "Increasing the value of ecosystem services will reduce the land conversion 
-                  for the social optimal")), 
+              # Maybe bold these?
+              h2(textOutput("text8")), "Increasing the value of ecosystem services will reduce the land conversion 
+                  for the social optimal"), 
+# Key plot output ---------------------------------------------------------
               # Plot output
-              plotOutput("plot4", height = 400, width = 600),
-              br(),
-              # Raw numeric output 
+              box(
+              title = "Plot", color = "blue", ribbon = TRUE, title_side = "top right", 
+              collapsible = TRUE,
+              plotOutput("plot4", height = 400, width = 600)),
+              # br(),
+              # Raw numeric output
+              box(
+              title = "Raw Data Output", color = "blue", ribbon = TRUE, title_side = "top right",
+              collapsible = TRUE,
               h4("Net Persent Value for Social:"),
               textOutput("text4"),
               h4("Net Persent Value for Private:"),
@@ -213,12 +231,12 @@ ui <- dashboardPage(skin = "green",
               textOutput("text6"),
               h4("Net Persent Value only profits for social:"),
               textOutput("text7")
+              )
       ),
 #####
       # fourth tab content
       tabItem(tabName = "EcoSer_inputs",
               h2("Ecosystem Services Values"),
-              
               box(h2(textOutput("text8")), "Increasing the value of ecosystem services will reduce the land conversion 
                  for the social optimal"), 
               
