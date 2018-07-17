@@ -223,34 +223,42 @@ ui <- dashboardPage(skin = "green",
                         ),
 # Result Plot tab ---------------------------------------------------------
                         tabItem(tabName = "figure3",
+
+# Key variable box --------------------------------------------------------
                                 fluidRow(
                                   box(title = "Key variable", status = "success", width = 12, collapsible = TRUE,
+                                      fluidRow(
+                                        column(width = 6,
+                                      
                                     sliderInput("CPO_price", "Core Palm Oil (CPO) international price (US$):",
                                                 min = 0, max = 1500, pre = "$",value =517),
                                     # Yield of CPO  per hectare (metric tons)
                                     sliderInput("CPO_yield", "CPO yield per hectare (in metric tons):",
                                                 min=0, max=5.01, value=4.19),
                                     helpText("The core palm oil yield is the amount of palm oil in metric tons produced
-                                             from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 20% of FFB)"),
-                                    
+                                             from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 20% of FFB)")
+                                        ),
+                                        column(width = 6, 
                                     sliderInput('expenditures', 'Total expenditures on prevention and control in the region (US$):', 9e6,
                                                   min = 0, max = 1e8, pre = "$"),
                                     
                                     sliderInput('infections', 'Total number of infections:', 2000,
                                                   min = 0, max = 1e6, pre = "")
-                                    
+                                        )
+                                      )
                                   )
                                 ),
-                                # h2("Private vs Social Optimal"),
+
+# Key output plot ---------------------------------------------------------
                                 fluidRow(
-                                  box(width = 12, status = "primary",
-                                    plotOutput("plot4", height = 400, width = 600)
+                                  box(title = "Key result: Private vs Social Optimal", width = 12, status = "primary",
+                                    plotOutput("plot4") # , height = 400, width = 600
                                   )
                                 ),
                                 
                                 br(),
                                 fluidRow(
-                                  box(width = 12,
+                                  box(title = "Raw dat output", status = "primary", width = 12,
                                 h4("Net Persent Value for Social:"),
                                 textOutput("text4"),
                                 h4("Net Persent Value for Private:"),
@@ -690,7 +698,7 @@ server <- function(input, output) {
         geom_line(aes(time2, X_social3, color="#FF7F0E"), size=2) +
         xlim(0, 90) +
         ylim(0, 100) +
-        labs(x = "Time (Years)" , y = "Optimal proportion of land converted to palm oil (%)", title = "Private vs Social Optimal") +
+        labs(x = "Time (Years)" , y = "Optimal proportion of land converted to palm oil (%)") + #, title = "Private vs Social Optimal")
         scale_color_tableau(name = NULL, labels = c("Private ", "Social")) +
         theme_minimal() +
         theme(plot.title = element_text(face="bold", size = 25), # 
