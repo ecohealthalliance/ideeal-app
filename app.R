@@ -103,19 +103,13 @@ ui <- dashboardPage(skin = "green",
                                                 min = 0, max = 1, value = 0.68),
                                     
                                     # Input for palm oil price (US$)
-                                    sliderInput("CPO_price", "Core Palm Oil (CPO) international price (US$):",
-                                                min = 0, max = 1500, pre = "$",value =517),
+                                    # sliderInput("CPO_price", "Core Palm Oil (CPO) international price (US$):",
+                                    #             min = 0, max = 1500, pre = "$",value =517),
                                     # helpText("Core palm oil international price"),
                                     br(),
                                     # Input for palm oil price (US$)
                                     sliderInput("kerneloil_price", "Kernel price (US$):",
                                                 min = 0, max = 1500, pre = "$",value =1300),
-                                    
-                                    # Yield of CPO  per hectare (metric tons)
-                                    sliderInput("CPO_yield", "CPO yield per hectare (in metric tons):",
-                                                min=0, max=5.01, value=4.19),
-                                    helpText("The core palm oil yield is the amount of palm oil in metric tons produced
-              from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 20% of FFB)"),
                                     
                                     # Yield of Kernel per hectare (metric tons)
                                     sliderInput("kerneloil_yield", "Kernel yield per hectare (in metric tons):", 
@@ -157,8 +151,15 @@ ui <- dashboardPage(skin = "green",
                        Future ecosystem services and costs are also discounted by this rate.", 
                                                       br(),
                                                       "It is by default at 5%, if you increase the discount rate, 
-                       future value flows will become smaller")
-                                             ),
+                       future value flows will become smaller"),
+                                             #land conversion
+                                             h2("Land Conversion"),
+                                             sliderInput('cost_per_HA', 'Conversion costs ($US/ha):', 
+                                                         min = 100, max = 3000, value=1410, pre = "$"),
+                                            h2("Population"),
+                                            sliderInput('population', 'Total population in the region:', 3.55e6,
+                                                          min = 0, max = 1e7, pre = "")
+                                    ),
 
 # Ecosystem Service -------------------------------------------------------
                                     tabPanel("Ecosystem Service",
@@ -220,17 +221,36 @@ ui <- dashboardPage(skin = "green",
                  whether it is optimal to develop land or conserve"),
                                 h2("In construction...")
                         ),
-
+# Result Plot tab ---------------------------------------------------------
                         tabItem(tabName = "figure3",
+                                fluidRow(
+                                  box(title = "Key variable", status = "success", width = 12, collapsible = TRUE,
+                                    sliderInput("CPO_price", "Core Palm Oil (CPO) international price (US$):",
+                                                min = 0, max = 1500, pre = "$",value =517),
+                                    # Yield of CPO  per hectare (metric tons)
+                                    sliderInput("CPO_yield", "CPO yield per hectare (in metric tons):",
+                                                min=0, max=5.01, value=4.19),
+                                    helpText("The core palm oil yield is the amount of palm oil in metric tons produced
+                                             from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 20% of FFB)"),
+                                    
+                                    sliderInput('expenditures', 'Total expenditures on prevention and control in the region (US$):', 9e6,
+                                                  min = 0, max = 1e8, pre = "$"),
+                                    
+                                    sliderInput('infections', 'Total number of infections:', 2000,
+                                                  min = 0, max = 1e6, pre = "")
+                                    
+                                  )
+                                ),
                                 # h2("Private vs Social Optimal"),
-                                plotOutput("plot4", height = 400, width = 600),
+                                fluidRow(
+                                  box(width = 12, status = "primary",
+                                    plotOutput("plot4", height = 400, width = 600)
+                                  )
+                                ),
+                                
                                 br(),
-                                # h4("Social:"),
-                                # textOutput("text1"),
-                                # h4("Private:"),
-                                # textOutput("text2"),
-                                # h4("Difference:"),
-                                # textOutput("text3"),
+                                fluidRow(
+                                  box(width = 12,
                                 h4("Net Persent Value for Social:"),
                                 textOutput("text4"),
                                 h4("Net Persent Value for Private:"),
@@ -239,51 +259,10 @@ ui <- dashboardPage(skin = "green",
                                 textOutput("text6"),
                                 h4("Net Persent Value only profits for social:"),
                                 textOutput("text7")
-                        ),
-                        # Second tab content
-                        tabItem(tabName = "general_inputs",
-                                h2("General Inputs"),
-                                
-                                box( 
-                                  sliderInput("rho", "Discount rate:",
-                                              min=0.0, max=0.1, value=0.05)
-                                ),
-                                helpText("The discount rate is used to discount the values to the present. 
-                Every time a piece of land is converted into palm plantation in the future, 
-                it generates revenues that need to be discounted. 
-                Future ecosystem services and costs are also discounted by this rate.", 
-                                         br(),
-                                         "It is by default at 5%, if you increase the discount rate, 
-                future value flows will become smaller")
-                                
-                                
-                        ),
-                        # third tab content
-                        tabItem(tabName = "conversion_inputs",
-                                h2("Land Conversion"),
-                                box(
-                                  sliderInput('cost_per_HA', 'Conversion costs ($US/ha):', 
-                                              min = 100, max = 3000, value=1410, pre = "$")
-                                )  
-                        ),
-                      
-                        # fifth tab content
-                        tabItem(tabName = "health_inputs",
-                                h2("Health Values"),
-                                
-                                box(
-                                  sliderInput('expenditures', 'Total expenditures on prevention and control in the region (US$):', 9e6,
-                                              min = 0, max = 1e8, pre = "$")
-                                ),
-                                box(
-                                  sliderInput('infections', 'Total number of infections:', 2000,
-                                              min = 0, max = 1e6, pre = "")
-                                ),
-                                box(
-                                  sliderInput('population', 'Total population in the region:', 3.55e6,
-                                              min = 0, max = 1e7, pre = "")
+                                  )
                                 )
                         )
+
                         
                         
                       )
