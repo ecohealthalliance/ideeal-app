@@ -211,6 +211,8 @@ ui <- dashboardPage(skin = "green",
                                 
                                 fluidRow(  )
                         ),
+
+# Option Value tab --------------------------------------------------------
                         tabItem(tabName = "option_value",
                                 h2("Option Value"),
                                 br(),
@@ -218,6 +220,7 @@ ui <- dashboardPage(skin = "green",
                  whether it is optimal to develop land or conserve"),
                                 h2("In construction...")
                         ),
+
                         tabItem(tabName = "figure3",
                                 # h2("Private vs Social Optimal"),
                                 plotOutput("plot4", height = 400, width = 600),
@@ -263,83 +266,7 @@ ui <- dashboardPage(skin = "green",
                                               min = 100, max = 3000, value=1410, pre = "$")
                                 )  
                         ),
-                        # fourth tab content
-                        tabItem(tabName = "EcoSer_inputs",
-                                h2("Ecosystem Services Values"),
-                                
-                                box(h2(textOutput("text8")), "Increasing the value of ecosystem services will reduce the land conversion 
-                 for the social optimal"), 
-                                
-                                box(
-                                  sliderInput('food', 'Provision of FOOD value ($US/ha):', 15,
-                                              min = 0, max = 200, pre = "$") 
-                                ),
-                                box(
-                                  sliderInput('water', 'Provision of clean WATER value ($US/ha):', 28,
-                                              min = 8, max = 46, pre = "$") 
-                                ),
-                                box(
-                                  sliderInput('raw_materials', 'Provision of RAW MATERIALS value ($US/ha):', 31,
-                                              min = 0, max = 84, pre = "$") 
-                                ),
-                                box(
-                                  sliderInput('genetic', 'Provision of GENETIC MATERIALS value ($US/ha):', 13,
-                                              min = 0, max = 13, pre = "$") 
-                                ),
-                                box(
-                                  sliderInput('medical', 'Provision of MEDICINE MATERIALS value ($US/ha):', 0,
-                                              min = 0, max = 1504, pre = "$") 
-                                ),
-                                box(
-                                  sliderInput('air_quality', 'Provision of CLEAN AIR value ($US/ha):', 12,
-                                              min = 0, max = 12, pre = "$") 
-                                ),
-                                box(
-                                  sliderInput('climate', 'Provision of CLIMATE (carbon sequestration) value ($US/ha):', 261,
-                                              min = 4, max = 2044, pre = "$") 
-                                ),
-                                box(
-                                  sliderInput('extreme_events', 'Provision of PROTECTION AGAINST EXTREME EVENTS value ($US/ha):', 14,
-                                              min = 1, max = 66, pre = "$") 
-                                ),
-                                box(
-                                  sliderInput('water_flow', 'Provision of FLOW OF WATER value ($US/ha):', 342,
-                                              min = 2, max = 342, pre = "$") 
-                                ),
-                                box(
-                                  sliderInput('waste', 'Provision of WASTE REMOVAL value ($US/ha):', 8,
-                                              min = 6, max = 10, pre = "$") 
-                                ),
-                                box(
-                                  sliderInput('erosion', 'Provision of EROSION CONTROL value ($US/ha):', 13,
-                                              min = 4, max = 15, pre = "$") 
-                                ),
-                                box(
-                                  sliderInput('soil_fertility', 'Provision of SOIL FERTILITY value ($US/ha):', 2,
-                                              min = 2, max = 7, pre = "$") 
-                                ),
-                                box(
-                                  sliderInput('pollination', 'Provision of POLLINATION value ($US/ha):', 30,
-                                              min = 6, max = 53, pre = "$") 
-                                ),
-                                box(
-                                  sliderInput('biocontrol', 'Provision of BIOCONTROL value ($US/ha):', 1,
-                                              min = 0, max = 11, pre = "$") 
-                                ),
-                                box(
-                                  sliderInput('nursery', 'Provision of NURSERY value ($US/ha):', 16,
-                                              min = 0, max = 16, pre = "$") 
-                                ),
-                                box(
-                                  sliderInput('genepool', 'Provision of GENEPOOL value ($US/ha):', 12,
-                                              min = 0, max = 23, pre = "$") 
-                                ),
-                                box(
-                                  sliderInput('recreation', 'Provision of GENEPOOL value ($US/ha):', 45,
-                                              min = 0, max = 867, pre = "$") 
-                                )
-                                
-                        ),
+                      
                         # fifth tab content
                         tabItem(tabName = "health_inputs",
                                 h2("Health Values"),
