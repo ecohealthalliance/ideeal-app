@@ -124,14 +124,14 @@ ui <- dashboardPage(skin = "green",
                                     tabPanel("Land Holder %",
                                              # "Yield Land holders"
                                              sliderInput('small_landholders', 'Proportion of small landholders (%):', 
-                                                         min = 0, max = 1, value=0.41, pre = ""),
-                                             sliderInput('large_landholders', 'Proportion of large landholders (%):', 
-                                                         min = 0, max = 1, value=0.49, pre = ""),
-                                             sliderInput('gov_landholders', 'Proportion of goverment plantations (%):', 
-                                                         min = 0, max = 1, value=0.10, pre = ""),
-                                             helpText("The sum of the proportions must be equal to 1 (100%).",
-                                                      tags$br(), # add a line
-                                                      "The default numbers come from Suharto (2009) for Indonesia"),
+                                                         min = 0, max = 1, value=0.41, pre = "", step = .01),
+                                             uiOutput('large_landholders'),
+                                             # sliderInput('large_landholders', 'Proportion of large landholders (%):', 
+                                             #             min = 0, max = 1, value=0.49, pre = ""),
+                                             textOutput("gov_landholders"),
+                                             # sliderInput('gov_landholders', 'Proportion of goverment plantations (%):', 
+                                             #             min = 0, max = 1, value=0.10, pre = ""),
+                                             helpText("The sum of the proportions must be equal to 1 (100%). The default numbers come from Suharto (2009) for Indonesia"),
                                              
                                              numericInput('yield_small_lanholders', 'Yield small landholders (tonnes/ha):', 
                                                           min = 0, max = 5.0, value=3), 
@@ -282,6 +282,7 @@ ui <- dashboardPage(skin = "green",
                     )
 )
 
+# server ------------------------------------------------------------------
 server <- function(input, output) {
   set.seed(122)
   histdata <- rnorm(500)
@@ -706,7 +707,7 @@ server <- function(input, output) {
         theme(plot.title = element_text(face="bold", size = 25), # 
               legend.position="top",
               legend.text = element_text(size = 14)) #+ 
-    if(length(input$checkGroup) == 1){
+    if(length(input$checkGroup) == 1){ # to ensure first line is always blue
       if(input$checkGroup == "private"){
         p <- p + 
           geom_line(aes(time2, X_private3, color="#1F77B4"), size=2) +
@@ -739,6 +740,15 @@ server <- function(input, output) {
   })
   
   #####   
+  output$large_landholders <- renderUI({
+  sliderInput('large_landholders', 'Proportion of large landholders (%):', 
+                min = 0, max = (1 - input$small_landholders), value = 0.49, pre = "", step = .01)
+  })
+  output$gov_landholders <- renderText({
+    twoinputsum = input$large_landholders + input$small_landholders
+    paste("Proportion of goverment plantations (%):", round(1 - twoinputsum, digits = 2))
+  })
+  
   output$menu <- renderMenu({
     sidebarMenu(
       menuItem("Menu item", icon = icon("calendar"))
