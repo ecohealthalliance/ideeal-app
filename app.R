@@ -255,6 +255,8 @@ ui <- dashboardPage(skin = "green",
 # Key output plot ---------------------------------------------------------
                                 fluidRow(
                                   box(title = "Key result: Private vs Social Optimal", width = 12, status = "primary",
+                                      checkboxGroupInput("checkGroup", label = h4("Results to show"), 
+                                                         choices = list("Private" = "private", "Social" = "social")),
                                     plotOutput("plot4")
                                   )
                                 ),
