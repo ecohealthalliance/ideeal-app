@@ -199,7 +199,7 @@ ui <- dashboardPage(skin = "green",
                                                          min = 0, max = 16, pre = "$"), 
                                              sliderInput('genepool', 'Provision of GENEPOOL value ($US/ha):', 12,
                                                          min = 0, max = 23, pre = "$"), 
-                                             sliderInput('recreation', 'Provision of RECREATION value ($US/ha):', 45,
+                                             sliderInput('recreation', 'Provision of recreation activities value ($US/ha):', 45,
                                                          min = 0, max = 867, pre = "$"), 
                                              sliderInput('population', 'Total population in the region:', 3.55e6,
                                                          min = 0, max = 1e7, pre = "")
@@ -243,7 +243,10 @@ ui <- dashboardPage(skin = "green",
                                                   min = 0, max = 1e8, pre = "$"),
                                     
                                     sliderInput('infections', 'Total number of infections:', 2000,
-                                                  min = 0, max = 1e6, pre = "")
+                                                  min = 0, max = 1e6, pre = ""),
+                                    h2(textOutput("text8")), 
+                                    helpText("Increasing the value of ecosystem services will reduce the land conversion 
+                  for the social optimal")
                                         )
                                       )
                                   )
@@ -252,21 +255,21 @@ ui <- dashboardPage(skin = "green",
 # Key output plot ---------------------------------------------------------
                                 fluidRow(
                                   box(title = "Key result: Private vs Social Optimal", width = 12, status = "primary",
-                                    plotOutput("plot4") # , height = 400, width = 600
+                                    plotOutput("plot4")
                                   )
                                 ),
                                 
                                 br(),
                                 fluidRow(
-                                  box(title = "Raw dat output", status = "primary", width = 12,
-                                h4("Net Persent Value for Social:"),
-                                textOutput("text4"),
-                                h4("Net Persent Value for Private:"),
-                                textOutput("text5"),
-                                h4("Net Persent Value only profits for private:"),
-                                textOutput("text6"),
-                                h4("Net Persent Value only profits for social:"),
-                                textOutput("text7")
+                                  box(title = "Raw data output", status = "primary", width = 12,
+                                      h4("Net Persent Value for Social:"),
+                                      textOutput("text4"),
+                                      h4("Net Persent Value for Private:"),
+                                      textOutput("text5"),
+                                      h4("Net Persent Value only profits for private:"),
+                                      textOutput("text6"),
+                                      h4("Net Persent Value only profits for social:"),
+                                      textOutput("text7")
                                   )
                                 )
                         )
