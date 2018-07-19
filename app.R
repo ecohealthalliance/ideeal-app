@@ -698,18 +698,34 @@ server <- function(input, output) {
     
     withProgress(message = 'Making plot', value = 0, {
       
-      ggplot() + 
-        geom_line(aes(time2, X_private3, color="#1F77B4"), size=2) +
-        geom_line(aes(time2, X_social3, color="#FF7F0E"), size=2) +
+    p <- ggplot() + 
         xlim(0, 90) +
         ylim(0, 100) +
         labs(x = "Time (Years)" , y = "Optimal proportion of land converted to palm oil (%)") + #, title = "Private vs Social Optimal")
-        scale_color_tableau(name = NULL, labels = c("Private ", "Social")) +
         theme_minimal() +
         theme(plot.title = element_text(face="bold", size = 25), # 
               legend.position="top",
-              legend.text = element_text(size = 14)
-        ) #+ 
+              legend.text = element_text(size = 14)) #+ 
+    if(length(input$checkGroup) == 1){
+      if(input$checkGroup == "private"){
+        p <- p + 
+          geom_line(aes(time2, X_private3, color="#1F77B4"), size=2) +
+          scale_color_tableau(name = NULL, labels = c("Private "))
+      } else { # social
+        p <- p + 
+          geom_line(aes(time2, X_social3, color="#1F77B4"), size=2) +
+          scale_color_tableau(name = NULL, labels = c("Social "))
+      } 
+    }
+    if(length(input$checkGroup) == 2){
+      p <- p +
+        geom_line(aes(time2, X_private3, color="#1F77B4"), size=2) +
+        geom_line(aes(time2, X_social3, color="#FF7F0E"), size=2) +
+        scale_color_tableau(name = NULL, labels = c("Private ", "Social"))
+    }
+        
+    print(p)
+    #+ 
       # theme(plot.background = element_rect(fill = "transparent", color = NA))
       # theme(
       #   panel.background = element_rect(fill = "transparent") # bg of the panel
