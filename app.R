@@ -96,17 +96,12 @@ ui <- dashboardPage(skin = "green",
                                     numericInput('total_land', 'Total Land (in ha):', 
                                                  min = 1, max = 10000000000, value = 7363000 ),
                                     helpText("Total land is the sum of pristine hectares and development hectares "),
-                                    br(),
-                                    
+                                    # br(),
                                     # Input for percentage of forest land
                                     sliderInput("forest_land", "Forest land (%):",
                                                 min = 0, max = 1, value = 0.68),
                                     
-                                    # Input for palm oil price (US$)
-                                    # sliderInput("CPO_price", "Core Palm Oil (CPO) international price (US$):",
-                                    #             min = 0, max = 1500, pre = "$",value =517),
-                                    # helpText("Core palm oil international price"),
-                                    br(),
+                                    # br(),
                                     # Input for palm oil price (US$)
                                     sliderInput("kerneloil_price", "Kernel price (US$):",
                                                 min = 0, max = 1500, pre = "$",value =1300),
@@ -123,6 +118,8 @@ ui <- dashboardPage(skin = "green",
 # Land Holder % tabPanel -------------------------------------------------------                                    
                                     tabPanel("Land Holder %",
                                              # "Yield Land holders"
+                                             fluidRow(
+                                             column(width = 6,
                                              sliderInput('small_landholders', 'Proportion of small landholders (%):', 
                                                          min = 0, max = 1, value=0.41, pre = "", step = .01),
                                              uiOutput('large_landholders'),
@@ -131,8 +128,9 @@ ui <- dashboardPage(skin = "green",
                                              strong(textOutput("gov_landholders")),
                                              # sliderInput('gov_landholders', 'Proportion of goverment plantations (%):', 
                                              #             min = 0, max = 1, value=0.10, pre = ""),
-                                             helpText("The sum of the proportions must be equal to 1 (100%). The default numbers come from Suharto (2009) for Indonesia"),
-                                             
+                                             helpText("The sum of the proportions must be equal to 1 (100%). \n The default numbers come from Suharto (2009) for Indonesia")
+                                             ),
+                                             column(width = 6,
                                              numericInput('yield_small_lanholders', 'Yield small landholders (tonnes/ha):', 
                                                           min = 0, max = 5.0, value=3), 
                                              numericInput('yield_large_lanholders', 'Yield large landholders (tonnes/ha):', 
@@ -140,6 +138,8 @@ ui <- dashboardPage(skin = "green",
                                              numericInput('yield_gov_lanholders', 'Yield goverment plantations (tonnes/ha):', 
                                                           min = 0, max = 5.0, value=4),
                                              helpText("The yields come from Suharto (2009) for Indonesia")
+                                             )
+                                             )
                                              ),
 # Placeholder tabPanel ----------------------------------------------------
                                     tabPanel("Placeholder",
