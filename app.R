@@ -13,27 +13,54 @@ library(shinydashboard)
 library(optimx)
 library(ggplot2)
 library(ggthemes)
-
+# library(devtools)
+# install_github("nik01010/dashboardthemes")
+library(dashboardthemes)
 
 ui <- dashboardPage(skin = "green",
-                    header <- dashboardHeader(title = "IDEEAL", dropdownMenuOutput("messageMenu")),
+                    header <- dashboardHeader(title = "IDEEAL", dropdownMenuOutput("messageMenu")#,
+      #                                         tags$head(tags$style(HTML('
+      # .main-header .logo {
+      #                                                                   font-family: "Georgia", Times, "Times New Roman", serif;
+      #                                                                   font-weight: bold;
+      #                                                                   font-size: 24px;
+      #                                                                   }
+      #                                                                   ')))
+                                              
+                                            
+      #                                         tags$head(
+      #                                           tags$style(HTML(
+      #                                             ".title 
+      # {
+      # background:url('http://images.clipartpanda.com/smiley-face-png-Smiley_Face.png');
+      # background-repeat: no-repeat;
+      # background-size: 5% 90%;
+      # }
+      # "))
+      #                                         ),
+      #                                         
+      #                                         headerPanel(
+      #                                           h1("App Title", class = "title")
+      #                                           
+      #                                         )
+                                              ),
                     sidebar <- dashboardSidebar(width = 300,
                                                 sidebarMenu(
                                                   menuItem("Overview", tabName = "Picture", icon = icon("map-o")),
                                                   menuItem("Project Details", tabName = "proj_bg", icon = icon("book")),
                                                   menuItem("How to use this app?", tabName = "app_use", icon = icon("info")),
-                                                  
+                                                  menuItem("Private vs Social Optimal", tabName = "figure3", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
+                                                  br(),
                                                   menuItem("Model Input Variables", tabName = "var_tab", icon = icon("globe"), 
                                                            menuSubItem("Variable Appendix", tabName = "var_appendix", icon = icon("globe")),
                                                            menuSubItem("Detailed Variable Control", tabName = "var_input", icon = icon("industry"))
                                                   ),
                                                   
-                                                  br(),
+                                                  # br(),
                                                   #menuItem(submitButton("update"), badgeLabel = "click 'update' after input changes", badgeColor = "green"),
-                                                  br(),
+                                                  # br(),
                                                   # menuItem("Social Optimal", tabName = "figure1", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
                                                   # menuItem("Private Optimal", tabName = "figure2", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
-                                                  menuItem("Private vs Social Optimal", tabName = "figure3", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
                                                   menuItem("Option Value", tabName = "option_value", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
                                                   br(),
                                                   
@@ -56,11 +83,14 @@ ui <- dashboardPage(skin = "green",
 
 # Dashboard Body ----------------------------------------------------------
                     body <- dashboardBody(
+                      shinyDashboardThemes(theme = "poor_mans_flatly"),
                       tabItems(
 # Landing Page tab --------------------------------------------------------
                         tabItem(tabName = "Picture",
                                 h2("Infectious Disease Emergence and Economics of Altered Landscapes (IDEEAL)"),
-                                fluidRow(  
+                                fluidRow(
+                                  HTML('<iframe width="640" height="360" src="https://www.youtube.com/embed/asERnZ6byh8?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&amp;mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'),
+                                  
                                   box(img(src = "img1.png", height = 400, width = 600), width=12)
                                 ),
                                 fluidRow(  
@@ -711,19 +741,19 @@ server <- function(input, output) {
     if(length(input$checkGroup) == 1){ # to ensure first line is always blue
       if(input$checkGroup == "private"){
         p <- p + 
-          geom_line(aes(time2, X_private3, color="#1F77B4"), size=2) +
-          scale_color_tableau(name = NULL, labels = c("Private "))
+          geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
+          scale_color_manual(name = NULL, labels = c("Private "))
       } else { # social
         p <- p + 
-          geom_line(aes(time2, X_social3, color="#1F77B4"), size=2) +
-          scale_color_tableau(name = NULL, labels = c("Social "))
+          geom_line(aes(time2, X_social3), size=2, col = "#377EB8") +
+          scale_color_manual(name = NULL, labels = c("Social "))
       } 
     }
     if(length(input$checkGroup) == 2){
       p <- p +
-        geom_line(aes(time2, X_private3, color="#1F77B4"), size=2) +
-        geom_line(aes(time2, X_social3, color="#FF7F0E"), size=2) +
-        scale_color_tableau(name = NULL, labels = c("Private ", "Social"))
+        geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
+        geom_line(aes(time2, X_social3), size=2, col = "#4DAF4A") +
+        scale_color_manual(name = NULL, labels = c("Private ", "Social"))
     }
         
     print(p)
