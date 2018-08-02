@@ -733,18 +733,24 @@ server <- function(input, output) {
       if(input$checkGroup == "private"){
         p <- p + 
           geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
-          scale_color_manual(name = NULL, labels = c("Private "))
+          scale_color_manual(name = NULL, labels = c("Private ")) +
+          annotate("text", label = paste0(round(X_private2, 1), "%"), x = 85, y = X_private2)
       } else { # social
         p <- p + 
           geom_line(aes(time2, X_social3), size=2, col = "#377EB8") +
-          scale_color_manual(name = NULL, labels = c("Social "))
+          scale_color_manual(name = NULL, labels = c("Social ")) +
+          annotate("text", label = paste0(round(X_social2, 1), "%"), x = 85, y = X_social2)
       } 
     }
     if(length(input$checkGroup) == 2){
       p <- p +
         geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
         geom_line(aes(time2, X_social3), size=2, col = "#4DAF4A") +
-        scale_color_manual(name = NULL, labels = c("Private ", "Social "))
+        scale_color_manual(name = NULL, labels = c("Private ", "Social ")) +
+        annotate("text", label = paste0(round(X_private2, 1),  "%"), x = 85, y = X_private2) +
+        annotate("text", label = paste0(round(X_social2, 1),  "%"), x = 85, y = X_social2)
+      
+      
     }
         
     print(p)
