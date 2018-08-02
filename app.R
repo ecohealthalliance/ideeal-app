@@ -52,8 +52,8 @@ ui <- dashboardPage(skin = "green",
                                                   menuItem("Private vs Social Optimal", tabName = "figure3", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
                                                   br(),
                                                   menuItem("Model Input Variables", tabName = "var_tab", icon = icon("globe"), 
-                                                           menuSubItem("Variable Appendix", tabName = "var_appendix", icon = icon("globe")),
-                                                           menuSubItem("Detailed Variable Control", tabName = "var_input", icon = icon("industry"))
+                                                           menuSubItem("Detailed Variable Control", tabName = "var_input", icon = icon("industry")),
+                                                           menuSubItem("Variable Appendix", tabName = "var_appendix", icon = icon("globe"))
                                                   ),
                                                   
                                                   # br(),
