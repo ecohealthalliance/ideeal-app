@@ -126,22 +126,17 @@ ui <- dashboardPage(skin = "green",
                                     numericInput('total_land', 'Total Land (in ha):', 
                                                  min = 1, max = 10000000000, value = 7363000 ),
                                     helpText("Total land is the sum of pristine hectares and development hectares "),
-                                    # br(),
                                     # Input for percentage of forest land
                                     sliderInput("forest_land", "Forest land (%):",
                                                 min = 0, max = 1, value = 0.68),
-                                    
-                                    # br(),
                                     # Input for palm oil price (US$)
                                     sliderInput("kerneloil_price", "Kernel price (US$):",
                                                 min = 0, max = 1500, pre = "$",value =1300),
-                                    
                                     # Yield of Kernel per hectare (metric tons)
                                     sliderInput("kerneloil_yield", "Kernel yield per hectare (in metric tons):", 
                                                 min=0, max=5.01, value=1.04), 
                                     helpText("The kernel oil yield is the amount of kernel oil in metric tons produced 
               from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 5% of FFB)"),
-                                    
                                     sliderInput("prop_CPO_total", "Proportion CPO from total production:", 
                                                 min=0, max=1, value=0.8)
                                     ),
@@ -171,25 +166,6 @@ ui <- dashboardPage(skin = "green",
                                              )
                                              )
                                              ),
-# Placeholder tabPanel ----------------------------------------------------
-                                    tabPanel("Placeholder",
-                                             sliderInput("rho", "Discount rate:",
-                                                         min=0.0, max=0.1, value=0.05),
-                                             helpText("The discount rate is used to discount the values to the present. 
-                       Every time a piece of land is converted into palm plantation in the future, 
-                       it generates revenues that need to be discounted. 
-                       Future ecosystem services and costs are also discounted by this rate.", 
-                                                      br(),
-                                                      "It is by default at 5%, if you increase the discount rate, 
-                       future value flows will become smaller"),
-                                             #land conversion
-                                             h2("Land Conversion"),
-                                             sliderInput('cost_per_HA', 'Conversion costs ($US/ha):', 
-                                                         min = 100, max = 3000, value=1410, pre = "$"),
-                                            h2("Population"),
-                                            sliderInput('population', 'Total population in the region:', 3.55e6,
-                                                          min = 0, max = 1e7, pre = "")
-                                    ),
 
 # Ecosystem Service -------------------------------------------------------
                                     tabPanel("Ecosystem Service",
@@ -235,12 +211,27 @@ ui <- dashboardPage(skin = "green",
                                                          min = 0, max = 1e7, pre = "")
                                              )
                                              )
-                                             )
-
+                                             ),
+# Placeholder tabPanel ----------------------------------------------------
+                                    tabPanel("Other variables",
+                                             sliderInput("rho", "Discount rate:",
+                                                         min=0.0, max=0.1, value=0.05),
+                                             helpText("The discount rate is used to discount the values to the present. 
+                                                           Every time a piece of land is converted into palm plantation in the future, 
+                                                           it generates revenues that need to be discounted. 
+                                                           Future ecosystem services and costs are also discounted by this rate.", 
+                                                      br(),
+                                                      "It is by default at 5%, if you increase the discount rate, 
+                                                           future value flows will become smaller"),
+                                             br(),
+                                             #land conversion
+                                             sliderInput('cost_per_HA', 'Land conversion costs ($US/ha):', 
+                                                         min = 100, max = 3000, value=1410, pre = "$")
+                                    )
                                   )
-                            ),
-                                
-                                fluidRow(  )
+                            )
+                                # 
+                                # fluidRow(  )
                         ),
 
 # Option Value tab --------------------------------------------------------
@@ -753,7 +744,7 @@ server <- function(input, output) {
       p <- p +
         geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
         geom_line(aes(time2, X_social3), size=2, col = "#4DAF4A") +
-        scale_color_manual(name = NULL, labels = c("Private ", "Social"))
+        scale_color_manual(name = NULL, labels = c("Private ", "Social "))
     }
         
     print(p)
