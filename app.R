@@ -641,136 +641,55 @@ server <- function(input, output) {
     )  
   }) 
   ######################### End of mydata2 <- reactive({ #############################  
-  
   #### Plot 1 #######
-  
-  output$plot1 <- renderPlot({
-    
-    plot(mydata()$time2, mydata()$X_social3  )
-    
-  })
-  
+  # output$plot1 <- renderPlot({
+  #   
+  #   plot(mydata()$time2, mydata()$X_social3  )
+  #   
+  # })
+  # 
   #### Plot 2  ######
-  
-  output$plot2 <- renderPlot({ 
-    
-    X_social = mydata()$X
-    X_social2 = rep(X_social[51], 30)
-    X_social3 = c(X_social,X_social2)
-    
-    withProgress(message = 'Making plot', value = 0, {
-      
-      ggplot() + 
-        geom_line(aes(time2, X_social3, color=X_social3), size=2) +
-        xlim(0, 90) +
-        ylim(0, 100) +
-        labs(x = "Time" , y = "Optimal proportion of land converted to palm oil (%)", title = "Land Conversion Path - Social Optimal" ) +
-        scale_fill_tableau() +
-        theme_minimal() +
-        theme(legend.position="none", plot.title = element_text(face="bold", size = 15))
-      
-    })
-  })
-  
+  # output$plot2 <- renderPlot({ 
+  #   
+  #   X_social = mydata()$X
+  #   X_social2 = rep(X_social[51], 30)
+  #   X_social3 = c(X_social,X_social2)
+  #   
+  #   withProgress(message = 'Making plot', value = 0, {
+  #     
+  #     ggplot() + 
+  #       geom_line(aes(time2, X_social3, color=X_social3), size=2) +
+  #       xlim(0, 90) +
+  #       ylim(0, 100) +
+  #       labs(x = "Time" , y = "Optimal proportion of land converted to palm oil (%)", title = "Land Conversion Path - Social Optimal" ) +
+  #       scale_fill_tableau() +
+  #       theme_minimal() +
+  #       theme(legend.position="none", plot.title = element_text(face="bold", size = 15))
+  #     
+  #   })
+  # })
+  # 
   #### Plot 3 #####
-  output$plot3 <- renderPlot({
-    
-    X_private = mydata2()$X
-    X_private2 = rep(X_private[51], 30)
-    X_private3 = c(X_private,X_private2)
-    
-    withProgress(message = 'Making plot', value = 0, {
-      
-      ggplot() + 
-        geom_line(aes(time2, X_private3, color=X_private3), size=2) +
-        xlim(0, 90) +
-        ylim(0, 100) +
-        labs( x = "Time" , y = "Optimal proportion of land converted to palm oil (%)", title = "Land Conversion Path - Private Optimal" ) +
-        scale_fill_tableau() +
-        theme_minimal() +
-        theme(legend.position="none", plot.title = element_text(face="bold", size = 15))
-    })
-  })
-  
+  # output$plot3 <- renderPlot({
+  #   
+  #   X_private = mydata2()$X
+  #   X_private2 = rep(X_private[51], 30)
+  #   X_private3 = c(X_private,X_private2)
+  #   
+  #   withProgress(message = 'Making plot', value = 0, {
+  #     
+  #     ggplot() + 
+  #       geom_line(aes(time2, X_private3, color=X_private3), size=2) +
+  #       xlim(0, 90) +
+  #       ylim(0, 100) +
+  #       labs( x = "Time" , y = "Optimal proportion of land converted to palm oil (%)", title = "Land Conversion Path - Private Optimal" ) +
+  #       scale_fill_tableau() +
+  #       theme_minimal() +
+  #       theme(legend.position="none", plot.title = element_text(face="bold", size = 15))
+  #   })
+  # })
   
   #### Plot 4  - private vs social #######
-  # print(mydata()$X)
-  output$plot4 <- renderPlot({
-  
-    X_social = mydata()$X
-    X_social2 = rep(X_social[51], 30)
-    X_social3 = c(X_social,X_social2)
-    
-    X_private = mydata2()$X
-    X_private2 = rep(X_private[51], 30)
-    X_private3 = c(X_private,X_private2)
-    
-    withProgress(message = 'Making plot', value = 0, {
-      
-    p <- ggplot() + 
-        xlim(0, 90) +
-        ylim(0, 100) +
-        labs(x = "Time (Years)" , y = "Optimal proportion of land converted to palm oil (%)") + #, title = "Private vs Social Optimal")
-        theme_minimal() +
-        theme(plot.title = element_text(face="bold", size = 25), # 
-              legend.position="top",
-              legend.text = element_text(size = 14)) #+ 
-    if(input$private_check == TRUE & input$social_check == FALSE){
-      p <- p + 
-        geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
-        scale_color_manual(name = NULL, labels = c("Private ")) +
-        annotate("text", label = paste0(round(X_private2, 1), "%"), x = 85, y = X_private2)
-    } else if(input$private_check == FALSE & input$social_check == TRUE){
-      p <- p + 
-        geom_line(aes(time2, X_social3), size=2, col = "#4DAF4A") +
-        scale_color_manual(name = NULL, labels = c("Social ")) +
-        annotate("text", label = paste0(round(X_social2, 1), "%"), x = 85, y = X_social2)
-    } else {
-      p <- p +
-        geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
-        geom_line(aes(time2, X_social3), size=2, col = "#4DAF4A") +
-        scale_color_manual(name = NULL, labels = c("Private ", "Social ")) +
-        annotate("text", label = paste0(round(X_private2, 1),  "%"), x = 85, y = X_private2) +
-        annotate("text", label = paste0(round(X_social2, 1),  "%"), x = 85, y = X_social2)
-    }
-    
-    
-    # if(length(input$checkGroup) == 1){ # to ensure first line is always blue
-    #   if(input$checkGroup == "private"){
-    #     p <- p + 
-    #       geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
-    #       scale_color_manual(name = NULL, labels = c("Private ")) +
-    #       annotate("text", label = paste0(round(X_private2, 1), "%"), x = 85, y = X_private2)
-    #   } else { # social
-    #     p <- p + 
-    #       geom_line(aes(time2, X_social3), size=2, col = "#377EB8") +
-    #       scale_color_manual(name = NULL, labels = c("Social ")) +
-    #       annotate("text", label = paste0(round(X_social2, 1), "%"), x = 85, y = X_social2)
-    #   } 
-    # }
-    # if(length(input$checkGroup) == 2){
-    #   p <- p +
-    #     geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
-    #     geom_line(aes(time2, X_social3), size=2, col = "#4DAF4A") +
-    #     scale_color_manual(name = NULL, labels = c("Private ", "Social ")) +
-    #     annotate("text", label = paste0(round(X_private2, 1),  "%"), x = 85, y = X_private2) +
-    #     annotate("text", label = paste0(round(X_social2, 1),  "%"), x = 85, y = X_social2)
-    # }
-        
-    print(p)
-    #+ 
-      # theme(plot.background = element_rect(fill = "transparent", color = NA))
-      # theme(
-      #   panel.background = element_rect(fill = "transparent") # bg of the panel
-      #   , plot.background = element_rect(fill = "transparent", color = NA) # bg of the plot
-      #   , panel.grid.major = element_blank() # get rid of major grid
-      #   , panel.grid.minor = element_blank() # get rid of minor grid
-      #   , legend.background = element_rect(fill = "transparent") # get rid of legend bg
-      #   , legend.box.background = element_rect(fill = "transparent") # get rid of legend panel bg
-      # )
-    })
-  })
-  
   output$plotly4 <- renderPlotly({
     
     X_social = mydata()$X
@@ -825,41 +744,41 @@ server <- function(input, output) {
     twoinputsum = input$large_landholders + input$small_landholders
     paste("Proportion of goverment plantations (%):", round(1 - twoinputsum, digits = 2))
   })
-  
-  output$menu <- renderMenu({
-    sidebarMenu(
-      menuItem("Menu item", icon = icon("calendar"))
-    )
-  })
-  
-  output$text1 <- renderText({ 
-    paste(round(mydata()$X, digits=1)) 
-  })
-  
-  output$text2 <- renderText({ 
-    paste(round(mydata2()$X, digits=1)) 
-  })
-  #### Difference in Effort between private and social optimums ####  
-  output$text3 <- renderText({ 
-    paste(round( mydata2()$U_max_P - mydata()$U_max, digits=1)) 
-  })
-  
-  output$text4 <- renderText({ 
-    paste(round( mydata()$NPV_W_social, digits=1)) 
-  })
-  
-  output$text5 <- renderText({ 
-    paste(round( mydata2()$NPV_W_private, digits=1)) 
-  })
-  
-  output$text6 <- renderText({ 
-    paste(round( mydata2()$NPV_profits_private, digits=1)) 
-  })
-  
-  output$text7 <- renderText({ 
-    paste(round( mydata()$NPV_profits_social, digits=1)) 
-  })
-  
+  #####
+  # output$menu <- renderMenu({
+  #   sidebarMenu(
+  #     menuItem("Menu item", icon = icon("calendar"))
+  #   )
+  # })
+  # 
+  # output$text1 <- renderText({ 
+  #   paste(round(mydata()$X, digits=1)) 
+  # })
+  # 
+  # output$text2 <- renderText({ 
+  #   paste(round(mydata2()$X, digits=1)) 
+  # })
+  # #### Difference in Effort between private and social optimums ####  
+  # output$text3 <- renderText({ 
+  #   paste(round( mydata2()$U_max_P - mydata()$U_max, digits=1)) 
+  # })
+  # 
+  # output$text4 <- renderText({ 
+  #   paste(round( mydata()$NPV_W_social, digits=1)) 
+  # })
+  # 
+  # output$text5 <- renderText({ 
+  #   paste(round( mydata2()$NPV_W_private, digits=1)) 
+  # })
+  # 
+  # output$text6 <- renderText({ 
+  #   paste(round( mydata2()$NPV_profits_private, digits=1)) 
+  # })
+  # 
+  # output$text7 <- renderText({ 
+  #   paste(round( mydata()$NPV_profits_social, digits=1)) 
+  # })
+  #####
   output$text8 <- renderText({ 
     paste("Sum Total Ecosystem Services Value ($US/ha):", round( mydata0()$ES_value, digits=1)) 
   })
