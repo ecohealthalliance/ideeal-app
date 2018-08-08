@@ -16,6 +16,7 @@ library(ggthemes)
 # library(devtools)
 # install_github("nik01010/dashboardthemes")
 library(dashboardthemes)
+library(plotly)
 
 ui <- dashboardPage(skin = "green",
                     header <- dashboardHeader(title = "IDEEAL", dropdownMenuOutput("messageMenu")#,
@@ -279,7 +280,8 @@ ui <- dashboardPage(skin = "green",
                                       checkboxGroupInput("checkGroup", label = h4("Results to show"), 
                                                          choices = list("Private" = "private", "Social" = "social"), 
                                                          selected = c('private', 'social')),
-                                    plotOutput("plot4")
+                                      plotlyOutput("plotly4")
+                                    # plotOutput("plot4")
                                   )
                                 ),
                                 
@@ -289,11 +291,7 @@ ui <- dashboardPage(skin = "green",
                                       h4("Net Persent Value for Social:"),
                                       textOutput("text4"),
                                       h4("Net Persent Value for Private:"),
-                                      textOutput("text5"),
-                                      h4("Net Persent Value only profits for private:"),
-                                      textOutput("text6"),
-                                      h4("Net Persent Value only profits for social:"),
-                                      textOutput("text7")
+                                      textOutput("text5")
                                   )
                                 )
                         )
@@ -755,6 +753,65 @@ server <- function(input, output) {
         
     print(p)
     #+ 
+      # theme(plot.background = element_rect(fill = "transparent", color = NA))
+      # theme(
+      #   panel.background = element_rect(fill = "transparent") # bg of the panel
+      #   , plot.background = element_rect(fill = "transparent", color = NA) # bg of the plot
+      #   , panel.grid.major = element_blank() # get rid of major grid
+      #   , panel.grid.minor = element_blank() # get rid of minor grid
+      #   , legend.background = element_rect(fill = "transparent") # get rid of legend bg
+      #   , legend.box.background = element_rect(fill = "transparent") # get rid of legend panel bg
+      # )
+    })
+  })
+  
+  output$plotly4 <- renderPlotly({
+    
+    X_social = mydata()$X
+    X_social2 = rep(X_social[51], 30)
+    X_social3 = c(X_social,X_social2)
+    
+    X_private = mydata2()$X
+    X_private2 = rep(X_private[51], 30)
+    X_private3 = c(X_private,X_private2)
+    
+    withProgress(message = 'Making plot', value = 0, {
+      
+      p <- ggplot() + 
+        xlim(0, 90) +
+        ylim(0, 100) +
+        labs(x = "Time (Years)" , y = "Optimal proportion of land converted to palm oil (%)") + #, title = "Private vs Social Optimal")
+        theme_minimal() +
+        theme(plot.title = element_text(face="bold", size = 25), # 
+              legend.position="top",
+              legend.text = element_text(size = 14)) #+ 
+      if(length(input$checkGroup) == 1){ # to ensure first line is always blue
+        if(input$checkGroup == "private"){
+          p <- p + 
+            geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
+            scale_color_manual(name = NULL, labels = c("Private ")) +
+            annotate("text", label = paste0(round(X_private2, 1), "%"), x = 85, y = X_private2)
+        } else { # social
+          p <- p + 
+            geom_line(aes(time2, X_social3), size=2, col = "#377EB8") +
+            scale_color_manual(name = NULL, labels = c("Social ")) +
+            annotate("text", label = paste0(round(X_social2, 1), "%"), x = 85, y = X_social2)
+        } 
+      }
+      if(length(input$checkGroup) == 2){
+        p <- p +
+          geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
+          geom_line(aes(time2, X_social3), size=2, col = "#4DAF4A") +
+          scale_color_manual(name = NULL, labels = c("Private ", "Social ")) +
+          annotate("text", label = paste0(round(X_private2, 1),  "%"), x = 85, y = X_private2) +
+          annotate("text", label = paste0(round(X_social2, 1),  "%"), x = 85, y = X_social2)
+        
+        
+      }
+      
+      # print(p)
+      ggplotly(p)
+      #+ 
       # theme(plot.background = element_rect(fill = "transparent", color = NA))
       # theme(
       #   panel.background = element_rect(fill = "transparent") # bg of the panel
