@@ -17,33 +17,12 @@ library(ggthemes)
 # install_github("nik01010/dashboardthemes")
 library(dashboardthemes)
 library(plotly)
+library(shinyWidgets)
+
+my_names = c("private", "social")
 
 ui <- dashboardPage(skin = "green",
-                    header <- dashboardHeader(title = "IDEEAL", dropdownMenuOutput("messageMenu")#,
-      #                                         tags$head(tags$style(HTML('
-      # .main-header .logo {
-      #                                                                   font-family: "Georgia", Times, "Times New Roman", serif;
-      #                                                                   font-weight: bold;
-      #                                                                   font-size: 24px;
-      #                                                                   }
-      #                                                                   ')))
-                                              
-                                            
-      #                                         tags$head(
-      #                                           tags$style(HTML(
-      #                                             ".title 
-      # {
-      # background:url('http://images.clipartpanda.com/smiley-face-png-Smiley_Face.png');
-      # background-repeat: no-repeat;
-      # background-size: 5% 90%;
-      # }
-      # "))
-      #                                         ),
-      #                                         
-      #                                         headerPanel(
-      #                                           h1("App Title", class = "title")
-      #                                           
-      #                                         )
+                    header <- dashboardHeader(title = "IDEEAL", dropdownMenuOutput("messageMenu")
                                               ),
                     sidebar <- dashboardSidebar(width = 300,
                                                 sidebarMenu(
@@ -277,9 +256,18 @@ ui <- dashboardPage(skin = "green",
 # Key output plot ---------------------------------------------------------
                                 fluidRow(
                                   box(title = "Key result: Private vs Social Optimal", width = 12, status = "primary",
-                                      checkboxGroupInput("checkGroup", label = h4("Results to show"), 
-                                                         choices = list("Private" = "private", "Social" = "social"), 
-                                                         selected = c('private', 'social')),
+                                      # checkboxGroupInput("checkGroup", label = h4("Results to show"), 
+                                      #                    choices = list("Private" = "private", "Social" = "social"), 
+                                      #                    selected = c('private', 'social')),
+
+                                      prettyCheckbox(inputId = "private_check",  label = "Private",
+                                                     status = "primary",
+                                                     value = TRUE, fill = TRUE), #outline = TRUE
+                                      
+                                      prettyCheckbox(inputId = "social_check",  label = "Social",
+                                                     status = "success",
+                                                     value = TRUE, fill = TRUE),
+                                      
                                       plotlyOutput("plotly4")
                                     # plotOutput("plot4")
                                   )
@@ -727,29 +715,47 @@ server <- function(input, output) {
         theme(plot.title = element_text(face="bold", size = 25), # 
               legend.position="top",
               legend.text = element_text(size = 14)) #+ 
-    if(length(input$checkGroup) == 1){ # to ensure first line is always blue
-      if(input$checkGroup == "private"){
-        p <- p + 
-          geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
-          scale_color_manual(name = NULL, labels = c("Private ")) +
-          annotate("text", label = paste0(round(X_private2, 1), "%"), x = 85, y = X_private2)
-      } else { # social
-        p <- p + 
-          geom_line(aes(time2, X_social3), size=2, col = "#377EB8") +
-          scale_color_manual(name = NULL, labels = c("Social ")) +
-          annotate("text", label = paste0(round(X_social2, 1), "%"), x = 85, y = X_social2)
-      } 
-    }
-    if(length(input$checkGroup) == 2){
+    if(input$private_check == TRUE & input$social_check == FALSE){
+      p <- p + 
+        geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
+        scale_color_manual(name = NULL, labels = c("Private ")) +
+        annotate("text", label = paste0(round(X_private2, 1), "%"), x = 85, y = X_private2)
+    } else if(input$private_check == FALSE & input$social_check == TRUE){
+      p <- p + 
+        geom_line(aes(time2, X_social3), size=2, col = "#4DAF4A") +
+        scale_color_manual(name = NULL, labels = c("Social ")) +
+        annotate("text", label = paste0(round(X_social2, 1), "%"), x = 85, y = X_social2)
+    } else {
       p <- p +
         geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
         geom_line(aes(time2, X_social3), size=2, col = "#4DAF4A") +
         scale_color_manual(name = NULL, labels = c("Private ", "Social ")) +
         annotate("text", label = paste0(round(X_private2, 1),  "%"), x = 85, y = X_private2) +
         annotate("text", label = paste0(round(X_social2, 1),  "%"), x = 85, y = X_social2)
-      
-      
     }
+    
+    
+    # if(length(input$checkGroup) == 1){ # to ensure first line is always blue
+    #   if(input$checkGroup == "private"){
+    #     p <- p + 
+    #       geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
+    #       scale_color_manual(name = NULL, labels = c("Private ")) +
+    #       annotate("text", label = paste0(round(X_private2, 1), "%"), x = 85, y = X_private2)
+    #   } else { # social
+    #     p <- p + 
+    #       geom_line(aes(time2, X_social3), size=2, col = "#377EB8") +
+    #       scale_color_manual(name = NULL, labels = c("Social ")) +
+    #       annotate("text", label = paste0(round(X_social2, 1), "%"), x = 85, y = X_social2)
+    #   } 
+    # }
+    # if(length(input$checkGroup) == 2){
+    #   p <- p +
+    #     geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
+    #     geom_line(aes(time2, X_social3), size=2, col = "#4DAF4A") +
+    #     scale_color_manual(name = NULL, labels = c("Private ", "Social ")) +
+    #     annotate("text", label = paste0(round(X_private2, 1),  "%"), x = 85, y = X_private2) +
+    #     annotate("text", label = paste0(round(X_social2, 1),  "%"), x = 85, y = X_social2)
+    # }
         
     print(p)
     #+ 
@@ -785,42 +791,28 @@ server <- function(input, output) {
         theme(plot.title = element_text(face="bold", size = 25), # 
               legend.position="top",
               legend.text = element_text(size = 14)) #+ 
-      if(length(input$checkGroup) == 1){ # to ensure first line is always blue
-        if(input$checkGroup == "private"){
-          p <- p + 
-            geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
-            scale_color_manual(name = NULL, labels = c("Private ")) +
-            annotate("text", label = paste0(round(X_private2, 1), "%"), x = 85, y = X_private2)
-        } else { # social
-          p <- p + 
-            geom_line(aes(time2, X_social3), size=2, col = "#377EB8") +
-            scale_color_manual(name = NULL, labels = c("Social ")) +
-            annotate("text", label = paste0(round(X_social2, 1), "%"), x = 85, y = X_social2)
-        } 
-      }
-      if(length(input$checkGroup) == 2){
+      if(isTRUE(input$private_check) & !isTRUE(input$social_check)){
+        p <- p + 
+          geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
+          scale_color_manual(name = NULL, labels = c("Private ")) +
+          annotate("text", label = paste0(round(X_private2, 1), "%"), x = 85, y = X_private2)
+      } 
+      if(!isTRUE(input$private_check) & isTRUE(input$social_check)){
+        p <- p + 
+          geom_line(aes(time2, X_social3), size=2, col = "#4DAF4A") +
+          scale_color_manual(name = NULL, labels = c("Social ")) +
+          annotate("text", label = paste0(round(X_social2, 1), "%"), x = 85, y = X_social2)
+      } 
+      if (isTRUE(input$private_check) & isTRUE(input$social_check)){
         p <- p +
           geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
           geom_line(aes(time2, X_social3), size=2, col = "#4DAF4A") +
           scale_color_manual(name = NULL, labels = c("Private ", "Social ")) +
           annotate("text", label = paste0(round(X_private2, 1),  "%"), x = 85, y = X_private2) +
           annotate("text", label = paste0(round(X_social2, 1),  "%"), x = 85, y = X_social2)
-        
-        
       }
-      
-      # print(p)
       ggplotly(p)
-      #+ 
-      # theme(plot.background = element_rect(fill = "transparent", color = NA))
-      # theme(
-      #   panel.background = element_rect(fill = "transparent") # bg of the panel
-      #   , plot.background = element_rect(fill = "transparent", color = NA) # bg of the plot
-      #   , panel.grid.major = element_blank() # get rid of major grid
-      #   , panel.grid.minor = element_blank() # get rid of minor grid
-      #   , legend.background = element_rect(fill = "transparent") # get rid of legend bg
-      #   , legend.box.background = element_rect(fill = "transparent") # get rid of legend panel bg
-      # )
+
     })
   })
   
