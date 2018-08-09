@@ -92,7 +92,21 @@ ui <- dashboardPage(skin = "green",
                         ),
 # Variable Appendix tab -------------------------------------------------------------------
                         tabItem(tabName = "var_appendix", 
-                                box(includeMarkdown('var_appendix.MD'), width=12)
+                                fluidRow(
+                                  tabBox(
+                                    width = 12,
+                                    tabPanel("Land Use", 
+                                             includeMarkdown('var_appendix.md')),
+                                    tabPanel("Land Holder %", 
+                                             includeMarkdown('var_appendix.md')),
+                                    tabPanel("Ecosystem Service",
+                                             includeMarkdown('var_appendix.md')),
+                                    tabPanel("Other variables", 
+                                             includeMarkdown('var_appendix.md'))
+                                  )
+                                )
+                                # box(includeHTML('var_appendix.html'), width=12)
+                                # box(includeMarkdown('var_appendix.md'), width=12)
                         ),
 # Detailed Variable Control tab -------------------------------------------------------------------
                         # Second tab content
@@ -826,7 +840,6 @@ server <- function(input, output) {
     } 
   })
 
-  
 }
 
 shinyApp(ui, server)

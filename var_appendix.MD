@@ -1,2 +1,4 @@
-# Variable Appendix
-Here's the detailed definition of each variable that contributes to the model output.
+Land Use
+--------
+
+<img src="img2.jpg" width="400px" />

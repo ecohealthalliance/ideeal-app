@@ -1,0 +1,12 @@
+---
+title: "Variable Appendix"
+output: md_document
+---
+
+## Land Use
+```{r, out.width ='400px', echo=FALSE}
+knitr::include_graphics("img2.jpg")
+```
+
+
+
