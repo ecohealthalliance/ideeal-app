@@ -151,6 +151,7 @@ ui <- dashboardPage(skin = "green",
                                     tabPanel("Ecosystem Service",
                                              fluidRow(
                                              column(width = 6,
+                                             checkboxInput("custom_ES_checkbox", "Use custom ES value"),
                                              sliderInput('food', 'Provision of FOOD value ($US/ha):', 15,
                                                          min = 0, max = 200, pre = "$"), 
                                              sliderInput('water', 'Provision of clean WATER value ($US/ha):', 28,
@@ -186,9 +187,7 @@ ui <- dashboardPage(skin = "green",
                                              sliderInput('genepool', 'Provision of GENEPOOL value ($US/ha):', 12,
                                                          min = 0, max = 23, pre = "$"), 
                                              sliderInput('recreation', 'Provision of recreation activities value ($US/ha):', 45,
-                                                         min = 0, max = 867, pre = "$"), 
-                                             sliderInput('population', 'Total population in the region:', 3.55e6,
-                                                         min = 0, max = 1e7, pre = "")
+                                                         min = 0, max = 867, pre = "$")
                                              )
                                              )
                                              ),
@@ -206,7 +205,10 @@ ui <- dashboardPage(skin = "green",
                                              br(),
                                              #land conversion
                                              sliderInput('cost_per_HA', 'Land conversion costs ($US/ha):', 
-                                                         min = 100, max = 3000, value=1410, pre = "$")
+                                                         min = 100, max = 3000, value=1410, pre = "$"),
+                                             br(),
+                                             sliderInput('population', 'Total population in the region:', 3.55e6,
+                                                         min = 0, max = 1e7, pre = "")
                                     )
                                   )
                             )
@@ -245,6 +247,8 @@ ui <- dashboardPage(skin = "green",
                                     
                                     sliderInput('infections', 'Total number of infections:', 2000,
                                                   min = 0, max = 1e6, pre = ""),
+                                    
+                                    sliderInput("ES_slider", "Sum Total Ecosystem Services Value ($US/ha):", 843, min = 0, max = 5313),
                                     h2(textOutput("text8")), 
                                     helpText("Increasing the value of ecosystem services will reduce the land conversion 
                   for the social optimal")
@@ -259,11 +263,9 @@ ui <- dashboardPage(skin = "green",
                                       # checkboxGroupInput("checkGroup", label = h4("Results to show"), 
                                       #                    choices = list("Private" = "private", "Social" = "social"), 
                                       #                    selected = c('private', 'social')),
-
                                       prettyCheckbox(inputId = "private_check",  label = "Private",
                                                      status = "primary",
                                                      value = TRUE, fill = TRUE), #outline = TRUE
-                                      
                                       prettyCheckbox(inputId = "social_check",  label = "Social",
                                                      status = "success",
                                                      value = TRUE, fill = TRUE),
@@ -283,9 +285,6 @@ ui <- dashboardPage(skin = "green",
                                   )
                                 )
                         )
-
-                        
-                        
                       )
                     )
 )
@@ -297,29 +296,60 @@ server <- function(input, output) {
   time <- seq(0,50) # Set time periods
   time2 = seq(1,81,1)
   
-  ################################ MYDATA0 (Ecosystem Services Values) ######################################  
+  ################################ MYDATA0 (Ecosystem Services Values) ###################################### 
+  # observeEvent(input$custom_ES_checkbox, {
+  #   cat(input$custom_ES_checkbox)
+  # })
+  
   mydata0 <- reactive({
-    food = input$food
-    water = input$water
-    raw_materials = input$raw_materials
-    genetic = input$genetic
-    medical = input$medical
-    air_quality = input$air_quality
-    climate = input$climate
-    extreme_events = input$extreme_events
-    water_flow = input$water_flow
-    waste = input$waste
-    erosion = input$erosion
-    soil_fertility = input$soil_fertility
-    pollination = input$pollination
-    biocontrol = input$biocontrol
-    nursery = input$nursery
-    genepool = input$genepool
-    recreation = input$recreation
-    ES_value = food + water + raw_materials + genetic + medical + air_quality + climate + extreme_events + water_flow + waste +  erosion + soil_fertility + pollination + biocontrol + nursery + genepool + recreation
-    
-    return(list(ES_value=ES_value))
+    if(!isTRUE(input$custom_ES_checkbox)){
+      list(ES_value = input$ES_slider)
+    } else {
+      food = input$food
+      water = input$water
+      raw_materials = input$raw_materials
+      genetic = input$genetic
+      medical = input$medical
+      air_quality = input$air_quality
+      climate = input$climate
+      extreme_events = input$extreme_events
+      water_flow = input$water_flow
+      waste = input$waste
+      erosion = input$erosion
+      soil_fertility = input$soil_fertility
+      pollination = input$pollination
+      biocontrol = input$biocontrol
+      nursery = input$nursery
+      genepool = input$genepool
+      recreation = input$recreation
+      ES_value = food + water + raw_materials + genetic + medical + air_quality + climate + extreme_events + water_flow + waste +  erosion + soil_fertility + pollination + biocontrol + nursery + genepool + recreation
+      
+      return(list(ES_value=ES_value))
+    }
   })
+  
+  # mydata0 <- eventReactive(input$custom_ES_checkbox,{
+  #   food = input$food
+  #   water = input$water
+  #   raw_materials = input$raw_materials
+  #   genetic = input$genetic
+  #   medical = input$medical
+  #   air_quality = input$air_quality
+  #   climate = input$climate
+  #   extreme_events = input$extreme_events
+  #   water_flow = input$water_flow
+  #   waste = input$waste
+  #   erosion = input$erosion
+  #   soil_fertility = input$soil_fertility
+  #   pollination = input$pollination
+  #   biocontrol = input$biocontrol
+  #   nursery = input$nursery
+  #   genepool = input$genepool
+  #   recreation = input$recreation
+  #   ES_value = food + water + raw_materials + genetic + medical + air_quality + climate + extreme_events + water_flow + waste +  erosion + soil_fertility + pollination + biocontrol + nursery + genepool + recreation
+  #   
+  #   return(list(ES_value=ES_value))
+  # })
   ################################ END of MYDATA0 ######################################  
   
   
