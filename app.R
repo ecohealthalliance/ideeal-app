@@ -247,8 +247,8 @@ ui <- dashboardPage(skin = "green",
                                     
                                     sliderInput('infections', 'Total number of infections:', 2000,
                                                   min = 0, max = 1e6, pre = ""),
-                                    
-                                    sliderInput("ES_slider", "Sum Total Ecosystem Services Value ($US/ha):", 843, min = 0, max = 5313),
+                                    uiOutput("ES_slider_out"),
+                                    # sliderInput("ES_slider", "Sum Total Ecosystem Services Value ($US/ha):", 843, min = 0, max = 5313),
                                     h3(textOutput("text8")), 
                                     helpText("Increasing the value of ecosystem services will reduce the land conversion 
                   for the social optimal")
@@ -291,6 +291,7 @@ ui <- dashboardPage(skin = "green",
 
 # server ------------------------------------------------------------------
 server <- function(input, output) {
+  
   set.seed(122)
   histdata <- rnorm(500)
   time <- seq(0,50) # Set time periods
@@ -721,7 +722,7 @@ server <- function(input, output) {
   
   #### Plot 4  - private vs social #######
   output$plotly4 <- renderPlotly({
-    
+    validate(need(input$ES_slider, "Computing model"))
     X_social = mydata()$X
     X_social2 = rep(X_social[51], 30)
     X_social3 = c(X_social,X_social2)
@@ -817,6 +818,14 @@ server <- function(input, output) {
       NULL
     }
   })
+  
+  ## Remove ES value slider when using custom ES value output
+  output$ES_slider_out <- renderUI({
+    if(!isTRUE(input$custom_ES_checkbox)){
+      sliderInput("ES_slider", "Sum Total Ecosystem Services Value ($US/ha):", 843, min = 0, max = 5313)
+    } 
+  })
+
   
 }
 
