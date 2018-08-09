@@ -249,7 +249,7 @@ ui <- dashboardPage(skin = "green",
                                                   min = 0, max = 1e6, pre = ""),
                                     
                                     sliderInput("ES_slider", "Sum Total Ecosystem Services Value ($US/ha):", 843, min = 0, max = 5313),
-                                    h2(textOutput("text8")), 
+                                    h3(textOutput("text8")), 
                                     helpText("Increasing the value of ecosystem services will reduce the land conversion 
                   for the social optimal")
                                         )
@@ -809,8 +809,13 @@ server <- function(input, output) {
   #   paste(round( mydata()$NPV_profits_social, digits=1)) 
   # })
   #####
-  output$text8 <- renderText({ 
-    paste("Sum Total Ecosystem Services Value ($US/ha):", round( mydata0()$ES_value, digits=1)) 
+
+  output$text8 <- renderText({
+    if(isTRUE(input$custom_ES_checkbox)){
+      paste("Sum Total Ecosystem Services Value ($US/ha):", round( mydata0()$ES_value, digits=1)) 
+    } else{
+      NULL
+    }
   })
   
 }
