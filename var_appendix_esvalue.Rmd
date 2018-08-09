@@ -2,6 +2,7 @@
 title: "Variable Appendix"
 output: md_document
 ---
+<img align = "right" src="img3.jpg" width="600px" />
 
 #### <span style = "color:green"><b>Food</b></span>
 Ecosystems provide the conditions for growing food. Food comes principally from managed agro-ecosystems but marine and freshwater systems or forests also provide food for human consumption. Wild foods from forests are often underestimated
@@ -30,9 +31,10 @@ slopes. Coral reefs and mangroves help protect coastlines from storm damage.
 Ecosystems such as wetlands filter both human and animal waste and act as a natural buffer to the surrounding environment. Through the biological activity of microorganisms in the soil, most waste is broken down. Thereby pathogens (disease causing microbes) are eliminated, and the level of nutrients and pollution is reduced.
 
 #### <span style = "color:green"><b>Erosion control</b></span>
-Soil erosion is a key factor in the process of land degradation and desertification. Vegetation cover provides a vital regulating service by preventing soil erosion. Soil fertility is essential for plant growth and agriculture and well functioning ecosystems supply the soil with nutrients required to support plant growth.
+Soil erosion is a key factor in the process of land degradation and desertification. Vegetation cover provides a vital regulating service by preventing soil erosion.
 
 #### <span style = "color:green"><b>Soil fertility</b></span>
+Soil fertility is essential for plant growth and agriculture and well functioning ecosystems supply the soil with nutrients required to support plant growth.
 
 #### <span style = "color:green"><b>Pollination</b></span>
 Insects and wind pollinate plants and trees which is essential for the development of fruits, vegetables and seeds. Animal pollination is an ecosystem service mainly provided by insects but also by some birds and bats. Some 87 out of the 115 leading global food crops depend upon animal pollination including important cash crops such as cocoa and coffee (Klein et al. 2007).

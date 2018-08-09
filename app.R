@@ -279,10 +279,10 @@ ui <- dashboardPage(skin = "green",
                                       #                    selected = c('private', 'social')),
                                       prettyCheckbox(inputId = "private_check",  label = "Private",
                                                      status = "primary",
-                                                     value = TRUE, fill = TRUE), #outline = TRUE
+                                                     value = TRUE, outline = TRUE), #fill =TRUE
                                       prettyCheckbox(inputId = "social_check",  label = "Social",
                                                      status = "success",
-                                                     value = TRUE, fill = TRUE),
+                                                     value = TRUE, outline = TRUE),
                                       
                                       plotlyOutput("plotly4")
                                     # plotOutput("plot4")
@@ -292,9 +292,9 @@ ui <- dashboardPage(skin = "green",
                                 br(),
                                 fluidRow(
                                   box(title = "Raw data output", status = "primary", width = 12,
-                                      h4("Net Persent Value for Social:"),
+                                      h4("Social Net Present Value:"),
                                       textOutput("text4"),
-                                      h4("Net Persent Value for Private:"),
+                                      h4("Private Net Present Value:"),
                                       textOutput("text5")
                                   )
                                 )
@@ -808,13 +808,13 @@ server <- function(input, output) {
   #   paste(round( mydata2()$U_max_P - mydata()$U_max, digits=1)) 
   # })
   # 
-  # output$text4 <- renderText({ 
-  #   paste(round( mydata()$NPV_W_social, digits=1)) 
-  # })
-  # 
-  # output$text5 <- renderText({ 
-  #   paste(round( mydata2()$NPV_W_private, digits=1)) 
-  # })
+  output$text4 <- renderText({
+    paste(round( mydata()$NPV_W_social, digits=1))
+  })
+
+  output$text5 <- renderText({
+    paste(round( mydata2()$NPV_W_private, digits=1))
+  })
   # 
   # output$text6 <- renderText({ 
   #   paste(round( mydata2()$NPV_profits_private, digits=1)) 

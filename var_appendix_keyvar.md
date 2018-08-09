@@ -1,3 +1,5 @@
+<img align = "right" src="img1.png" width="600px" />
+
 #### <span style="color:green"><b>Core Palm Oil (CPO) international price</b></span>
 
 The international price of core palm oil (CPO), in USD

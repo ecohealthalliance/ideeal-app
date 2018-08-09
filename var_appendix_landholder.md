@@ -1,3 +1,5 @@
+<img align = "right" src="img4.jpg" width="600px" />
+
 #### <span style="color:green"><b>Proportion of small landholders</b></span>
 
 The proportion of land owned by small landholders.

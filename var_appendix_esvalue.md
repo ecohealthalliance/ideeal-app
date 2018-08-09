@@ -1,3 +1,5 @@
+<img align = "right" src="img3.jpg" width="600px" />
+
 #### <span style="color:green"><b>Food</b></span>
 
 Ecosystems provide the conditions for growing food. Food comes
@@ -57,11 +59,13 @@ the level of nutrients and pollution is reduced.
 
 Soil erosion is a key factor in the process of land degradation and
 desertification. Vegetation cover provides a vital regulating service by
-preventing soil erosion. Soil fertility is essential for plant growth
-and agriculture and well functioning ecosystems supply the soil with
-nutrients required to support plant growth.
+preventing soil erosion.
 
 #### <span style="color:green"><b>Soil fertility</b></span>
+
+Soil fertility is essential for plant growth and agriculture and well
+functioning ecosystems supply the soil with nutrients required to
+support plant growth.
 
 #### <span style="color:green"><b>Pollination</b></span>
 
