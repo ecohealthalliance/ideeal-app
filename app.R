@@ -19,8 +19,6 @@ library(dashboardthemes)
 library(plotly)
 library(shinyWidgets)
 
-my_names = c("private", "social")
-
 ui <- dashboardPage(skin = "green",
                     header <- dashboardHeader(title = "IDEEAL", dropdownMenuOutput("messageMenu")
                                               ),
@@ -95,14 +93,16 @@ ui <- dashboardPage(skin = "green",
                                 fluidRow(
                                   tabBox(
                                     width = 12,
+                                    tabPanel("Key Variables", 
+                                             includeMarkdown('var_appendix_keyvar.md')),
                                     tabPanel("Land Use", 
-                                             includeMarkdown('var_appendix.md')),
+                                             includeMarkdown('var_appendix_landuse.md')),
                                     tabPanel("Land Holder %", 
-                                             includeMarkdown('var_appendix.md')),
+                                             includeMarkdown('var_appendix_landholder.md')),
                                     tabPanel("Ecosystem Service",
-                                             includeMarkdown('var_appendix.md')),
+                                             includeMarkdown('var_appendix_esvalue.md')),
                                     tabPanel("Other variables", 
-                                             includeMarkdown('var_appendix.md'))
+                                             includeMarkdown('var_appendix_others.md'))
                                   )
                                 )
                                 # box(includeHTML('var_appendix.html'), width=12)
