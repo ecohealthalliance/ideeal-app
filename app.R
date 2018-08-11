@@ -827,7 +827,7 @@ server <- function(input, output) {
 
   output$text8 <- renderText({
     if(isTRUE(input$custom_ES_checkbox)){
-      paste("Sum Total Ecosystem Services Value ($US/ha):", round( mydata0()$ES_value, digits=1)) 
+      paste("Sum Total Ecosystem Services Value ($US/ha) Calculated from Custom User Inputs:", round( mydata0()$ES_value, digits=1)) 
     } else{
       NULL
     }
