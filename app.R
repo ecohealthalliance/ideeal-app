@@ -65,24 +65,23 @@ ui <- dashboardPage(skin = "green",
                       tabItems(
 # Landing Page tab --------------------------------------------------------
                         tabItem(tabName = "Picture",
-                                h2("Infectious Disease Emergence and Economics of Altered Landscapes (IDEEAL)"),
-                                fluidRow(
-                                  HTML('<iframe width="640" height="360" src="https://www.youtube.com/embed/asERnZ6byh8?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&amp;mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'),
-                                  
-                                  box(img(src = "img1.png", height = 400, width = 600), width=12)
-                                ),
+                                h3("Infectious Disease Emergence and Economics of Altered Landscapes (IDEEAL)"),
                                 fluidRow(  
                                   box(includeMarkdown('landing_page.MD'), width=12)) 
                         ),
 # Background tab -------------------------------------------------------------------
                         tabItem(tabName = "proj_bg", 
-                                h2("Infectious Disease Emergence and Economics of Altered Landscapes (IDEEAL)"),
-                                # fluidRow(  
-                                box(includeMarkdown('background.MD'), width=12)
-                                # box("Project Background: Please choose the values in each tab and then click update to estimate the model. 
-                                #      If no values are chosen, the model will run with the default values", width=9  )
-                                # Add section: why palm oil? (slide 13-16)
-                                # )
+                                fluidRow(
+                                  box(includeMarkdown('background.MD'), width=12)
+                                         ),
+                                         
+                                fluidRow(
+                                  HTML('<div align = "center">
+                                       <iframe width="640" height="360" src="https://www.youtube.com/embed/asERnZ6byh8?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&amp;mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+                                       </iframe>
+                                       </div>'),
+                                  box(img(src = "img1.png", height = 400, width = 600), width=12)
+                                )
                         ),
 # How to tab -------------------------------------------------------------------
                         tabItem(tabName = "app_use", 
