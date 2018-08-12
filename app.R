@@ -11,8 +11,8 @@
 library(shiny)
 library(shinydashboard)
 library(optimx)
-library(ggplot2)
 library(ggthemes)
+library(tidyverse)
 # library(devtools)
 # install_github("nik01010/dashboardthemes")
 library(dashboardthemes)
@@ -744,38 +744,84 @@ server <- function(input, output) {
     X_private2 = rep(X_private[51], 30)
     X_private3 = c(X_private,X_private2)
     
+    plot_df = tibble(time2, X_private3, X_social3)
+    
     withProgress(message = 'Making plot', value = 0, {
-      
-      p <- ggplot() + 
+      # Keep plot backgound for both boxes unchecked
+      p <- ggplot() +
         xlim(0, 90) +
         ylim(0, 100) +
         labs(x = "Time (Years)" , y = "Optimal proportion of land converted to palm oil (%)") + #, title = "Private vs Social Optimal")
         theme_minimal() +
-        theme(plot.title = element_text(face="bold", size = 25), # 
+        theme(plot.title = element_text(face="bold", size = 25), #
               legend.position="top",
-              legend.text = element_text(size = 14)) #+ 
+              legend.text = element_text(size = 14)) #+
+      
       if(isTRUE(input$private_check) & !isTRUE(input$social_check)){
-        p <- p + 
-          geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
+        p <- ggplot(plot_df, aes(x = time2, group = 1, 
+                                 text = paste("Year:", time2, "<br>Private:", X_private3))) + #
+          geom_line(y = X_private3, size=2, col = "#377EB8") +
           scale_color_manual(name = NULL, labels = c("Private ")) +
-          annotate("text", label = paste0(round(X_private2, 1), "%"), x = 85, y = X_private2)
+          annotate("text", label = paste0(round(max(X_private3), 1), "%"), x = 85, y = max(X_private3)) +
+          xlim(0, 90) +
+          ylim(0, 100) +
+          labs(x = "Time (Years)" , y = "Optimal proportion of land converted to palm oil (%)") + #, title = "Private vs Social Optimal")
+          theme_minimal() +
+          theme(plot.title = element_text(face="bold", size = 25), #
+                legend.position="top",
+                legend.text = element_text(size = 14))
+        # p <- p +
+        #   geom_line(aes(time2, X_private3, text = paste("Year:", time2, "<br>", "Social:", X_private3, group = 1)), size=2, col = "#4DAF4A") +
+        #   scale_color_manual(name = NULL, labels = c("Private ")) +
+        #   annotate("text", label = paste0(round(X_private2, 1), "%"), x = 85, y = X_private2)
+          
       } 
       if(!isTRUE(input$private_check) & isTRUE(input$social_check)){
-        p <- p + 
-          geom_line(aes(time2, X_social3), size=2, col = "#4DAF4A") +
+        p <- ggplot(plot_df, aes(x = time2, group = 1, 
+                                 text = paste("Year:", time2, "<br>Social:", X_social3))) + #
+          geom_line(y = X_social3, size=2, col = "#4DAF4A") +
           scale_color_manual(name = NULL, labels = c("Social ")) +
-          annotate("text", label = paste0(round(X_social2, 1), "%"), x = 85, y = X_social2)
+          annotate("text", label = paste0(round(max(X_social3), 1), "%"), x = 85, y = max(X_social3)) +
+          xlim(0, 90) +
+          ylim(0, 100) +
+          labs(x = "Time (Years)" , y = "Optimal proportion of land converted to palm oil (%)") + #, title = "Private vs Social Optimal")
+          theme_minimal() +
+          theme(plot.title = element_text(face="bold", size = 25), #
+                legend.position="top",
+                legend.text = element_text(size = 14))
+        # p <- p + 
+        #   geom_line(aes(time2, X_social3, text = paste("Year:", time2, "<br>", "Social:", X_social3)), size=2, col = "#4DAF4A") +
+        #   scale_color_manual(name = NULL, labels = c("Social ")) +
+        #   annotate("text", label = paste0(round(X_social2, 1), "%"), x = 85, y = X_social2)
       } 
       if (isTRUE(input$private_check) & isTRUE(input$social_check)){
-        p <- p +
-          geom_line(aes(time2, X_private3), size=2, col = "#377EB8") +
-          geom_line(aes(time2, X_social3), size=2, col = "#4DAF4A") +
+        
+        p <- ggplot(plot_df, aes(x = time2, group = 1, 
+                                 text = paste("Year:", time2, 
+                                              "<br>", "Private:", X_private3,
+                                              "<br>", "Social:", X_social3))) + #
+          geom_line(y = X_private3, size=2, col = "#377EB8") +
+          geom_line(y = X_social3, size=2, col = "#4DAF4A") +
           scale_color_manual(name = NULL, labels = c("Private ", "Social ")) +
-          annotate("text", label = paste0(round(X_private2, 1),  "%"), x = 85, y = X_private2) +
-          annotate("text", label = paste0(round(X_social2, 1),  "%"), x = 85, y = X_social2)
+          annotate("text", label = paste0(round(max(X_private3), 1), "%"), x = 85, y = max(X_private3)) +
+          annotate("text", label = paste0(round(max(X_social3), 1), "%"), x = 85, y = max(X_social3)) +
+          xlim(0, 90) +
+          ylim(0, 100) +
+          labs(x = "Time (Years)" , y = "Optimal proportion of land converted to palm oil (%)") + #, title = "Private vs Social Optimal")
+          theme_minimal() +
+          theme(plot.title = element_text(face="bold", size = 25), #
+                legend.position="top",
+                legend.text = element_text(size = 14))
+        # 
+        # p <- p +
+        #   geom_line(aes(time2, X_private3, text = paste("Year:", time2, "<br>", "Private:", X_private3)), size=2, col = "#377EB8") +
+        #   geom_line(aes(time2, X_social3, text = paste("Year:", time2, "<br>", "Social:", X_social3)), size=2, col = "#4DAF4A") +
+        #   scale_color_manual(name = NULL, labels = c("Private ", "Social ")) +
+        #   annotate("text", label = paste0(round(X_private2, 1),  "%"), x = 85, y = X_private2) +
+        #   annotate("text", label = paste0(round(X_social2, 1),  "%"), x = 85, y = X_social2)
       }
-      ggplotly(p)
-
+      ggplotly(p, tooltip = "text")
+      # ggplotly(p)
     })
   })
   
