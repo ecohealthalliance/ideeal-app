@@ -10,9 +10,9 @@ shiny::runApp()
 4. Make sure you have all packages downloaded
 
 ### Project Goal:
-1. Understand the benefits of keeping intact forests to regulate diseases
-2. Estimate the economic costs that are avoided by reducing deforestation
+1. Understand the benefits of forest conservation to regulate diseases
+2. Estimate the economic costs from infecitous diseases due to land degradation
 
 [IDEEAL website](https://www.ecohealthalliance.org/program/ideeal)
 
-[EcoHealth Alliacne](https://ecohealthalliance.org)
+[EcoHealth Alliance](https://ecohealthalliance.org)
