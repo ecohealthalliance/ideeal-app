@@ -7,14 +7,15 @@
 #### include a boton that allows to choose to include or exclude ecosystem services, infectious disease, or/and haze
 ###
 
+
 ## app.R ##
 library(shiny)
 library(shinydashboard)
 library(optimx)
 library(ggthemes)
 library(tidyverse)
-# library(devtools)
-# install_github("nik01010/dashboardthemes")
+library(devtools)
+#install_github("nik01010/dashboardthemes")
 library(dashboardthemes)
 library(plotly)
 library(shinyWidgets)
@@ -25,13 +26,13 @@ ui <- dashboardPage(skin = "green",
                     sidebar <- dashboardSidebar(width = 300,
                                                 sidebarMenu(
                                                   menuItem("Overview", tabName = "Picture", icon = icon("map-o")),
-                                                  menuItem("Project Details", tabName = "proj_bg", icon = icon("book")),
                                                   menuItem("How to use this app?", tabName = "app_use", icon = icon("info")),
-                                                  menuItem("Private vs Social Optimal", tabName = "figure3", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
-                                                  br(),
-                                                  menuItem("Model Input Variables", tabName = "var_tab", icon = icon("globe"), 
+                                                  menuItem("Project Details", tabName = "proj_bg", icon = icon("book")),
+                                                  br(), #"coins"? for option values? something else
+                                                  menuItem("Private vs Social Optimal", tabName = "figure3", icon = icon("balance-scale"),  badgeLabel = "results", badgeColor = "green"),
+                                                  menuItem("Model Input Variables", tabName = "var_tab", icon = icon("globe"), startExpanded = TRUE,
                                                            menuSubItem("Detailed Variable Control", tabName = "var_input", icon = icon("industry")),
-                                                           menuSubItem("Variable Appendix", tabName = "var_appendix", icon = icon("globe"))
+                                                           menuSubItem("Variable Appendix", tabName = "var_appendix", icon = icon("pagelines"))
                                                   ),
                                                   
                                                   # br(),
@@ -39,23 +40,30 @@ ui <- dashboardPage(skin = "green",
                                                   # br(),
                                                   # menuItem("Social Optimal", tabName = "figure1", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
                                                   # menuItem("Private Optimal", tabName = "figure2", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
-                                                  menuItem("Option Value", tabName = "option_value", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
+                                                  menuItem("Option Value", tabName = "option_value", icon = icon("shower")),  #badgeLabel = "results", badgeColor = "green"),
+                                                  menuItem("Scenarios", tabName = "scenarios", icon = icon("server")),
                                                   br(),
                                                   
-                                                  h5("Created by:"),
-                                                  tags$a("EcoHealth Alliance", 
-                                                         href="http://www.ecohealthalliance.org"),
-                                                  h5("For details on how the model is generated go to:"),
-                                                  tags$a("IDEEAL modeling at EcoHealth alliance", 
-                                                         href="http://www.ecohealthalliance.org/program/ideeal"),
-                                                  h5(textOutput("counter")),
+                                                 # h5(span(style="color:#C2D2D6",  "Created by:")),
+                                                 # tags$a("EcoHealth Alliance", 
+                                                  #       href="http://www.ecohealthalliance.org"),
+                                                  #h5(span(style="color:#C2D2D6", "")),
                                                   
-                                                  br(),
+                                                 # br(),
                                                   
-                                                  menuItem("IDEEAL Webpage", icon = icon(""), 
-                                                           href = "https://www.ecohealthalliance.org/program/ideeal"),
-                                                  menuItem("EcoHealth Alliance", icon = icon(""), 
-                                                           href = "https://ecohealthalliance.org")
+                                                 # h5(span(style = "color:#C2D2D6", "For details on how the model is generated go to:")),
+                                                 
+                                                  #tags$a("IDEEAL modeling at EcoHealth alliance", 
+                                                        # href="http://www.ecohealthalliance.org/program/ideeal"),
+                                                
+                                                   #h5(textOutput("counter")),
+                                                  
+                                                  #br(),
+                                                  menuItem("Created by: EcoHealth Alliance", icon = icon(""), 
+                                                           href = "https://ecohealthalliance.org"),
+                                                  menuItem("Modelling Details: IDEEAL Webpage", icon = icon(""), 
+                                                           href = "https://www.ecohealthalliance.org/program/ideeal")
+                                                 
                                                 )
                     ),
 
