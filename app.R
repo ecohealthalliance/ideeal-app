@@ -26,10 +26,10 @@ ui <- dashboardPage(skin = "green",
                     sidebar <- dashboardSidebar(width = 300,
                                                 sidebarMenu(
                                                   menuItem("Overview", tabName = "Picture", icon = icon("map-o")),
-                                                  menuItem("How to use this app?", tabName = "app_use", icon = icon("info")),
+                                                  menuItem("App Instructions", tabName = "app_use", icon = icon("info")),
                                                   menuItem("Project Details", tabName = "proj_bg", icon = icon("book")),
                                                   br(), #"coins"? for option values? something else
-                                                  menuItem("Private vs Social Optimal", tabName = "figure3", icon = icon("balance-scale"),  badgeLabel = "results", badgeColor = "green"),
+                                                  menuItem("Private vs Social Optimum", tabName = "figure3", icon = icon("balance-scale"),  badgeLabel = "results", badgeColor = "green"),
                                                   menuItem("Model Input Variables", tabName = "var_tab", icon = icon("globe"), startExpanded = TRUE,
                                                            menuSubItem("Detailed Variable Control", tabName = "var_input", icon = icon("industry")),
                                                            menuSubItem("Variable Appendix", tabName = "var_appendix", icon = icon("pagelines"))
@@ -41,7 +41,7 @@ ui <- dashboardPage(skin = "green",
                                                   # menuItem("Social Optimal", tabName = "figure1", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
                                                   # menuItem("Private Optimal", tabName = "figure2", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
                                                   menuItem("Option Value", tabName = "option_value", icon = icon("shower")),  #badgeLabel = "results", badgeColor = "green"),
-                                                  menuItem("Scenarios", tabName = "scenarios", icon = icon("server")),
+                                                  menuItem("Scenarios", tabName = "scenarios", icon = icon("clone")),
                                                   br(),
                                                   
                                                  # h5(span(style="color:#C2D2D6",  "Created by:")),
@@ -59,9 +59,9 @@ ui <- dashboardPage(skin = "green",
                                                    #h5(textOutput("counter")),
                                                   
                                                   #br(),
-                                                  menuItem("Created by: EcoHealth Alliance", icon = icon(""), 
+                                                  menuItem("Created by: EcoHealth Alliance", icon = icon("link"), 
                                                            href = "https://ecohealthalliance.org"),
-                                                  menuItem("Modelling Details: IDEEAL Webpage", icon = icon(""), 
+                                                  menuItem("Modelling Details: IDEEAL Webpage", icon = icon("link"), 
                                                            href = "https://www.ecohealthalliance.org/program/ideeal")
                                                  
                                                 )
@@ -73,9 +73,10 @@ ui <- dashboardPage(skin = "green",
                       tabItems(
 # Landing Page tab --------------------------------------------------------
                         tabItem(tabName = "Picture",
-                                h3("Infectious Disease Emergence and Economics of Altered Landscapes (IDEEAL)"),
+                                h2("Infectious Disease Emergence and Economics of Altered Landscapes (IDEEAL)"),
                                 fluidRow(  
                                   box(includeMarkdown('landing_page.MD'), width=12)) 
+                                
                         ),
 # Background tab -------------------------------------------------------------------
                         tabItem(tabName = "proj_bg", 
@@ -88,12 +89,14 @@ ui <- dashboardPage(skin = "green",
                                        <iframe width="640" height="360" src="https://www.youtube.com/embed/asERnZ6byh8?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&amp;mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
                                        </iframe>
                                        </div>'),
-                                  box(img(src = "img1.png", height = 400, width = 600), width=12)
+                                  box(img(src = "img1.png", height = 300, width = 450), width=6),
+                                  box(img(src = "img4.jpg",  height = 300, width = 450), width=6)
                                 )
                         ),
 # How to tab -------------------------------------------------------------------
                         tabItem(tabName = "app_use", 
                                 box(includeMarkdown('how_to_use.MD'), width=12)
+                                
                         ),
 # Variable Appendix tab -------------------------------------------------------------------
                         tabItem(tabName = "var_appendix", 
@@ -104,9 +107,9 @@ ui <- dashboardPage(skin = "green",
                                              includeMarkdown('var_appendix_keyvar.md')),
                                     tabPanel("Land Use", 
                                              includeMarkdown('var_appendix_landuse.md')),
-                                    tabPanel("Land Holder %", 
+                                    tabPanel("Land Holder Type", 
                                              includeMarkdown('var_appendix_landholder.md')),
-                                    tabPanel("Ecosystem Service",
+                                    tabPanel("Ecosystem Services",
                                              includeMarkdown('var_appendix_esvalue.md')),
                                     tabPanel("Other variables", 
                                              includeMarkdown('var_appendix_others.md'))
@@ -142,7 +145,7 @@ ui <- dashboardPage(skin = "green",
                                                 min=0, max=1, value=0.8)
                                     ),
 # Land Holder % tabPanel -------------------------------------------------------                                    
-                                    tabPanel("Land Holder %",
+                                    tabPanel("Land Holder Type",
                                              # "Yield Land holders"
                                              fluidRow(
                                              column(width = 6,
@@ -169,45 +172,45 @@ ui <- dashboardPage(skin = "green",
                                              ),
 
 # Ecosystem Service -------------------------------------------------------
-                                    tabPanel("Ecosystem Service",
+                                    tabPanel("Ecosystem Services",
                                              fluidRow(
                                              column(width = 6,
                                              checkboxInput("custom_ES_checkbox", "Use custom ES value"),
-                                             sliderInput('food', 'Provision of FOOD value ($US/ha):', 15,
+                                             sliderInput('food', 'Provision of Food value ($US/ha):', 15,
                                                          min = 0, max = 200, pre = "$"), 
-                                             sliderInput('water', 'Provision of clean WATER value ($US/ha):', 28,
+                                             sliderInput('water', 'CleanWater ($US/ha):', 28,
                                                          min = 8, max = 46, pre = "$"), 
-                                             sliderInput('raw_materials', 'Provision of RAW MATERIALS value ($US/ha):', 31,
+                                             sliderInput('raw_materials', 'Raw Materials ($US/ha):', 31,
                                                          min = 0, max = 84, pre = "$"), 
-                                             sliderInput('genetic', 'Provision of GENETIC MATERIALS value ($US/ha):', 13,
+                                             sliderInput('genetic', 'Genetic Materials ($US/ha):', 13,
                                                          min = 0, max = 13, pre = "$"), 
-                                             sliderInput('medical', 'Provision of MEDICINE MATERIALS value ($US/ha):', 0,
+                                             sliderInput('medical', 'Medical Materials ($US/ha):', 0,
                                                          min = 0, max = 1504, pre = "$"), 
-                                             sliderInput('air_quality', 'Provision of CLEAN AIR value ($US/ha):', 12,
+                                             sliderInput('air_quality', 'Clean Air ($US/ha):', 12,
                                                          min = 0, max = 12, pre = "$"), 
-                                             sliderInput('climate', 'Provision of CLIMATE (carbon sequestration) value ($US/ha):', 261,
+                                             sliderInput('climate', 'Climate (carbon sequestration) ($US/ha):', 261,
                                                          min = 4, max = 2044, pre = "$"), 
-                                             sliderInput('extreme_events', 'Provision of PROTECTION AGAINST EXTREME EVENTS value ($US/ha):', 14,
+                                             sliderInput('extreme_events', 'Protection Against Extreme Elements ($US/ha):', 14,
                                                          min = 1, max = 66, pre = "$"), 
-                                             sliderInput('water_flow', 'Provision of FLOW OF WATER value ($US/ha):', 342,
+                                             sliderInput('water_flow', 'Flow of Water ($US/ha):', 342,
                                                          min = 2, max = 342, pre = "$")
                                              ),
                                              column(width = 6,
-                                             sliderInput('waste', 'Provision of WASTE REMOVAL value ($US/ha):', 8,
+                                             sliderInput('waste', 'Waste Removal ($US/ha):', 8,
                                                          min = 6, max = 10, pre = "$"), 
-                                             sliderInput('erosion', 'Provision of EROSION CONTROL value ($US/ha):', 13,
+                                             sliderInput('erosion', 'Erosion Control ($US/ha):', 13,
                                                          min = 4, max = 15, pre = "$"),
-                                             sliderInput('soil_fertility', 'Provision of SOIL FERTILITY value ($US/ha):', 2,
+                                             sliderInput('soil_fertility', 'Soil Fertility ($US/ha):', 2,
                                                          min = 2, max = 7, pre = "$"),
-                                             sliderInput('pollination', 'Provision of POLLINATION value ($US/ha):', 30,
+                                             sliderInput('pollination', 'Pollination ($US/ha):', 30,
                                                          min = 6, max = 53, pre = "$"), 
-                                             sliderInput('biocontrol', 'Provision of BIOCONTROL value ($US/ha):', 1,
+                                             sliderInput('biocontrol', 'Biocontrol ($US/ha):', 1,
                                                          min = 0, max = 11, pre = "$"), 
-                                             sliderInput('nursery', 'Provision of NURSERY value ($US/ha):', 16,
+                                             sliderInput('nursery', 'Nursey ($US/ha):', 16,
                                                          min = 0, max = 16, pre = "$"), 
-                                             sliderInput('genepool', 'Provision of GENEPOOL value ($US/ha):', 12,
+                                             sliderInput('genepool', 'Genepool ($US/ha):', 12,
                                                          min = 0, max = 23, pre = "$"), 
-                                             sliderInput('recreation', 'Provision of recreation activities value ($US/ha):', 45,
+                                             sliderInput('recreation', 'Recreational Activities ($US/ha):', 45,
                                                          min = 0, max = 867, pre = "$")
                                              )
                                              )
@@ -245,12 +248,29 @@ ui <- dashboardPage(skin = "green",
                  whether it is optimal to develop land or conserve"),
                                 h2("In construction...")
                         ),
+# Scenarios tab --------------------------------------------------------
+              tabItem(tabName = "scenarios", 
+                      fluidRow(
+                        tabBox(
+                          width = 12,
+                tabPanel("Scenario Analysis",
+                     includeMarkdown("scenarios.md")),
+                tabPanel("Thailand", 
+                     includeMarkdown('Thailand.md')),
+                tabPanel("Sabah", 
+                     includeMarkdown('Sabah.md'))
+          )
+        )
+        # box(includeHTML('var_appendix.html'), width=12)
+        # box(includeMarkdown('var_appendix.md'), width=12)
+),
+
 # Result Plot tab ---------------------------------------------------------
                         tabItem(tabName = "figure3",
 
 # Key variable box --------------------------------------------------------
                                 fluidRow(
-                                  box(title = "Key variable", status = "success", width = 12, collapsible = TRUE,
+                                  box(title = "Key variables", status = "success", width = 12, collapsible = TRUE,
                                       fluidRow(
                                         column(width = 6,
                                       
@@ -280,7 +300,7 @@ ui <- dashboardPage(skin = "green",
 
 # Key output plot ---------------------------------------------------------
                                 fluidRow(
-                                  box(title = "Key result: Private vs Social Optimal", width = 12, status = "primary",
+                                  box(title = "Key Results: Private vs Social Optimum", width = 12, status = "primary",
                                       # checkboxGroupInput("checkGroup", label = h4("Results to show"), 
                                       #                    choices = list("Private" = "private", "Social" = "social"), 
                                       #                    selected = c('private', 'social')),
@@ -768,7 +788,7 @@ server <- function(input, output) {
       if(isTRUE(input$private_check) & !isTRUE(input$social_check)){
         p <- ggplot(plot_df, aes(x = time2, group = 1, 
                                  text = paste("Year:", time2, "<br>Private:", X_private3))) + #
-          geom_line(y = X_private3, size=2, col = "#377EB8") +
+          geom_line(y = X_private3, size=2, col = "#900C3F") + #377EB8
           scale_color_manual(name = NULL, labels = c("Private ")) +
           annotate("text", label = paste0(round(max(X_private3), 1), "%"), x = 85, y = max(X_private3)) +
           xlim(0, 90) +
@@ -787,7 +807,7 @@ server <- function(input, output) {
       if(!isTRUE(input$private_check) & isTRUE(input$social_check)){
         p <- ggplot(plot_df, aes(x = time2, group = 1, 
                                  text = paste("Year:", time2, "<br>Social:", X_social3))) + #
-          geom_line(y = X_social3, size=2, col = "#4DAF4A") +
+          geom_line(y = X_social3, size=2, col = "#900C3F") + #900C3F #4DAF4A
           scale_color_manual(name = NULL, labels = c("Social ")) +
           annotate("text", label = paste0(round(max(X_social3), 1), "%"), x = 85, y = max(X_social3)) +
           xlim(0, 90) +
