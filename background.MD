@@ -13,4 +13,4 @@
 4. Engage private companies and educate and empower civil society stakeholders to work together for a healthy and sustainable future.
 
 
-####Read more at [EcoHealth Alliance IDEEAL Project Website](https://www.ecohealthalliance.org/program/ideeal)
+#### Read more at [EcoHealth Alliance IDEEAL Project Website](https://www.ecohealthalliance.org/program/ideeal)

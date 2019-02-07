@@ -271,13 +271,13 @@ ui <- dashboardPage(skin = "green",
 # Key variable box --------------------------------------------------------
                                 fluidRow(
                                   box(title = "Key variables", status = "success", width = 12, collapsible = TRUE,
-                                      fluidRow(
+                                    fluidRow(
                                         column(width = 6,
                                       
                                     sliderInput("CPO_price", "Core Palm Oil (CPO) international price (US$):",
                                                 min = 0, max = 1500, pre = "$",value =517),
                                     # Yield of CPO  per hectare (metric tons)
-                                    sliderInput("CPO_yield", "CPO yield per hectare (in metric tons):",
+                                    sliderInput("CPO_yield", "CPO yield per hectare (metric tons):",
                                                 min=0, max=5.01, value=4.19),
                                     helpText("The core palm oil yield is the amount of palm oil in metric tons produced
                                              from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 20% of FFB)")
@@ -318,7 +318,7 @@ ui <- dashboardPage(skin = "green",
                                 
                                 br(),
                                 fluidRow(
-                                  box(title = "Raw data output", status = "primary", width = 12,
+                                  box(title = "Raw Data Output", status = "primary", width = 12,
                                       h4("Social Net Present Value:"),
                                       textOutput("text4"),
                                       h4("Private Net Present Value:"),
@@ -788,7 +788,7 @@ server <- function(input, output) {
       if(isTRUE(input$private_check) & !isTRUE(input$social_check)){
         p <- ggplot(plot_df, aes(x = time2, group = 1, 
                                  text = paste("Year:", time2, "<br>Private:", X_private3))) + #
-          geom_line(y = X_private3, size=2, col = "#900C3F") + #377EB8
+          geom_line(y = X_private3, size=2, col = "#377EB8") + #377EB8
           scale_color_manual(name = NULL, labels = c("Private ")) +
           annotate("text", label = paste0(round(max(X_private3), 1), "%"), x = 85, y = max(X_private3)) +
           xlim(0, 90) +
@@ -807,7 +807,7 @@ server <- function(input, output) {
       if(!isTRUE(input$private_check) & isTRUE(input$social_check)){
         p <- ggplot(plot_df, aes(x = time2, group = 1, 
                                  text = paste("Year:", time2, "<br>Social:", X_social3))) + #
-          geom_line(y = X_social3, size=2, col = "#900C3F") + #900C3F #4DAF4A
+          geom_line(y = X_social3, size=2, col = "#4DAF4A") + #900C3F #4DAF4A
           scale_color_manual(name = NULL, labels = c("Social ")) +
           annotate("text", label = paste0(round(max(X_social3), 1), "%"), x = 85, y = max(X_social3)) +
           xlim(0, 90) +
