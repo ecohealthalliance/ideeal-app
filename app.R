@@ -12,13 +12,10 @@
 library(shiny)
 library(shinydashboard)
 library(optimx)
-library(ggthemes)
-library(tidyverse)
-library(devtools)
-#install_github("nik01010/dashboardthemes")
-library(dashboardthemes)
-library(plotly)
+library(dashboardthemes) #from GitHub: nik01010/dashboardthemes
 library(shinyWidgets)
+library(ggplot2)
+library(plotly)
 
 ui <- dashboardPage(skin = "green",
                     header <- dashboardHeader(title = "IDEEAL", dropdownMenuOutput("messageMenu")
@@ -75,13 +72,13 @@ ui <- dashboardPage(skin = "green",
                         tabItem(tabName = "Picture",
                                 h2("Infectious Disease Emergence and Economics of Altered Landscapes (IDEEAL)"),
                                 fluidRow(  
-                                  box(includeMarkdown('landing_page.MD'), width=12)) 
+                                  box(includeMarkdown('landing_page.md'), width=12)) 
                                 
                         ),
 # Background tab -------------------------------------------------------------------
                         tabItem(tabName = "proj_bg", 
                                 fluidRow(
-                                  box(includeMarkdown('background.MD'), width=12)
+                                  box(includeMarkdown('background.md'), width=12)
                                          ),
                                          
                                 fluidRow(
@@ -95,7 +92,7 @@ ui <- dashboardPage(skin = "green",
                         ),
 # How to tab -------------------------------------------------------------------
                         tabItem(tabName = "app_use", 
-                                box(includeMarkdown('how_to_use.MD'), width=12)
+                                box(includeMarkdown('how_to_use.md'), width=12)
                                 
                         ),
 # Variable Appendix tab -------------------------------------------------------------------
@@ -521,7 +518,8 @@ server <- function(input, output) {
     
     max_W <- optimx(par = U, fn = opt_W, lower = -1, upper = 1,
                     method = ("L-BFGS-B"),
-                    control = list(maximize = TRUE, trace=6))
+                    control = list(maximize = TRUE, trace=0))
+    #max_W <- then(max_W_fut)
     
     U_max <- t(data.frame(coef(max_W)))
     
@@ -675,7 +673,9 @@ server <- function(input, output) {
     
     max_W_P <- optimx(par = U, fn = opt_W_P, lower = -1, upper = 1,
                       method = ("L-BFGS-B"),
-                      control = list(maximize = TRUE, trace=6))
+                      control = list(maximize = TRUE, trace=0))
+    
+  #  max_W_P <- then(max_W_P_fut)
     
     U_max_P <- t(data.frame(coef(max_W_P)))
     
@@ -772,7 +772,7 @@ server <- function(input, output) {
     X_private2 = rep(X_private[51], 30)
     X_private3 = c(X_private,X_private2)
     
-    plot_df = tibble(time2, X_private3, X_social3)
+    plot_df = data.frame(time2, X_private3, X_social3)
     
     withProgress(message = 'Making plot', value = 0, {
       # Keep plot backgound for both boxes unchecked

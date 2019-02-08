@@ -81,7 +81,7 @@ ui <- dashboardPage(# skin = "green",
                       ),
               fluidRow(  
                 box(
-                  includeMarkdown('landing_page.MD'), width=12
+                  includeMarkdown('landing_page.md'), width=12
                   )
                 ) 
              ),
@@ -89,7 +89,7 @@ ui <- dashboardPage(# skin = "green",
       tabItem(tabName = "proj_bg", 
               h2("Infectious Disease Emergence and Economics of Altered Landscapes (IDEEAL)"),
               # fluidRow(  
-                box(includeMarkdown('background.MD'), width=12)
+                box(includeMarkdown('background.md'), width=12)
                 # box("Project Background: Please choose the values in each tab and then click update to estimate the model. 
                 #      If no values are chosen, the model will run with the default values", width=9  )
                 # Add section: why palm oil? (slide 13-16)
@@ -97,11 +97,11 @@ ui <- dashboardPage(# skin = "green",
               ),
 # How to tab -------------------------------------------------------------------
       tabItem(tabName = "app_use", 
-              box(includeMarkdown('how_to_use.MD'), width=12)
+              box(includeMarkdown('how_to_use.md'), width=12)
       ),
 # Variable Appendix tab -------------------------------------------------------------------
       tabItem(tabName = "var_appendix", 
-              box(includeMarkdown('var_appendix.MD'), width=12)
+              box(includeMarkdown('var_appendix.md'), width=12)
       ),
 # Detailed Variable Control tab -------------------------------------------------------------------
       tabItem(tabName = "var_input", 

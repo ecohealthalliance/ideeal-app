@@ -3,3 +3,6 @@
 .RData
 .Ruserdata
 markup
+.DS_Store
+*.log
+
