@@ -48,4 +48,3 @@ This app calculates the expected damages to society from disease outbreaks that 
 
 
 
-  
