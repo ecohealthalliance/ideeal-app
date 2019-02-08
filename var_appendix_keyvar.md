@@ -1,4 +1,4 @@
-<img align = "right" src="img1.png" width="600px" />
+<img align = "right" src="river.jpg" width="600px" />
 
 #### <span style="color:green"><b>Core Palm Oil (CPO) international price</b></span>
 

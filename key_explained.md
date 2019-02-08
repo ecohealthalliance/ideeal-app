@@ -1,0 +1,5 @@
+### Key Variables
+
+- On this tab, you fill be able to set the values for key variables (the most important variables for the model) and view the results. To understand both the results and variable selection process, we recommend reading through the scenarios we have provided in the **Scenarios** tab.
+
+- The graph below compares the socially and privately optimal amount of land conversion in your target site over the next 75 years.  The private optimum only accounts for the private-market costs and benefits of producing and selling palm oil products. The social optimum considers costs that are not fully reflected in the market for palm oil, such as lost ecosystem services and diseases caused by land use change. The social optimum is a more accurate reflection of the true costs and benefits of land conversion, but it is not always used in land use planning. This tool helps policy-makers understand the negative externalities of land conversion to empower more informed decisionmaking.  

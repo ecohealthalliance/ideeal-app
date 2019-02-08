@@ -1,42 +1,42 @@
-<img align = "right" src="img3.jpg" width="600px" />
+<img align = "right" src="bats.png" style="margin-left:20px" width="400px" />
 
-#### <span style="color:green"><b>Food</b></span>
+#### <span style="color:#20643C"><b>Food</b></span>
 
 Ecosystems provide the conditions for growing food. Food comes
 principally from managed agro-ecosystems but marine and freshwater
 systems or forests also provide food for human consumption. Wild foods
 from forests are often underestimated
 
-#### <span style="color:green"><b>Water</b></span>
+#### <span style="color:#20643C"><b>Water</b></span>
 
 Ecosystems play a vital role in the global hydrological cycle, as they
 regulate the flow and purification of water. Vegetation and forests
 influence the quantity of water available locally.
 
-#### <span style="color:green"><b>Raw material</b></span>
+#### <span style="color:#20643C"><b>Raw material</b></span>
 
 Ecosystems provide a great diversity of materials for construction and
 fuel including wood, biofuels and plant oils that are directly derived
 from wild and cultivated plant species.
 
-#### <span style="color:green"><b>Genetic material</b></span>
+#### <span style="color:#20643C"><b>Genetic material</b></span>
 
-#### <span style="color:green"><b>Medicine material</b></span>
+#### <span style="color:#20643C"><b>Medicine material</b></span>
 
 Ecosystems and biodiversity provide many plants used as traditional
 medicines as well as providing the raw materials for the pharmaceutical
 industry. All ecosystems are a potential source of medicinal resources.
 
-#### <span style="color:green"><b>Climate (carbon sequestration)</b></span>
+#### <span style="color:#20643C"><b>Climate (carbon sequestration)</b></span>
 
 Ecosystems regulate the global climate by storing and sequestering
-greenhouse gases. As trees and plants grow, they remove carbon dioxide
+#20643Chouse gases. As trees and plants grow, they remove carbon dioxide
 from the atmosphere and effectively lock it away in their tissues. In
 this way forest ecosystems are carbon stores. Biodiversity also plays an
 important role by improving the capacity of ecosystems to adapt to the
 effects of climate change.
 
-#### <span style="color:green"><b>Protection against extreme events</b></span>
+#### <span style="color:#20643C"><b>Protection against extreme events</b></span>
 
 Extreme weather events or natural hazards include floods, storms,
 tsunamis, avalanches and landslides. Ecosystems and living organisms
@@ -45,9 +45,9 @@ damage. For example, wetlands can soak up flood water whilst trees can
 stabilize slopes. Coral reefs and mangroves help protect coastlines from
 storm damage.
 
-#### <span style="color:green"><b>Flow of water</b></span>
+#### <span style="color:#20643C"><b>Flow of water</b></span>
 
-#### <span style="color:green"><b>Waste removal</b></span>
+#### <span style="color:#20643C"><b>Waste removal</b></span>
 
 Ecosystems such as wetlands filter both human and animal waste and act
 as a natural buffer to the surrounding environment. Through the
@@ -55,19 +55,19 @@ biological activity of microorganisms in the soil, most waste is broken
 down. Thereby pathogens (disease causing microbes) are eliminated, and
 the level of nutrients and pollution is reduced.
 
-#### <span style="color:green"><b>Erosion control</b></span>
+#### <span style="color:#20643C"><b>Erosion control</b></span>
 
 Soil erosion is a key factor in the process of land degradation and
 desertification. Vegetation cover provides a vital regulating service by
 preventing soil erosion.
 
-#### <span style="color:green"><b>Soil fertility</b></span>
+#### <span style="color:#20643C"><b>Soil fertility</b></span>
 
 Soil fertility is essential for plant growth and agriculture and well
 functioning ecosystems supply the soil with nutrients required to
 support plant growth.
 
-#### <span style="color:green"><b>Pollination</b></span>
+#### <span style="color:#20643C"><b>Pollination</b></span>
 
 Insects and wind pollinate plants and trees which is essential for the
 development of fruits, vegetables and seeds. Animal pollination is an
@@ -76,14 +76,14 @@ bats. Some 87 out of the 115 leading global food crops depend upon
 animal pollination including important cash crops such as cocoa and
 coffee (Klein et al. 2007).
 
-#### <span style="color:green"><b>Biocontrol</b></span>
+#### <span style="color:#20643C"><b>Biocontrol</b></span>
 
 Ecosystems are important for regulating pests and vector borne diseases
 that attack plants, animals and people. Ecosystems regulate pests and
 diseases through the activities of predators and parasites. Birds, bats,
 flies, wasps, frogs and fungi all act as natural controls.
 
-#### <span style="color:green"><b>Nursery</b></span>
+#### <span style="color:#20643C"><b>Nursery</b></span>
 
 Habitats provide everything that an individual plant or animal needs to
 survive: food; water; and shelter. Each ecosystem provides different
@@ -91,7 +91,7 @@ habitats that can be essential for a species’ lifecycle. Migratory
 species including birds, fish, mammals and insects all depend upon
 different ecosystems during their movements.
 
-#### <span style="color:green"><b>Gene pool</b></span>
+#### <span style="color:#20643C"><b>Gene pool</b></span>
 
 Genetic diversity is the variety of genes between and within species
 populations. Genetic diversity distinguishes different breeds or races
@@ -101,11 +101,11 @@ livestock. Some habitats have an exceptionally high number of species
 which makes them more genetically diverse than others and are known as
 ‘biodiversity hotspots’.
 
-#### <span style="color:green"><b>Recreation activities</b></span>
+#### <span style="color:#20643C"><b>Recreation activities</b></span>
 
 Recreation and mental and physical health: Walking and playing sports in
-green space is not only a good form of physical exercise but also lets
-people relax. The role that green space plays in maintaining mental and
+#20643C space is not only a good form of physical exercise but also lets
+people relax. The role that #20643C space plays in maintaining mental and
 physical health is increasingly being recognized, despite difficulties
 of measurement.
 
