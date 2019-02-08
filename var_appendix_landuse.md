@@ -1,5 +1,3 @@
-<img align = "right" src="img2.jpg" width="600px" />
-
 #### <span style="color:green"><b>Total Land</b></span>
 
 Total number of hectares in the chosen study region
@@ -23,3 +21,6 @@ Fresh Fruit Bunch (FFB)
 #### <span style="color:green"><b>Proportion CPO from total production</b></span>
 
 The proportion of Crude Palm Oil from total production
+
+
+<img align = "center" src="crop.jpg" width="600px" />

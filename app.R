@@ -29,7 +29,7 @@ ui <- dashboardPage(skin = "green",
                                                   menuItem("App Instructions", tabName = "app_use", icon = icon("info")),
                                                   menuItem("Project Details", tabName = "proj_bg", icon = icon("book")),
                                                   br(), #"coins"? for option values? something else
-                                                  menuItem("Private vs Social Optimum", tabName = "figure3", icon = icon("balance-scale"),  badgeLabel = "results", badgeColor = "green"),
+                                                  menuItem("Model Key Inputs and Results", tabName = "figure3", icon = icon("balance-scale"),  badgeLabel = "results", badgeColor = "green"),
                                                   menuItem("Model Input Variables", tabName = "var_tab", icon = icon("globe"), startExpanded = TRUE,
                                                            menuSubItem("Detailed Variable Control", tabName = "var_input", icon = icon("industry")),
                                                            menuSubItem("Variable Appendix", tabName = "var_appendix", icon = icon("pagelines"))
@@ -89,8 +89,8 @@ ui <- dashboardPage(skin = "green",
                                        <iframe width="640" height="360" src="https://www.youtube.com/embed/asERnZ6byh8?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&amp;mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
                                        </iframe>
                                        </div>'),
-                                  box(img(src = "img1.png", height = 300, width = 450), width=6),
-                                  box(img(src = "img4.jpg",  height = 300, width = 450), width=6)
+                                  box(img(src = "ecohealth.png", height = 300, width = 450), width=6),
+                                  box(img(src = "bb.jpg",  height = 300, width = 450), width=6)
                                 )
                         ),
 # How to tab -------------------------------------------------------------------
@@ -269,8 +269,9 @@ ui <- dashboardPage(skin = "green",
                         tabItem(tabName = "figure3",
 
 # Key variable box --------------------------------------------------------
-                                fluidRow(
-                                  box(title = "Key variables", status = "success", width = 12, collapsible = TRUE,
+                            h2("Model Results"),
+                                fluidRow(box(status = "success", width = 12, collapsible = TRUE,
+                                    box(includeMarkdown('key_explained.MD'), width=12),
                                     fluidRow(
                                         column(width = 6,
                                       

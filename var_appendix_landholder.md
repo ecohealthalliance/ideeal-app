@@ -1,4 +1,4 @@
-<img align = "right" src="img4.jpg" width="600px" />
+<img align = "right" src="production.png" width="600px" />
 
 #### <span style="color:green"><b>Proportion of small landholders</b></span>
 
