@@ -16,3 +16,13 @@ shiny::runApp()
 [IDEEAL website](https://www.ecohealthalliance.org/program/ideeal)
 
 [EcoHealth Alliance](https://ecohealthalliance.org)
+
+---
+
+### Docker deployment
+
+Build and run the app with
+
+    docker build -t ideeal-app . && docker run -d -p 3838:3838 ideeal-app
+
+And visit the app at `localhost:3838`

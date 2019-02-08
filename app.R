@@ -16,6 +16,9 @@ library(dashboardthemes) #from GitHub: nik01010/dashboardthemes
 library(shinyWidgets)
 library(ggplot2)
 library(plotly)
+library(future)
+library(promises)
+plan(multiprocess)
 
 ui <- dashboardPage(skin = "green",
                     header <- dashboardHeader(title = "IDEEAL", dropdownMenuOutput("messageMenu")
@@ -411,7 +414,7 @@ server <- function(input, output) {
     prop_CPO_total  = input$prop_CPO_total
     #### INPUTS ####
     
-    
+    out <- future({
     developed_land = total_land*(1- forest_land)  #total already developed land
     prop_developed_land = developed_land/total_land # proportion of developed land from total (%)
     prop_forest_land = (total_land - developed_land)/total_land  # proportion of forest land from total (%)
@@ -546,12 +549,12 @@ server <- function(input, output) {
     NPV_ES_social <- sum(disc_B)/1e9
     NPV_D_social <- sum(disc_D)/1e9
     
-    return(list(X=X,
+    list(X=X,
                 U_max=U_max,  
                 NPV_W_social=NPV_W_social,
                 NPV_profits_social=NPV_profits_social
-    ) 
-    )  
+    ) })
+ 
   }) 
   ############ End of mydata <- reactive({ ##########################
   
@@ -574,6 +577,7 @@ server <- function(input, output) {
     prop_CPO_total  = input$prop_CPO_total
     #### INPUTS ####
     
+    future({
     developed_land = total_land*(1- forest_land)  #total already developed land
     prop_developed_land = developed_land/total_land # proportion of developed land from total (%)
     prop_forest_land = (total_land - developed_land)/total_land  # proportion of forest land from total (%)
@@ -705,12 +709,12 @@ server <- function(input, output) {
     NPV_D_private <- sum(disc_D)/1e9
     NPV_W_private2 <- NPV_W_private + NPV_ES_private - NPV_D_private
     
-    return(list(X=X,
+    list(X=X,
                 U_max_P=U_max_P, 
                 NPV_W_private=NPV_W_private2, 
                 NPV_profits_private=NPV_profits_private
     ) 
-    )  
+    })
   }) 
   ######################### End of mydata2 <- reactive({ #############################  
   #### Plot 1 #######
@@ -764,11 +768,14 @@ server <- function(input, output) {
   #### Plot 4  - private vs social #######
   output$plotly4 <- renderPlotly({
     validate(need(input$ES_slider, "Computing model"))
-    X_social = mydata()$X
+
+    promise_all(mydat = mydata(), mydat2 = mydata2()) %...>% with({
+    X_social = mydat$X
     X_social2 = rep(X_social[51], 30)
     X_social3 = c(X_social,X_social2)
     
-    X_private = mydata2()$X
+
+    X_private = mydat2$X
     X_private2 = rep(X_private[51], 30)
     X_private3 = c(X_private,X_private2)
     
@@ -850,6 +857,7 @@ server <- function(input, output) {
       }
       ggplotly(p, tooltip = "text")
       # ggplotly(p)
+    }) 
     })
   })
   
@@ -882,11 +890,17 @@ server <- function(input, output) {
   # })
   # 
   output$text4 <- renderText({
-    paste(round( mydata()$NPV_W_social, digits=1))
+    mydata() %...>% {
+    mydat <- .
+    paste(round( mydat$NPV_W_social, digits=1))
+    }
   })
 
   output$text5 <- renderText({
-    paste(round( mydata2()$NPV_W_private, digits=1))
+    mydata2() %...>% {
+      mydat2 <- .
+    paste(round( mydat2$NPV_W_private, digits=1))
+    }
   })
   # 
   # output$text6 <- renderText({ 
