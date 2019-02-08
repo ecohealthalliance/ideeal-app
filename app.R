@@ -40,7 +40,7 @@ ui <- dashboardPage(skin = "green",
                                                   # br(),
                                                   # menuItem("Social Optimal", tabName = "figure1", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
                                                   # menuItem("Private Optimal", tabName = "figure2", icon = icon("shower"),  badgeLabel = "results", badgeColor = "green"),
-                                                  menuItem("Option Value", tabName = "option_value", icon = icon("shower")),  #badgeLabel = "results", badgeColor = "green"),
+                                                 #menuItem("Option Value", tabName = "option_value", icon = icon("shower")),  #badgeLabel = "results", badgeColor = "green"),
                                                   menuItem("Scenarios", tabName = "scenarios", icon = icon("clone")),
                                                   br(),
                                                   
