@@ -5,7 +5,7 @@
 #### Thailand exists
 #### some text
 
-<img src="monkey.png"
+<img src="moto.jpg"
      alt="Loh et al. 2015"
       width= "375" />
 

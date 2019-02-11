@@ -1,25 +1,23 @@
-<img align = "right" src="river.jpg" width="600px" />
+<img align = "right" src="river.jpg" width="400px" />
 
-#### <span style="color:green"><b>Core Palm Oil (CPO) international price</b></span>
+#### <span style="color:#016F46"><b>Core Palm Oil (CPO) international price</b></span>
 
-The international price of core palm oil (CPO), in USD
+The international price of core palm oil (CPO), in USD.  The price of palm oil often changes and detailed pricing information for the product can be found at [Index Mundi](https://www.indexmundi.com/commodities/?commodity=palm-oil).
 
-#### <span style="color:green"><b>CPO yield per hectare</b></span>
+#### <span style="color:#016F46"><b>CPO Yield per Hectare</b></span>
 
-The core palm oil yield is the amount of palm oil in metric tons
-produced from one hectare of land (default: FAOSTAT(2014) for Malaysia.
-It is approximately 20% of Fresh Fruit Bunch (FFB))
+Core palm oil (CPO) yield is the amount of palm oil in metric tons produced from one hectare of land (default: FAOSTAT(2014) for Malaysia). It is approximately 20% of Fresh Fruit Bunch (FFB))
 
-#### <span style="color:green"><b>Total expenditures on prevention and control in the region</b></span>
+#### <span style="color:#016F46"><b>Total Expenditures on Disease Prevention and Control</b></span>
 
-Total expenditures on prevention and control in the region, in USD
+Total expenditures on disease prevention and control in the region, in USD.
 
-#### <span style="color:green"><b>Total number of infections</b></span>
+#### <span style="color:#016F46"><b>Total Number of Infections</b></span>
 
-Number of cases of malaria in the last year in the region
+The total number of infections refers to documented cases of malaria in the last year in the region. 
+#### <span style="color:#016F46"><b>Total Value of Ecosystem Services</b></span>
 
-#### <span style="color:green"><b>Sum total ecosystem services value</b></span>
+This option can be overidden by customizing values in the "Detailed Variable Control" tab and checking the box at the top of the "Ecosystem Services" tab.  On average, the sum of ecosystem service values per hectare in Southeast Asia is approximately $2,365.
 
-The sum of all ecosystem services value. Increasing the value of
-ecosystem services will reduce the land conversion for the social
-optimal
+
+

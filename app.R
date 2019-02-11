@@ -176,9 +176,9 @@ ui <- dashboardPage(skin = "green",
                                              fluidRow(
                                              column(width = 6,
                                              checkboxInput("custom_ES_checkbox", "Use custom ES value"),
-                                             sliderInput('food', 'Provision of Food value ($US/ha):', 15,
+                                             sliderInput('food', 'Provision of Food ($US/ha):', 15,
                                                          min = 0, max = 200, pre = "$"), 
-                                             sliderInput('water', 'CleanWater ($US/ha):', 28,
+                                             sliderInput('water', 'Clean Water ($US/ha):', 28,
                                                          min = 8, max = 46, pre = "$"), 
                                              sliderInput('raw_materials', 'Raw Materials ($US/ha):', 31,
                                                          min = 0, max = 84, pre = "$"), 
@@ -190,9 +190,9 @@ ui <- dashboardPage(skin = "green",
                                                          min = 0, max = 12, pre = "$"), 
                                              sliderInput('climate', 'Climate (carbon sequestration) ($US/ha):', 261,
                                                          min = 4, max = 2044, pre = "$"), 
-                                             sliderInput('extreme_events', 'Protection Against Extreme Elements ($US/ha):', 14,
+                                             sliderInput('extreme_events', 'Protection Against Extreme Events ($US/ha):', 14,
                                                          min = 1, max = 66, pre = "$"), 
-                                             sliderInput('water_flow', 'Flow of Water ($US/ha):', 342,
+                                             sliderInput('water_flow', 'Water Flow($US/ha):', 342,
                                                          min = 2, max = 342, pre = "$")
                                              ),
                                              column(width = 6,
@@ -204,11 +204,11 @@ ui <- dashboardPage(skin = "green",
                                                          min = 2, max = 7, pre = "$"),
                                              sliderInput('pollination', 'Pollination ($US/ha):', 30,
                                                          min = 6, max = 53, pre = "$"), 
-                                             sliderInput('biocontrol', 'Biocontrol ($US/ha):', 1,
+                                             sliderInput('biocontrol', 'Disease Regulation ($US/ha):', 1,
                                                          min = 0, max = 11, pre = "$"), 
-                                             sliderInput('nursery', 'Nursey ($US/ha):', 16,
+                                             sliderInput('nursery', 'Nursey Habitat ($US/ha):', 16,
                                                          min = 0, max = 16, pre = "$"), 
-                                             sliderInput('genepool', 'Genepool ($US/ha):', 12,
+                                             sliderInput('genepool', 'Gene Pool ($US/ha):', 12,
                                                          min = 0, max = 23, pre = "$"), 
                                              sliderInput('recreation', 'Recreational Activities ($US/ha):', 45,
                                                          min = 0, max = 867, pre = "$")
@@ -219,13 +219,13 @@ ui <- dashboardPage(skin = "green",
                                     tabPanel("Other variables",
                                              sliderInput("rho", "Discount rate:",
                                                          min=0.0, max=0.1, value=0.05),
-                                             helpText("The discount rate is used to discount the values to the present. 
-                                                           Every time a piece of land is converted into palm plantation in the future, 
-                                                           it generates revenues that need to be discounted. 
-                                                           Future ecosystem services and costs are also discounted by this rate.", 
+                                             helpText("The discount rate is used to adjust for value distributd through time. 
+                                                       When land is converted, the benefits derived from it are not obtaind all at once, but through time. 
+                                                       The same occurs with ecosystem services, which are offered as a continual stream of benefits. 
+                                                       See the appendix for more information on how discount rates work."), 
                                                       br(),
-                                                      "It is by default at 5%, if you increase the discount rate, 
-                                                           future value flows will become smaller"),
+                                                      "The default discount rate is 5%. If you increase the discount rate, 
+                                                           future value flows are weighted less heavily than current flows and will become smaller."),
                                              br(),
                                              #land conversion
                                              sliderInput('cost_per_HA', 'Land conversion costs ($US/ha):', 
@@ -436,7 +436,7 @@ server <- function(input, output) {
     
     
     ESTV = ES_value*100*HA_in_1_percent 
-    b = 4 # curvature of value for ecosystem services as a function of land covnerted - as higher number higher curvature (if b =1, linear relationship)
+    b = 4 # curvature of value for ecosystem services as a function of land converted - as higher number higher curvature (if b =1, linear relationship)
     r = 0.02 # growth rate of ecosystem 
     
     #Health Damages 
