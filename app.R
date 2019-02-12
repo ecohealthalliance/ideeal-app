@@ -224,7 +224,7 @@ ui <- dashboardPage(skin = "green",
                                                        The same occurs with ecosystem services, which are offered as a continual stream of benefits. 
                                                        See the appendix for more information on how discount rates work."), 
                                                       br(),
-                                                      "The default discount rate is 5%. If you increase the discount rate, 
+                                              helpText("The default discount rate is 5%. If you increase the discount rate, 
                                                            future value flows are weighted less heavily than current flows and will become smaller."),
                                              br(),
                                              #land conversion
@@ -241,13 +241,13 @@ ui <- dashboardPage(skin = "green",
                         ),
 
 # Option Value tab --------------------------------------------------------
-                        tabItem(tabName = "option_value",
-                                h2("Option Value"),
-                                br(),
-                                h2("Given uncertainty in future prices, the option value estimates 
-                 whether it is optimal to develop land or conserve"),
-                                h2("In construction...")
-                        ),
+                       # tabItem(tabName = "option_value",
+                           #     h2("Option Value"),
+                           #     br(),
+                           #    h2("Given uncertainty in future prices, the option value estimates 
+                # whether it is optimal to develop land or conserve"),
+                  #              h2("In construction...")
+                  #      ),
 # Scenarios tab --------------------------------------------------------
               tabItem(tabName = "scenarios", 
                       fluidRow(
@@ -271,7 +271,7 @@ ui <- dashboardPage(skin = "green",
 # Key variable box --------------------------------------------------------
                             h2("Model Results"),
                                 fluidRow(box(status = "success", width = 12, collapsible = TRUE,
-                                    box(includeMarkdown('key_explained.MD'), width=12),
+                                    box(includeMarkdown('key_explained.MD'), width=12)),
                                     fluidRow(
                                         column(width = 6,
                                       
@@ -296,8 +296,8 @@ ui <- dashboardPage(skin = "green",
                   for the social optimal")
                                         )
                                       )
-                                  )
-                                ),
+                                  ),
+                                
 
 # Key output plot ---------------------------------------------------------
                                 fluidRow(
@@ -324,12 +324,12 @@ ui <- dashboardPage(skin = "green",
                                       textOutput("text4"),
                                       h4("Private Net Present Value:"),
                                       textOutput("text5")
-                                  )
                                 )
-                        )
-                      )
-                    )
-)
+                                )    
+                         )
+                      ) #tab items
+                    ) #dashboard body
+) #whole thing
 
 # server ------------------------------------------------------------------
 server <- function(input, output) {

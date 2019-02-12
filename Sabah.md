@@ -22,6 +22,3 @@
 Here are the parameter values:
 
 INSERT CHART
-
-
-

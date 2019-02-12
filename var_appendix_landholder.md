@@ -23,4 +23,3 @@ align = "center"
 width="600"/>
 </dt> <dd>Provided by the Round Table on Sustainable Palm Oil</dd> </dl>
 </div>
-
