@@ -222,9 +222,9 @@ ui <- dashboardPage(skin = "green",
                                              helpText("The discount rate is used to adjust for value distributd through time. 
                                                        When land is converted, the benefits derived from it are not obtaind all at once, but through time. 
                                                        The same occurs with ecosystem services, which are offered as a continual stream of benefits. 
-                                                       See the appendix for more information on how discount rates work."), 
+                                                       See the appendix for more information on how discount rates work.", 
                                                       br(),
-                                              helpText("The default discount rate is 5%. If you increase the discount rate, 
+                                                      "The default discount rate is 5%. If you increase the discount rate, 
                                                            future value flows are weighted less heavily than current flows and will become smaller."),
                                              br(),
                                              #land conversion
@@ -271,7 +271,7 @@ ui <- dashboardPage(skin = "green",
 # Key variable box --------------------------------------------------------
                             h2("Model Results"),
                                 fluidRow(box(status = "success", width = 12, collapsible = TRUE,
-                                    box(includeMarkdown('key_explained.MD'), width=12)),
+                                    box(includeMarkdown('key_explained.MD'), width=12),
                                     fluidRow(
                                         column(width = 6,
                                       
@@ -295,7 +295,7 @@ ui <- dashboardPage(skin = "green",
                                     helpText("Increasing the value of ecosystem services will reduce the land conversion 
                   for the social optimal")
                                         )
-                                      )
+                                      ))
                                   ),
                                 
 
@@ -311,22 +311,11 @@ ui <- dashboardPage(skin = "green",
                                       prettyCheckbox(inputId = "social_check",  label = "Social",
                                                      status = "success",
                                                      value = TRUE, outline = TRUE),
-                                      
                                       plotlyOutput("plotly4")
                                     # plotOutput("plot4")
                                   )
-                                ),
-                                
-                                br(),
-                                fluidRow(
-                                  box(title = "Raw Data Output", status = "primary", width = 12,
-                                      h4("Social Net Present Value:"),
-                                      textOutput("text4"),
-                                      h4("Private Net Present Value:"),
-                                      textOutput("text5")
                                 )
-                                )    
-                         )
+                            )
                       ) #tab items
                     ) #dashboard body
 ) #whole thing
