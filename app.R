@@ -131,17 +131,17 @@ ui <- dashboardPage(skin = "green",
                                                  min = 1, max = 10000000000, value = 7363000 ),
                                     helpText("Total land is the sum of pristine hectares and development hectares "),
                                     # Input for percentage of forest land
-                                    sliderInput("forest_land", "Forest land (%):",
+                                    sliderInput("forest_land", "Forest Land (%):",
                                                 min = 0, max = 1, value = 0.68),
                                     # Input for palm oil price (US$)
                                     sliderInput("kerneloil_price", "Kernel price (US$):",
                                                 min = 0, max = 1500, pre = "$",value =1300),
                                     # Yield of Kernel per hectare (metric tons)
-                                    sliderInput("kerneloil_yield", "Kernel yield per hectare (in metric tons):", 
+                                    sliderInput("kerneloil_yield", "Kernel yield (metric tons/ha):", 
                                                 min=0, max=5.01, value=1.04), 
                                     helpText("The kernel oil yield is the amount of kernel oil in metric tons produced 
               from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 5% of FFB)"),
-                                    sliderInput("prop_CPO_total", "Proportion CPO from total production:", 
+                                    sliderInput("prop_CPO_total", "Proportion CPO of total production:", 
                                                 min=0, max=1, value=0.8)
                                     ),
 # Land Holder % tabPanel -------------------------------------------------------                                    
@@ -160,11 +160,11 @@ ui <- dashboardPage(skin = "green",
                                              helpText("The sum of the proportions must be equal to 1 (100%). \n The default numbers come from Suharto (2009) for Indonesia")
                                              ),
                                              column(width = 6,
-                                             numericInput('yield_small_lanholders', 'Yield small landholders (tonnes/ha):', 
+                                             numericInput('yield_small_lanholders', 'Yield: Small Landholders (tonnes/ha):', 
                                                           min = 0, max = 5.0, value=3), 
-                                             numericInput('yield_large_lanholders', 'Yield large landholders (tonnes/ha):', 
+                                             numericInput('yield_large_lanholders', 'Yield: Large Landholders (tonnes/ha):', 
                                                           min = 0, max = 5.0, value=4.2, step = 0.1),
-                                             numericInput('yield_gov_lanholders', 'Yield goverment plantations (tonnes/ha):', 
+                                             numericInput('yield_gov_lanholders', 'Yield: Goverment Plantations (tonnes/ha):', 
                                                           min = 0, max = 5.0, value=4),
                                              helpText("The yields come from Suharto (2009) for Indonesia")
                                              )
@@ -175,42 +175,43 @@ ui <- dashboardPage(skin = "green",
                                     tabPanel("Ecosystem Services",
                                              fluidRow(
                                              column(width = 6,
-                                             checkboxInput("custom_ES_checkbox", "Use custom ES value"),
-                                             sliderInput('food', 'Provision of Food ($US/ha):', 15,
+                                             checkboxInput("custom_ES_checkbox", "Use custom Ecosystem Service values"),
+                                             sliderInput('food', 'Provision of Food (US$/ha):', 15,
                                                          min = 0, max = 200, pre = "$"), 
-                                             sliderInput('water', 'Clean Water ($US/ha):', 28,
+                                             sliderInput('water', 'Clean Water (US$/ha):', 28,
                                                          min = 8, max = 46, pre = "$"), 
-                                             sliderInput('raw_materials', 'Raw Materials ($US/ha):', 31,
+                                             sliderInput('raw_materials', 'Raw Materials (US$/ha):', 31,
                                                          min = 0, max = 84, pre = "$"), 
-                                             sliderInput('genetic', 'Genetic Materials ($US/ha):', 13,
+                                             sliderInput('genetic', 'Genetic Materials (US$/ha):', 13,
                                                          min = 0, max = 13, pre = "$"), 
-                                             sliderInput('medical', 'Medical Materials ($US/ha):', 0,
+                                             sliderInput('medical', 'Medical Materials (US$/ha):', 0,
                                                          min = 0, max = 1504, pre = "$"), 
-                                             sliderInput('air_quality', 'Clean Air ($US/ha):', 12,
+                                             sliderInput('air_quality', 'Clean Air (US$/ha):', 12,
                                                          min = 0, max = 12, pre = "$"), 
-                                             sliderInput('climate', 'Climate (carbon sequestration) ($US/ha):', 261,
+                                             sliderInput('climate', 'Climate (carbon sequestration) (US$/ha):', 261,
                                                          min = 4, max = 2044, pre = "$"), 
-                                             sliderInput('extreme_events', 'Protection Against Extreme Events ($US/ha):', 14,
-                                                         min = 1, max = 66, pre = "$"), 
-                                             sliderInput('water_flow', 'Water Flow($US/ha):', 342,
-                                                         min = 2, max = 342, pre = "$")
+                                             sliderInput('extreme_events', 'Protection Against Extreme Events (US$/ha):', 14,
+                                                         min = 1, max = 66, pre = "$")
+                                            
                                              ),
                                              column(width = 6,
-                                             sliderInput('waste', 'Waste Removal ($US/ha):', 8,
+                                                    sliderInput('water_flow', 'Water Flow(US$/ha):', 342,
+                                                                min = 2, max = 342, pre = "$"),
+                                             sliderInput('waste', 'Waste Removal (US$/ha):', 8,
                                                          min = 6, max = 10, pre = "$"), 
-                                             sliderInput('erosion', 'Erosion Control ($US/ha):', 13,
+                                             sliderInput('erosion', 'Erosion Control (US$/ha):', 13,
                                                          min = 4, max = 15, pre = "$"),
-                                             sliderInput('soil_fertility', 'Soil Fertility ($US/ha):', 2,
+                                             sliderInput('soil_fertility', 'Soil Fertility (US$/ha):', 2,
                                                          min = 2, max = 7, pre = "$"),
-                                             sliderInput('pollination', 'Pollination ($US/ha):', 30,
+                                             sliderInput('pollination', 'Pollination (US$/ha):', 30,
                                                          min = 6, max = 53, pre = "$"), 
-                                             sliderInput('biocontrol', 'Disease Regulation ($US/ha):', 1,
+                                             sliderInput('biocontrol', 'Disease Regulation (US$/ha):', 1,
                                                          min = 0, max = 11, pre = "$"), 
-                                             sliderInput('nursery', 'Nursey Habitat ($US/ha):', 16,
+                                             sliderInput('nursery', 'Nursey Habitat (US$/ha):', 16,
                                                          min = 0, max = 16, pre = "$"), 
-                                             sliderInput('genepool', 'Gene Pool ($US/ha):', 12,
-                                                         min = 0, max = 23, pre = "$"), 
-                                             sliderInput('recreation', 'Recreational Activities ($US/ha):', 45,
+                                             #sliderInput('genepool', 'Gene Pool (US$/ha):', 12,
+                                             #            min = 0, max = 23, pre = "$"), 
+                                             sliderInput('recreation', 'Recreational Activities (US$/ha):', 45,
                                                          min = 0, max = 867, pre = "$")
                                              )
                                              )
@@ -228,7 +229,7 @@ ui <- dashboardPage(skin = "green",
                                                            future value flows are weighted less heavily than current flows and will become smaller."),
                                              br(),
                                              #land conversion
-                                             sliderInput('cost_per_HA', 'Land conversion costs ($US/ha):', 
+                                             sliderInput('cost_per_HA', 'Land conversion costs (US$/ha):', 
                                                          min = 100, max = 3000, value=1410, pre = "$"),
                                              br(),
                                              sliderInput('population', 'Total population in the region:', 3.55e6,
@@ -255,10 +256,16 @@ ui <- dashboardPage(skin = "green",
                           width = 12,
                 tabPanel("Scenario Analysis",
                      includeMarkdown("scenarios.md")),
+                tabPanel("Sabah", 
+                         includeMarkdown('Sabah.md')),
                 tabPanel("Thailand", 
                      includeMarkdown('Thailand.md')),
-                tabPanel("Sabah", 
-                     includeMarkdown('Sabah.md'))
+                tabPanel("Mainland Malaysia", 
+                         includeMarkdown('MalaysiaMain.md')),
+                tabPanel("Sarawak", 
+                         includeMarkdown('Sarawak.md')),
+                tabPanel("Indonesia", 
+                         includeMarkdown('Indonesia.md'))
           )
         )
         # box(includeHTML('var_appendix.html'), width=12)
@@ -275,22 +282,22 @@ ui <- dashboardPage(skin = "green",
                                     fluidRow(
                                         column(width = 6,
                                       
-                                    sliderInput("CPO_price", "Core Palm Oil (CPO) international price (US$):",
-                                                min = 0, max = 1500, pre = "$",value =517),
+                                    sliderInput("CPO_price", "Crude Palm Oil (CPO) International Price (US$):",
+                                                min = 0, max = 1500, pre = "$",value =555, step = 1),
                                     # Yield of CPO  per hectare (metric tons)
-                                    sliderInput("CPO_yield", "CPO yield per hectare (metric tons):",
-                                                min=0, max=5.01, value=4.19),
-                                    helpText("The core palm oil yield is the amount of palm oil in metric tons produced
+                                    sliderInput("CPO_yield", "CPO Yield per Hectare (metric tons):",
+                                                min=0, max=5.01, value=4.19, step = .1),
+                                    helpText("The crude palm oil yield is the amount of palm oil in metric tons produced
                                              from one hectare of land (default: FAOSTAT(2014) for Malaysia. It is approximately 20% of FFB)")
                                         ),
                                         column(width = 6, 
-                                    sliderInput('expenditures', 'Total expenditures on prevention and control in the region (US$):', 9e6,
-                                                  min = 0, max = 1e8, pre = "$"),
+                                    sliderInput('expenditures', 'Total Expenditures on Disease Prevention and Control in the region (US$):', 9e6,
+                                                  min = 0, max = 1e8, pre = "$", value=9385858, step = 1000),
                                     
-                                    sliderInput('infections', 'Total number of infections:', 2000,
-                                                  min = 0, max = 1e6, pre = ""),
+                                    sliderInput('infections', 'Total Number of Infections:', 2000,
+                                                  min = 0, max = 1e5, pre = "", value=1779, step = 10),
                                     uiOutput("ES_slider_out"),
-                                    # sliderInput("ES_slider", "Sum Total Ecosystem Services Value ($US/ha):", 843, min = 0, max = 5313),
+                                    # sliderInput("ES_slider", "Sum Total Ecosystem Services Value (US$/ha):", 843, min = 0, max = 5313),
                                     h3(textOutput("text8")), 
                                     helpText("Increasing the value of ecosystem services will reduce the land conversion 
                   for the social optimal")
@@ -904,7 +911,7 @@ server <- function(input, output) {
 
   output$text8 <- renderText({
     if(isTRUE(input$custom_ES_checkbox)){
-      paste("Sum Total Ecosystem Services Value ($US/ha) Calculated from Custom User Inputs:", round( mydata0()$ES_value, digits=1)) 
+      paste("Sum Total Ecosystem Services Value (US$/ha) Calculated from Custom User Inputs:", round( mydata0()$ES_value, digits=1)) 
     } else{
       NULL
     }
@@ -913,7 +920,7 @@ server <- function(input, output) {
   ## Remove ES value slider when using custom ES value output
   output$ES_slider_out <- renderUI({
     if(!isTRUE(input$custom_ES_checkbox)){
-      sliderInput("ES_slider", "Sum Total Ecosystem Services Value ($US/ha):", 843, min = 0, max = 5313)
+      sliderInput("ES_slider", "Sum Total Ecosystem Services Value (US$/ha):", 2355, min = 0, max = 5313)
     } 
   })
 

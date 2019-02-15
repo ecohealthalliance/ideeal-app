@@ -14,3 +14,6 @@
 
 
 #### Read more at [EcoHealth Alliance IDEEAL Project Website](https://www.ecohealthalliance.org/program/ideeal)
+<img src="bothlogos.png"
+     width = "400"
+     style="float: center" />

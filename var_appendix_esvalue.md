@@ -22,11 +22,16 @@ Ecosystems provide a great diversity of materials for construction and
 fuel, including wood, biofuels and plant oils that are directly derived
 from wild and cultivated plant species.
 
-#### <span style="color:#016F46"><b>Genetic material</b></span>
+#### <span style="color:#016F46"><b>Genetic Material</b></span>
 
-?????
-
-#### <span style="color:#016F46"><b>Medical materials</b></span>
+Genetic diversity is the variety of genes between and within species
+populations. Genetic diversity distinguishes different breeds or races
+from each other thus providing the basis for locally well-adapted
+cultivators and a gene pool for further developing commercial crops and
+livestock. Some habitats have an exceptionally high number of species
+which makes them more genetically diverse than others and are known as
+‘biodiversity hotspots’.
+#### <span style="color:#016F46"><b>Medical Materials</b></span>
 
 Ecosystems and biodiversity provide many plants used as traditional medicines as well as raw materials used by pharmaceutical industry. All ecosystems are a potential source of medicinal resources that have not yet been discovered. Conserving these resources because there is a possible, but unknown potential use is called "option value."
 
@@ -94,16 +99,6 @@ species including birds, fish, mammals and insects all depend upon
 different ecosystems during their movements.
 
 <img align = "left" src="monkey.png" style="margin-left:20px" width="400px" />
-
-#### <span style="color:#016F46"><b>Gene pool</b></span>
-
-Genetic diversity is the variety of genes between and within species
-populations. Genetic diversity distinguishes different breeds or races
-from each other thus providing the basis for locally well-adapted
-cultivators and a gene pool for further developing commercial crops and
-livestock. Some habitats have an exceptionally high number of species
-which makes them more genetically diverse than others and are known as
-‘biodiversity hotspots’.
 
 #### <span style="color:#016F46"><b>Recreation activities</b></span>
 

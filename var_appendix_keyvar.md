@@ -6,7 +6,7 @@ The international price of core palm oil (CPO), in USD.  The price of palm oil o
 
 #### <span style="color:#016F46"><b>CPO Yield per Hectare</b></span>
 
-Core palm oil (CPO) yield is the amount of palm oil in metric tons produced from one hectare of land (default: FAOSTAT(2014) for Malaysia). It is approximately 20% of Fresh Fruit Bunch (FFB))
+Crude palm oil (CPO) yield is the amount of crude palm oil in metric tons produced from one hectare of land (default: FAOSTAT(2014) for Malaysia). It is approximately 20% of Fresh Fruit Bunch (FFB))
 
 #### <span style="color:#016F46"><b>Total Expenditures on Disease Prevention and Control</b></span>
 
