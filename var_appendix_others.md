@@ -4,7 +4,7 @@
 
 #### <span style="color:#016F46"><b>Land Conversion Cost</b></span>
 
-Converting forest into a planation can be cost intensive and substantially impact how and where land conversion is performed. BUrning, though illegal in some places (such as Indonesia), is often the cheapest way to clear land. However, the [health costs of haze](http://news.mit.edu/2018/mit-researchers-peat-burning-sumatra-causes-severe-haze-singapore-1121) in the surrounding region can be quite high.  This parameter gives the cost of transition from forest to agriculture for a hectare of land in USD
+Converting forest into a planation can be cost intensive and substantially impact how and where land conversion is performed. Burning, though illegal in some places (such as Indonesia), is often the cheapest way to clear land. However, the [health costs of haze](http://news.mit.edu/2018/mit-researchers-peat-burning-sumatra-causes-severe-haze-singapore-1121) in the surrounding region can be quite high.  This parameter gives the cost of transition from forest to agriculture for a hectare of land in USD
 
 #### <span style="color:#016F46"><b>Total population in the region</b></span>
 

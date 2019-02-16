@@ -15,7 +15,7 @@ align = "left"
 width="350"/>
 </div>
 
-Futhermore, land conversion in Sabah has caused a total loss in the Net Present Value (value of something from the present and into the future) of carbon stored in a hectare of land. This corresponds to a decrease in value derived from forest-provided ecosystem services, such as water and air purification and protection against extreme weather events. 
+Futhermore, land conversion in Sabah has caused a total loss in the average Net Present Value of carbon stored in a hectare of land. This corresponds to a decrease in value derived from forest-provided ecosystem services, such as water and air purification and protection against extreme weather events. 
 
 
 ## Parameter Values

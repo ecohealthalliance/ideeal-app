@@ -1,5 +1,5 @@
 ## Overview  
-The IDEEAL project, run by EcoHealth Alliance and funded by USAID, looks at the tradeoffs between human-environmental health and economic growth from palm oil production. 
+The IDEEAL project, lead by EcoHealth Alliance and funded by USAID, looks at the tradeoffs between human-environmental health and economic growth from palm oil production. 
 
 Every time a hectare of land is allocated for palm oil production there are both benefits and costs. Palm oil production can increase people’s quality of life through the creation of more jobs and infrastructure, the generation of wealth and economic growth, and more tax revenues for public spending.
 
