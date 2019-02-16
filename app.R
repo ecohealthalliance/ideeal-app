@@ -86,7 +86,7 @@ ui <- dashboardPage(skin = "green",
                                          
                                 fluidRow(
                                   HTML('<div align = "center">
-                                       <iframe width="640" height="360" src="https://www.youtube.com/embed/asERnZ6byh8?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1&amp;mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+                                       <iframe width="640" height="360" src="https://www.youtube.com/embed/asERnZ6byh8?rel=0&amp;controls=1&amp;showinfo=0;autoplay=0&amp;mute=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
                                        </iframe>
                                        </div>'),
                                   box(img(src = "ecohealth.png", height = 300, width = 450), width=6),
@@ -278,7 +278,7 @@ ui <- dashboardPage(skin = "green",
 # Key variable box --------------------------------------------------------
                             h2("Model Results"),
                                 fluidRow(box(status = "success", width = 12, collapsible = TRUE,
-                                    box(includeMarkdown('key_explained.MD'), width=12),
+                                    box(includeMarkdown('key_explained.md'), width=12),
                                     fluidRow(
                                         column(width = 6,
                                       
