@@ -1,13 +1,17 @@
 # IDEEAL: Infectious Disease Emergence and Economics of Altered Landscapes
 
+This repository contains code and resources to run the IDEEAL interactive app:  
+
+![](readme.png)
+
 ## How to run this Shiny App
 1. git clone this repo
 2. open server.R and ui.R in RStudio
-3. click "Run App" OR run the below code in your console
+3. Install all packages in .R files
+4. click "Run App" OR run the below code in your console
 ```{r}
 shiny::runApp()
 ```
-4. Make sure you have all packages downloaded
 
 ### Project Goal:
 1. Understand the benefits of forest conservation to regulate diseases
